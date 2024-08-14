@@ -14,8 +14,8 @@
             <h2>Your Name</h2>
             <ul>
                 <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#blog">Blog</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -27,13 +27,13 @@
                 <p>This is where you introduce yourself. Add your bio, background, and interests.</p>
             </section>
 
-            <section id="portfolio">
-                <h1>Portfolio</h1>
+            <section id="publications">
+                <h1>Publications</h1>
                 <p>Showcase your work or projects here. Add images, descriptions, and links.</p>
             </section>
 
-            <section id="blog">
-                <h1>Blog</h1>
+            <section id="projects">
+                <h1>Projects</h1>
                 <p>Share your thoughts, articles, or updates here.</p>
             </section>
 
@@ -43,6 +43,12 @@
             </section>
         </div>
     </div>
+
+
+
+
+
+
     <!-- JavaScript for Dynamic Favicon -->
     <script>
         function updateFavicon() {
@@ -50,11 +56,9 @@
             const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
             
             if (darkModeQuery.matches) {
-                console.log("darkmode");
                 favicon.href = 'icons/favicon-light.ico';
             } else {
                 favicon.href = 'icons/favicon-dark.ico';
-                console.log("lightmode");
             }
         }
 
@@ -64,5 +68,10 @@
         // Listen for changes in color scheme
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
     </script>
+
+
+
+
+
 </body>
 </html>
