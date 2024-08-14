@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Personal Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Rasmus Ploug</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link id="dynamic-favicon" rel="icon" href="icons/favicon-light.ico" type="image/x-icon">
 </head>
 <body>
     <div class="container">
@@ -42,5 +43,26 @@
             </section>
         </div>
     </div>
+    <!-- JavaScript for Dynamic Favicon -->
+    <script>
+        function updateFavicon() {
+            const favicon = document.getElementById('dynamic-favicon');
+            const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            if (darkModeQuery.matches) {
+                console.log("darkmode");
+                favicon.href = 'icons/favicon-light.ico';
+            } else {
+                favicon.href = 'icons/favicon-dark.ico';
+                console.log("lightmode");
+            }
+        }
+
+        // Update favicon on page load
+        updateFavicon();
+
+        // Listen for changes in color scheme
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
+    </script>
 </body>
 </html>
