@@ -8,25 +8,50 @@ body {
 .container {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
     min-height: 100vh;
 }
 
 /* Sidebar styles */
 .sidebar {
-    background-color: #f4f4f4;
+    background-color: #181818;
     padding: 20px;
     width: 250px;
     box-sizing: border-box;
+    position: fixed; /* Make the sidebar fixed */
+    height: 100vh; /* Full height */
+    overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.sidebar-logo {
+    width: 80px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure block-level element for centering */
+    margin: 0 auto 0; /* Center the image and add space below */
 }
 
 .sidebar h2 {
-    margin: 0 0 20px 0;
+
+    color: white;
+    margin: 0 0 70px 0;
+    text-align: center; /* Center the text */
 }
 
+.sidebar p {
+    font-size: larger;
+    color: #868686;
+    margin: 0 0 70px 0;
+    text-align: center; /* Center the text */
+}
+.sidebar p span {
+    font-weight: 700;
+    color: #d4d4d4;
+    margin: 0 0 70px 0;
+    text-align: center; /* Center the text */
+}
 .sidebar ul {
     list-style: none;
     padding: 0;
+    text-align: center; /* Center the list items */
 }
 
 .sidebar ul li {
@@ -35,12 +60,14 @@ body {
 
 .sidebar ul li a {
     text-decoration: none;
-    color: #333;
+    color: #d4d4d4;
+    display: block; /* Ensure that the links fill the entire width of the parent */
 }
+
 
 /* Content area styles */
 .content {
-    flex: 1;
+    margin-left: 270px; /* Offset content area for fixed sidebar */
     padding: 20px;
     box-sizing: border-box;
 }
@@ -58,15 +85,16 @@ section h1 {
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
-        min-height: auto;
     }
 
     .sidebar {
+        position: relative; /* Reset for small screens */
         width: 100%;
+        height: auto; /* Auto height for sidebar on small screens */
     }
 
     .content {
-        width: 100%;
+        margin-left: 0; /* Reset margin for small screens */
     }
 }
 
