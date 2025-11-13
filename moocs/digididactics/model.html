@@ -3949,6 +3949,56 @@
           const infoTitle = document.getElementById("info-title");
           const infoText = document.getElementById("info-text");
           const infoClose = document.getElementById("info-close");
+          // --- Draggable popup (desktop only) ---
+          let isDragging = false;
+          let dragOffsetX = 0;
+          let dragOffsetY = 0;
+
+          function startDrag(e) {
+            if (infoBox.style.display === "none") return;
+            if (window.innerWidth <= 700) return; // don't drag on mobile layout
+
+            isDragging = true;
+
+            const pointer = e.touches ? e.touches[0] : e;
+            const rect = infoBox.getBoundingClientRect();
+
+            // Lock current visual position and drop the centering transform
+            infoBox.style.transform = "none";
+            infoBox.style.left = rect.left + window.scrollX + "px";
+            infoBox.style.top = rect.top + window.scrollY + "px";
+
+            // How far from the box's top-left the pointer is
+            dragOffsetX = pointer.clientX - rect.left;
+            dragOffsetY = pointer.clientY - rect.top;
+
+            document.addEventListener("pointermove", onDragMove);
+            document.addEventListener("pointerup", stopDrag);
+          }
+
+          function onDragMove(e) {
+            if (!isDragging) return;
+
+            const pointer = e.touches ? e.touches[0] : e;
+
+            const newLeft = pointer.clientX - dragOffsetX + window.scrollX;
+            const newTop = pointer.clientY - dragOffsetY + window.scrollY;
+
+            infoBox.style.left = newLeft + "px";
+            infoBox.style.top = newTop + "px";
+          }
+
+          function stopDrag() {
+            isDragging = false;
+            document.removeEventListener("pointermove", onDragMove);
+            document.removeEventListener("pointerup", stopDrag);
+          }
+
+          // Start dragging when pressing on the popup (but not the X)
+          infoBox.addEventListener("pointerdown", (e) => {
+            if (e.target === infoClose) return;
+            startDrag(e);
+          });
 
           // Special elements
           const centerEl = svg.getElementById ? svg.getElementById("Center") : document.getElementById("Center");
