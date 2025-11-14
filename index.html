@@ -2,194 +2,222 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Rasmus Ploug</title>
+
+    <!-- Material Symbols (Google icons) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
     <link rel="stylesheet" href="styles/styles.css" />
     <link id="dynamic-favicon" rel="icon" href="icons/favicon-light.ico" type="image/x-icon" />
   </head>
   <body>
-    <div class="container">
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <img src="images/rp_logo_white.svg" alt="SVG Image of a logo" class="sidebar-logo" />
-        <h2>Rasmus Ploug</h2>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#publications">Publications</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
+    <div class="page">
+      <!-- Top navigation -->
+      <header class="navbar">
+        <div class="nav-inner">
+          <div class="nav-left">
+            <img src="images/rp_logo_black.svg" alt="Logo for Rasmus Ploug" class="nav-logo" />
+            <span class="nav-name">Rasmus&nbsp;Ploug</span>
+          </div>
+          <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#publications">Publications</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+      </header>
 
-      <!-- Content Area -->
-      <div class="content">
-        <section id="about">
-          <h1>About Me</h1>
-          <p>
-            Hello! I'm Rasmus Ploug, a passionate Game Development and Learning Technology student at the University of Southern Denmark. Currently, I'm pursuing my master's degree, where my research focuses on exploring the fascinating dynamics of player interaction with NPCs in video games, particularly in relation to varying degrees of Large Language Model (LLM) influence.
-            <br/>
-            Throughout my studies, I prioritize the human aspect of development. For me, the true measure of success is seeing a tool or project come to life in the hands of users, enhancing their experience and bringing joy. My work bridges cutting-edge technology with user-centered design, ensuring that every creation resonates with those who interact with it.
-            <br/>
-            Welcome to my page, where you can explore my publications and projects that reflect my dedication to innovative game development and meaningful user experiences.
+      <!-- Main content -->
+      <main class="main">
+        <!-- Hero / about -->
+        <section id="about" class="section hero">
+          <div class="hero-avatar">
+            <img src="images/profile.png" alt="Portrait of Rasmus Ploug" class="avatar-img" />
+          </div>
+          <div class="hero-text">
+            <h1 class="hero-title">Rasmus Ploug</h1>
+            <p class="hero-subtitle">
+              Research Assistant at the STEM Education Research Center – FNUG<br />
+              University of Southern Denmark
+            </p>
+            <p class="hero-body">
+              I work at the intersection of learning technology, generative AI, and game development. My research examines how large language models
+              can support learning in ethical, transparent, and well designed ways. I focus on how AI systems can scaffold understanding, encourage
+              exploration, and provide meaningful feedback without undermining trust or agency. I am also interested in playful learning and the role
+              of games in creating engaging and supportive learning experiences across STEM and related fields.
+            </p>
+          </div>
+        </section>
+
+        <!-- Publications -->
+        <section id="publications" class="section">
+          <div class="section-header">
+            <h2>Publications</h2>
+            <p class="section-intro">Selected peer reviewed work. Ordering: most recent first.</p>
+          </div>
+
+          <ul class="pub-list">
+            <li class="pub-item">
+              <p class="pub-title">
+                <strong>AI-Buddies in MMORPGs: Player Perceptions of Conceptual LLM-Driven NPCs in World of Warcraft</strong>
+              </p>
+              <p class="pub-meta">
+                2025 IEEE Conference on Games (CoG), 1–4. IEEE.<br />
+                Rasmus Ploug, Marco Scirea
+              </p>
+              <p class="pub-links">
+                <a
+                  class="icon-link"
+                  href="publications/papers/AI-BuddiesinMMORPGsPlayerPerceptionsofConceptualLLM-DrivenNPCsinWorldofWarcraft.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="material-symbols-outlined icon" aria-hidden="true"> draft </span>
+                  <span>Paper</span>
+                </a>
+                <span class="pub-separator">/</span>
+                <a class="icon-link" href="publications/presentations/AI-Buddies - CoG2025.pdf" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined icon" aria-hidden="true"> co_present </span>
+                  <span>Presentation</span>
+                </a>
+              </p>
+            </li>
+
+            <li class="pub-item">
+              <p class="pub-title">
+                <strong>Open-Ended NPC Dialogue Favors Casual Players: A Pilot Comparison of Three LLM-Driven Dialogue Systems</strong>
+              </p>
+              <p class="pub-meta">
+                2025 IEEE Conference on Games (CoG), 1–4. IEEE.<br />
+                Rasmus Ploug, Emil Rimer, Anthon Kristian Skov Petersen, Marco Scirea
+              </p>
+              <p class="pub-links">
+                <a
+                  class="icon-link"
+                  href="publications/papers/Open-EndedNPCDialogueFavorsCasualPlayersAPilotComparisonofThreeLLM-DrivenDialogueSystems (1).pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="material-symbols-outlined icon" aria-hidden="true"> draft </span>
+                  <span>Paper</span>
+                </a>
+                <span class="pub-separator">/</span>
+                <a class="icon-link" href="https://youtu.be/859oBCeXblY" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined icon" aria-hidden="true"> video_library </span>
+                  <span>Video</span>
+                </a>
+                <span class="pub-separator">/</span>
+                <a class="icon-link" href="publications/presentations/LLM-Powered NPC Dialogue Systems.pdf" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined icon" aria-hidden="true"> co_present </span>
+                  <span>Presentation</span>
+                </a>
+              </p>
+            </li>
+
+            <li class="pub-item">
+              <p class="pub-title">
+                <strong>Talking to NPCs: Three LLM-Driven Approaches to Dynamic RPG Dialogue</strong>
+              </p>
+              <p class="pub-meta">
+                2025 IEEE Conference on Games (CoG), 1–2. IEEE.<br />
+                Emil Rimer, Rasmus Ploug, Anthon Kristian Skov Petersen, Marco Scirea
+              </p>
+              <p class="pub-links">
+                <a
+                  class="icon-link"
+                  href="publications/papers/TalkingtoNPCsThreeLLM-DrivenApproachestoDynamicRPGDialogue (1).pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="material-symbols-outlined icon" aria-hidden="true"> draft </span>
+                  <span>Paper</span>
+                </a>
+                <span class="pub-separator">/</span>
+                <a class="icon-link" href="https://youtu.be/859oBCeXblY" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined icon" aria-hidden="true"> video_library </span>
+                  <span>Video</span>
+                </a>
+              </p>
+            </li>
+
+            <li class="pub-item">
+              <p class="pub-title">
+                <strong>Evolving Camouflages: A User-Centric AI Approach for Game Aesthetics</strong>
+              </p>
+              <p class="pub-meta">
+                International Journal of Computer Games Technology, 2025(1), 3609613.<br />
+                Rasmus Ploug, Emil Rimer, Anthon Kristian Skov Petersen, Marco Scirea, Joseph Alexander Brown
+              </p>
+              <p class="pub-links">
+                <a class="icon-link" href="https://onlinelibrary.wiley.com/doi/full/10.1155/ijcg/3609613" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined icon" aria-hidden="true"> draft </span>
+                  <span>Paper</span>
+                </a>
+              </p>
+            </li>
+
+            <li class="pub-item">
+              <p class="pub-title">
+                <strong>Towards Interactive Evolutionary Camouflage Design</strong>
+              </p>
+              <p class="pub-meta">
+                2024 IEEE Conference on Games (CoG), 1–4. IEEE.<br />
+                Rasmus Ploug, Emil Rimer, Anthon Kristian Skov Petersen, Marco Scirea, Joseph Alexander Brown
+              </p>
+              <p class="pub-links">
+                <a
+                  class="icon-link"
+                  href="publications/papers/TowardsInteractiveEvolutionaryCamouflageDesign.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="material-symbols-outlined icon" aria-hidden="true"> draft </span>
+                  <span>Paper</span>
+                </a>
+                <span class="pub-separator">/</span>
+                <a class="icon-link" href="https://youtu.be/CnGAoMGWYmo" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined icon" aria-hidden="true"> video_library </span>
+                  <span>Video</span>
+                </a>
+                <span class="pub-separator">/</span>
+                <a class="icon-link" href="https://marcoscirea.com/presentations/cog-camo/index.html#/" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined icon" aria-hidden="true"> co_present </span>
+                  <span>Presentation</span>
+                </a>
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="section">
+          <div class="section-header">
+            <h2>Contact</h2>
+          </div>
+          <p class="contact-text">For collaboration, or speaking opportunities, feel free to get in touch.</p>
+          <p class="contact-links">
+            <a class="social-link" href="mailto:rasmusploug@live.dk" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined icon" aria-hidden="true"> forward_to_inbox </span>
+              <span>Email</span>
+            </a>
+            <span class="contact-separator">/</span>
+            <a class="social-link" href="https://www.rasmusploug.com" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined icon" aria-hidden="true"> language </span>
+              <span>Website</span>
+            </a>
+            <span class="contact-separator">/</span>
+            <a class="social-link" href="https://linkedin.com/in/rasmus-ploug" target="_blank" rel="noopener noreferrer">
+              <svg class="icon linkedin-icon" viewBox="0 0 448 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
+                ></path>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
           </p>
         </section>
-
-        <section id="publications">
-          <h1>Publications</h1>
-          <hr />
-
-          <p>
-            <b>"Towards Interactive Evolutionary Camouflage Design."</b> in IEEE Conference on Games (2024).
-            <br />
-            Rasmus Ploug, Emil Rimer, Anthon Kristian Skov Petersen, Marco Scirea & Joseph Alexander Brown.
-            <br />
-            
-            <a href="publications/TowardsInteractiveEvolutionaryCamouflageDesign.pdf" target="_blank">PDF</a>, 
-            <a href="https://youtu.be/CnGAoMGWYmo" target="_blank">Video</a>, 
-            <a href="https://marcoscirea.com/presentations/cog-camo/index.html#/" target="_blank">Presentation</a> 
-            <hr />
-          </p>
-          
-        </section>
-
-        <section id="projects">
-          <h1>Projects</h1>
-          <hr/>
-
-          
-          <div class="project-item">
-            <img src="images/meco logo.png" alt="Project Image" class="project-image"/>
-            <div class="project-content">
-              <p>              
-                <b>MeCo: Connecting Generations</b>
-                <br />
-                Rasmus Ploug, Emil Rimer, Anthon Kristian Skov Petersen
-                <br /><br />
-                <b>Abstract:</b> This project explores and evaluates the development of an interactive photo album designed to engage both elderly and younger users, focusing on how visual and technical design can enhance motivation to use the application. The product consists of an application containing the digital photo album and a mobile application for managing and uploading pictures. New features have been added and existing ones redesigned to enhance the overall user experience. Both applications have been tested and evaluated through field studies. Relevant demographics were tested and interviewed. The findings offer insight on how elderly and younger users engage with the application, their opinion on the concept and what could motivate them to use the applications. The elderly saw little use for the application as other media already provided them with similar options. The younger audience showed a positive attitude towards the application and could see themselves using it at least on a weekly basis. While this project explored user engagement with the interactive photo album, there remains opportunities for further development. 
-                <br />
-                <a href="projects/MeCo - Connecting Memories.pdf" target="_blank">PDF</a>, 
-                <a href="https://youtu.be/gcJMnrBAiHE" target="_blank">Video</a>
-                
-              </p>
-            </div>
-          </div>
-          <hr />
-
-
-          <div class="project-item">
-            <img src="images/solitude.png" alt="Project Image" class="project-image"/>
-            <div class="project-content">
-              <p>              
-                <b>Advantages and Disadvantages of Converting an Ordinary Computer Game to VR</b>
-                <br />
-                Rasmus Ploug, Emil Rimer, Anthon Kristian Skov Petersen, Caroline Hansen
-                <br /><br />
-                <b>Abstract:</b> This study investigates the complications met during a conversion of a traditional PC
-                game into virtual reality (VR). This conversion is based on a game called Solitude,
-                which was made in an earlier semester during the course, Game Design 2. The objective
-                of the research is to examine the advantages and disadvantages of the suggested
-                alternated game mechanics and explore the difference in immersion. The designed
-                adaptations to the game were play tested to give an overview on what potentially
-                works in practice. The tests were informal with ongoing conversations and the playtesters
-                answered questionaries at the end. The tests provided feedback, which supported
-                the improvements towards a more significant player experience, as well as
-                showing that the level of immersion in the VR version transcends the traditional gaming
-                platforms. The design process also showed the game mechanics’ level of functionality
-                depends heavily on the type of game being converted.<br />
-                <a href="projects/Advantages and Disadvantages of converting an ordinary computer game to VR.pdf" target="_blank">PDF</a>, 
-                <a href="https://youtu.be/vXaTqWQKa98?si=308skPPDaDJvalnn" target="_blank">Video</a>
-                
-              </p>
-            </div>
-          </div>
-          <hr />
-
-
-          <div class="project-item">
-            <img src="images/WeAreInSpace.png" alt="Project Image" class="project-image"/>
-            <div class="project-content">
-              <p>              
-                <b>We are in Space: a VR Space Experience</b>
-                <br />
-                Rasmus Ploug, Emil Rimer, Anthon Kristian Skov Petersen, Caroline Hansen
-                <br /><br />
-                <b>Abstract:</b> Virtual reality is a relevant tool with the potential of being a template for learning technology
-                and applications. This project aims at exploring how it is possible to complement the physics
-                topic in the Danish elementary school grade 7- 9 with a learning technology. It will also explore
-                the potential of substituting some of the academic reading in class with more dynamic ways of
-                learning. In addition, this project focuses on the theme of astronomy and our solar system in
-                coherence with the study plan for physics and chemistry in 7th - 9th grade.
-                Structured usability-tests have been conducted in partnership with a physics teacher from
-                Nymarkskolen in Svendborg. These usability-tests were prepared and conducted in teams of 4
-                test students over the course of two visits covering the entire participant class twice. In addition,
-                the partnered physics teacher was also interviewed, thus gaining a professional perspective on
-                the curriculum and teaching structure in said specific class.
-                Learning principles and design in this project is based on relevant theory from
-                Læringsteknologi 2. This project uses supported claims on why and how it is possible to
-                optimize the students' learning abilities using this learning technology.
-                Our results show a positive learning experience from the test students. This result is derived
-                from a theory-based design on learning abilities in correlation to the conducted usability tests.
-                The overall usability-tests result shows a positive attitude towards the application with an above
-                medium being able to see themselves using this technology as a supplement to their physics
-                class. The results also indicated a more engaged learning environment for especially dyslexic
-                students. Hence the finished prototype proved that it is possible to positively boost learning
-                experiences within a class using a VR learning technology.<br />
-                <a href="projects/We Are In Space - Rapport.pdf" target="_blank">PDF</a>, 
-                <a href="https://youtu.be/hanPJtPJBtg" target="_blank">Video</a>
-                
-              </p>
-            </div>
-          </div>
-          <hr />
-
-
-          <div class="project-item">
-            <img src="images/motedu.png" alt="Project Image" class="project-image"/>
-            <div class="project-content">
-              <p>              
-                <b>Motedu</b>
-                <br />
-                Rasmus Ploug, Emil Rimer, Anthon Kristian Skov Petersen, Caroline Hansen
-                <br /><br />
-                <b>Abstract:</b> To foster and maintain motivation among our target demographic, we explored the use of gamification to create a more engaging environment where students can not only complete their homework and submit assignments but also track their progress relative to their classmates in various subjects. We developed a prototype for a platform featuring a fictional world where students can create and control their own characters. The platform consists of separate interfaces for students and teachers. Teachers can create and name visual "islands" where they assign homework, determining the number of islands and how they organize them. Assignments include deadlines, descriptions, and the amount of experience points (XP) students can earn. XP, which represents "Experience Points," is accumulated through completing tasks, allowing students to level up, gain access to additional assets, and purchase cosmetic items for their characters. A highscore system was integrated to boost motivation, displaying only the top three positions in the class to avoid discomfort among lower-ranking students. However, individual students can view their own rankings in each subject to monitor their performance. The graphics were designed in simple pixel art to appeal broadly to our target group. This prototype incorporates elements we believe will provide the best testing platform and effectively convey the product's purpose.<br />
-                <a href="projects/Motedu Projektrapport.pdf" target="_blank">PDF</a>, 
-                <a href="https://www.youtube.com/watch?v=xDFcdiKxudI" target="_blank">Video</a>
-                
-              </p>
-            </div>
-          </div>
-          <hr />
-
-
-
-        </section>
-        
-
-        <section id="contact">
-          <h1>Contact Me</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet dui ac arcu congue pretium a ut nisi. Etiam ultricies diam non
-            accumsan posuere. Aenean tincidunt nunc in dolor pretium mollis. Sed in mi dapibus, accumsan urna nec, dignissim magna. Quisque viverra
-            iaculis egestas. Nam lobortis elit in tellus tristique, eget porta enim egestas. Nam aliquet sed lacus vitae dictum. Donec rutrum leo
-            vitae arcu eleifend blandit. Nullam faucibus sed neque fringilla rhoncus. Integer est lorem, cursus sed aliquam sed, ornare ac tellus. Sed
-            at neque congue, aliquet augue feugiat, vestibulum elit. Proin tempor justo sed condimentum lacinia. Quisque congue venenatis lobortis.
-            Phasellus suscipit felis lectus, eget vestibulum arcu accumsan at. Maecenas nibh erat, porta vitae pellentesque id, viverra a diam. Nulla
-            a varius neque. Suspendisse dolor urna, fermentum ut ex at, finibus condimentum nibh. Etiam scelerisque enim nulla, non gravida arcu porta
-            vel. Aliquam dapibus, orci at pharetra elementum, est arcu cursus eros, at mollis dui velit vel lectus. Nunc interdum commodo euismod.
-            Nulla venenatis lobortis lectus ac gravida. Duis venenatis tristique purus non mollis. Interdum et malesuada fames ac ante ipsum primis in
-            faucibus. Quisque suscipit magna nec purus accumsan, eget pellentesque ex efficitur. Vestibulum venenatis est risus, eu vestibulum nisl
-            luctus faucibus. Nam nec sagittis ex. Maecenas viverra dignissim metus, eget scelerisque nisi facilisis id. Aliquam sodales dignissim
-            gravida. Sed scelerisque purus ac metus tincidunt, at pharetra sem fringilla. Sed euismod pretium congue. Mauris feugiat mollis elit, nec
-            ornare erat sodales ut. Pellentesque facilisis, tortor sit amet luctus viverra, neque lacus varius dui, aliquam convallis odio felis at
-            odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In maximus sem et molestie aliquam.
-            Nulla facilisi. Vivamus in mauris vehicula, pulvinar nisi et, cursus nunc. Nunc vitae quam sollicitudin, dignissim lacus nec, efficitur
-            erat. Phasellus tincidunt dui quis est ornare, id imperdiet dui mollis. Suspendisse sit amet ultricies metus. Integer et elementum sem. Ut
-            vitae cursus ipsum. In id lectus eu magna pellentesque tempus nec sed neque. Nullam non aliquet erat. Praesent sit amet lorem dui.
-            Maecenas interdum nisl nec mi ullamcorper varius. Phasellus aliquam fringilla nisi, id rhoncus purus sollicitudin et. Mauris eleifend
-            rutrum faucibus. Vivamus fringilla nisl vel sem fermentum, ut blandit orci mattis.
-          </p>
-        </section>
-      </div>
+      </main>
     </div>
 
     <!-- JavaScript for Dynamic Favicon -->
@@ -199,16 +227,13 @@
         const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
         if (darkModeQuery.matches) {
-          favicon.href = "icons/favicon-light.ico";
-        } else {
           favicon.href = "icons/favicon-dark.ico";
+        } else {
+          favicon.href = "icons/favicon-light.ico";
         }
       }
 
-      // Update favicon on page load
       updateFavicon();
-
-      // Listen for changes in color scheme
       window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateFavicon);
     </script>
   </body>
