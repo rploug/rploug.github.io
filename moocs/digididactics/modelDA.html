@@ -70,17 +70,22 @@
         background: #ffffff;
       }
 
-      #model-wrapper {
-        max-width: 750px;
-        margin: 0 auto;
-        position: relative;
-      }
+#model-wrapper {
+  width: auto;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;  /* centers the SVG */
+  overflow: hidden;
+}
 
-      #model-wrapper svg {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
+#model-wrapper svg {
+  height: 100%;
+  width: auto;       /* width adjusts automatically */
+  display: block;
+}
+
 
       /* All interactive segments */
       .dd-segment {
