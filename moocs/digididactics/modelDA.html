@@ -3,6 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <title>DigiDidactic Model Interactive</title>
+
+        <div id="lang-switch">
+  <a href="https://rasmusploug.com/moocs/digididactics/modelEN.html" class="lang-link lang-en" aria-label="English">
+    <!-- EN FLAG SVG -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#071b65"></rect><path d="M5.101,4h-.101c-1.981,0-3.615,1.444-3.933,3.334L26.899,28h.101c1.981,0,3.615-1.444,3.933-3.334L5.101,4Z" fill="#fff"></path><path d="M22.25,19h-2.5l9.934,7.947c.387-.353,.704-.777,.929-1.257l-8.363-6.691Z" fill="#b92932"></path><path d="M1.387,6.309l8.363,6.691h2.5L2.316,5.053c-.387,.353-.704,.777-.929,1.257Z" fill="#b92932"></path><path d="M5,28h.101L30.933,7.334c-.318-1.891-1.952-3.334-3.933-3.334h-.101L1.067,24.666c.318,1.891,1.952,3.334,3.933,3.334Z" fill="#fff"></path><rect x="13" y="4" width="6" height="24" fill="#fff"></rect><rect x="1" y="13" width="30" height="6" fill="#fff"></rect><rect x="14" y="4" width="4" height="24" fill="#b92932"></rect><rect x="14" y="1" width="4" height="30" transform="translate(32) rotate(90)" fill="#b92932"></rect><path d="M28.222,4.21l-9.222,7.376v1.414h.75l9.943-7.94c-.419-.384-.918-.671-1.471-.85Z" fill="#b92932"></path><path d="M2.328,26.957c.414,.374,.904,.656,1.447,.832l9.225-7.38v-1.408h-.75L2.328,26.957Z" fill="#b92932"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path></svg>
+  </a>
+
+  <a href="https://rasmusploug.com/moocs/digididactics/modelDA.html" class="lang-link lang-da active" aria-label="Danish">
+    <!-- DA FLAG SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#b92932"></rect><path fill="#fff" d="M31 14L15 14 15 4 11 4 11 14 1 14 1 18 11 18 11 28 15 28 15 18 31 18 31 14z"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path></svg>
+  </a>
+
+  <a href="https://rasmusploug.com/moocs/digididactics/modelDE.html" class="lang-link lang-de" aria-label="German">
+    <!-- DE FLAG SVG -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="#cc2b1d" d="M1 11H31V21H1z"></path><path d="M5,4H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z"></path><path d="M5,20H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z" transform="rotate(180 16 24)" fill="#f8d147"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path></svg>
+
+  </a>
+</div>
+<style>
+  #lang-switch {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  background: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: flex;
+  gap: 6px;
+}
+
+.lang-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.lang-link svg {
+  width: 24px;
+  height: 18px;
+  border-radius: 3px;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.lang-link:hover svg {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.lang-link.active svg {
+  opacity: 1;
+  transform: scale(1.12);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+}
+
+</style>
     <style>
       body {
         font-family: system-ui, sans-serif;
@@ -3644,146 +3703,147 @@
 
     <script>
       const segmentInfo = {
-        DigitalLiteracy: {
-          title: "Digital dannelse",
-          body: "Dækker elevernes kritiske, reflekterede og konstruktive brug af digital teknologi. Omfatter digital myndiggørelse, etisk bevidsthed, kritisk tænkning, computational thinking, IT-sikkerhed og evnen til at deltage i praksisfællesskaber. Digital dannelse handler ikke kun om færdigheder, men om at forstå, hvordan teknologier former viden, samfund og elevernes eget liv.",
-        },
+  DigitalLiteracy: {
+    title: "Digital dannelse",
+    body: "En af de fire kernedimensioner, tæt forbundet med digital produktion, undervisningsdesign og omverden. Dækker elevernes kritiske, reflekterede og konstruktive brug af digital teknologi. Omfatter digital myndiggørelse, etisk bevidsthed, kritisk tænkning, computational thinking, IT-sikkerhed og evnen til at deltage i praksisfællesskaber. Digital dannelse handler ikke kun om færdigheder, men om at forstå, hvordan teknologier former viden, samfund og elevernes eget liv."
+  },
 
-        Sustainability: {
-          title: "Bæredygtighed",
-          body: "Et tværgående fokus, som bør tænkes ind i alle modellens dimensioner. Trækker på balancen mellem miljømæssig, økonomisk og social trivsel. Omfatter arbejde med bæredygtighedstemaer i undervisningen, hensyn til miljøpåvirkning og teknologiaffald (digitainability), genbrug af designs, materialer og infrastrukturer samt støtte til elevernes psykosociale trivsel og inklusion, ofte koblet til FN’s verdensmål.",
-        },
+  Sustainability: {
+    title: "Bæredygtighed",
+    body: "Et tværgående fokus, som bør tænkes ind i alle modellens dimensioner. Trækker på balancen mellem miljømæssig, økonomisk og social trivsel. Omfatter arbejde med bæredygtighedstemaer i undervisningen, hensyn til miljøpåvirkning og teknologiaffald (digitainability), genbrug af designs, materialer og infrastrukturer samt støtte til elevernes psykosociale trivsel og inklusion, ofte koblet til FN’s verdensmål."
+  },
 
-        EthicsAndSociety: {
-          title: "Etik og samfund",
-          body: "Omhandler hvordan digitale teknologier påvirker klima, sikkerhed, økonomi, demokrati og hverdagsliv. Fokus er på etiske dilemmaer, magtforhold og hvem der får gavn af teknologiske løsninger. Opfordrer eleverne til at reflektere over de samfundsmæssige konsekvenser af automatisering, AI, dataanvendelse og digitale platforme samt udvikle et ansvarligt forhold til deres egne digitale produktioner.",
-        },
+  EthicsAndSociety: {
+    title: "Etik og samfund",
+    body: "Omhandler hvordan digitale teknologier påvirker klima, sikkerhed, økonomi, demokrati og hverdagsliv. Fokus er på etiske dilemmaer, magtforhold og hvem der får gavn af teknologiske løsninger. Opfordrer eleverne til at reflektere over de samfundsmæssige konsekvenser af automatisering, AI, dataanvendelse og digitale platforme samt udvikle et ansvarligt forhold til deres egne digitale produktioner."
+  },
 
-        ITsecurity: {
-          title: "IT-sikkerhed",
-          body: "Vedrører cybersikkerhed og beskyttelse af persondata som en del af digital dannelse. Omfatter sikker håndtering af adgangskoder, identiteter og platforme, bevidsthed om dataspor og tracking samt forståelse af grundlæggende sikkerhedsrisici. Støtter elever i at navigere trygt i digitale læringsmiljøer og i at designe digitale produkter, der respekterer privatliv og regler for databeskyttelse.",
-        },
+  ITsecurity: {
+    title: "IT-sikkerhed",
+    body: "Vedrører cybersikkerhed og beskyttelse af persondata som en del af digital dannelse. Omfatter sikker håndtering af adgangskoder, identiteter og platforme, bevidsthed om dataspor og tracking samt forståelse af grundlæggende sikkerhedsrisici. Støtter elever i at navigere trygt i digitale læringsmiljøer og i at designe digitale produkter, der respekterer privatliv og regler for databeskyttelse."
+  },
 
-        CriticalThinking: {
-          title: "Kritisk tænkning",
-          body: "Understøtter elever i at vurdere fordele, ulemper og konsekvenser ved brugen af bestemte teknologier. Omfatter kildekritik, kritiske spørgsmål til data og AI-output, refleksion over bias og automatisering samt vurdering af digitale løsninger fra flere perspektiver, herunder etiske og samfundsmæssige. Udgør en central del af digital myndiggørelse.",
-        },
+  CriticalThinking: {
+    title: "Kritisk tænkning",
+    body: "Understøtter elever i at vurdere fordele, ulemper og konsekvenser ved brugen af bestemte teknologier. Omfatter kildekritik, kritiske spørgsmål til data og AI-output, refleksion over bias og automatisering samt vurdering af digitale løsninger fra flere perspektiver, herunder etiske og samfundsmæssige. Udgør en central del af digital myndiggørelse."
+  },
 
-        IndividualRelevance: {
-          title: "Individuel relevans",
-          body: "Knytter teknologier og undervisningsforløb til elevernes eget liv, fritidsinteresser, uddannelsesvalg og fremtidsplaner. Cases, temaer og eksempler vælges, så de opleves som meningsfulde og motiverende for den konkrete målgruppe og det konkrete niveau. Dette styrker engagement og understøtter personlige læringsveje.",
-        },
+  IndividualRelevance: {
+    title: "Individuel relevans",
+    body: "Knytter teknologier og undervisningsforløb til elevernes eget liv, fritidsinteresser, uddannelsesvalg og fremtidsplaner. Cases, temaer og eksempler vælges, så de opleves som meningsfulde og motiverende for den konkrete målgruppe og det konkrete niveau. Dette styrker engagement og understøtter personlige læringsveje."
+  },
 
-        Methods: {
-          title: "Metoder",
-          body: "De overordnede strategier, der anvendes i digital produktion og undervisning, valgt ud fra tidsramme, uddannelsesniveau, målgruppe og læringsmål. Kan inkludere problembaseret læring, projektarbejde, iterative designprocesser, pair programming, worked examples eller andre praksisbaserede tilgange. Forskellige metoder kan kombineres i løbet af et forløb.",
-        },
+  Methods: {
+    title: "Metoder",
+    body: "De overordnede strategier, der anvendes i digital produktion og undervisning, valgt ud fra tidsramme, uddannelsesniveau, målgruppe og læringsmål. Kan inkludere problembaseret læring, projektarbejde, iterative designprocesser, pair programming, worked examples eller andre praksisbaserede tilgange. Forskellige metoder kan kombineres i løbet af et forløb."
+  },
 
-        Reflections: {
-          title: "Refleksioner",
-          body: "Planlagte aktiviteter, hvor elever og lærere træder et skridt tilbage for at reflektere over proces og produkt. Omfatter løbende refleksioner under arbejdet og retrospektive refleksioner efterfølgende, hvor elever beskriver og begrunder deres tekniske løsninger, bruger relevante begreber og kobler deres erfaringer til teori og didaktiske valg.",
-        },
+  Reflections: {
+    title: "Refleksioner",
+    body: "Planlagte aktiviteter, hvor elever og lærere træder et skridt tilbage for at reflektere over proces og produkt. Omfatter løbende refleksioner under arbejdet og retrospektive refleksioner efterfølgende, hvor elever beskriver og begrunder deres tekniske løsninger, bruger relevante begreber og kobler deres erfaringer til teori, teknologiske valg og didaktiske beslutninger."
+  },
 
-        DigitalProduction: {
-          title: "Digital produktion",
-          body: "En af de tre kernedimensioner. Fokuserer på den teknologiske del af læringsprocessen, hvor elever skaber digitale artefakter, for eksempel programmer, spil, simulationer, AR- eller VR-oplevelser, digitale fortællinger eller interaktive prototyper. Understreger, at elever arbejder praktisk med teknologier og producerer konkrete digitale produkter, der kan deles og genbruges.",
-        },
+  DigitalProduction: {
+    title: "Digital produktion",
+    body: "En af de fire kernedimensioner. Fokuserer på den teknologiske del af læringsprocessen, hvor elever skaber digitale artefakter, for eksempel programmer, spil, simulationer, AR- eller VR-oplevelser, digitale fortællinger eller interaktive prototyper. Understreger, at elever arbejder praktisk med teknologier og producerer konkrete digitale produkter, der kan deles og genbruges."
+  },
 
-        TeachingDesign: {
-          title: "Undervisningsdesign",
-          body: "En af de tre kernedimensioner. Dækker de klassiske didaktiske planlægningselementer: formulering af læringsmål, elevinddragelse, valg af indhold og aktiviteter, definition af elevernes læringsprodukter, valg af pædagogiske metoder og planlægning af evalueringer. Undervisningsdesign sikrer, at forløbet er meningsfuldt for fag, niveau og målgruppe.",
-        },
+  TeachingDesign: {
+    title: "Undervisningsdesign",
+    body: "En af de fire kernedimensioner. Dækker de klassiske didaktiske planlægningselementer: formulering af læringsmål, elevinddragelse, valg af indhold og aktiviteter, definition af elevernes læringsprodukter, valg af pædagogiske metoder og planlægning af evalueringer. Undervisningsdesign sikrer, at forløbet er meningsfuldt for fag, niveau og målgruppe."
+  },
 
-        Environment: {
-          title: "Omverden",
-          body: "En af de tre kernedimensioner, der fokuserer på økosystemet omkring uddannelsesinstitutionen. Omfatter samarbejde med eksterne partnere, karrierelæring, koblinger på tværs af uddannelseskæden og forbindelser til bredere digitalisering i samfundet. Understøtter sammenhæng på tværs af niveauer og sektorer og hjælper elever med at se, hvordan digitale teknologier har betydning uden for skolen.",
-        },
+  Environment: {
+    title: "Omverden",
+    body: "En af de fire kernedimensioner, der fokuserer på økosystemet omkring uddannelsesinstitutionen. Omfatter samarbejde med eksterne partnere, karrierelæring, koblinger på tværs af uddannelseskæden og forbindelser til bredere digitalisering i samfundet. Understøtter sammenhæng på tværs af niveauer og sektorer og hjælper elever med at se, hvordan digitale teknologier har betydning uden for skolen."
+  },
 
-        ChoiceOfTechnology: {
-          title: "Valg af teknologi",
-          body: "Vedrører det bevidste valg af udstyr, software og platforme til den centrale digitale produktion og til eventuelle understøttende medier. Omfatter overvejelser om tilgængelighed, tilgængelighed for alle, pris og sammenhæng mellem teknologi, læringsmål og målgruppe. Omfatter alt fra programmeringssprog og robotter til AR- og VR-platforme, AI-værktøjer og online samarbejdsmiljøer.",
-        },
+  ChoiceOfTechnology: {
+    title: "Valg af teknologi",
+    body: "Vedrører det bevidste valg af udstyr, software og platforme til den centrale digitale produktion og til eventuelle understøttende medier. Omfatter overvejelser om tilgængelighed, inklusion, pris og sammenhæng mellem teknologi, læringsmål og målgruppe. Omfatter alt fra programmeringssprog og robotter til AR- og VR-platforme, AI-værktøjer og online samarbejdsmiljøer."
+  },
 
-        CareerLearning: {
-          title: "Karrierelæring",
-          body: "Bruger undervisningsforløb til at støtte elever i at udforske uddannelses- og karriereveje. Omfatter aktiviteter med virksomheder eller institutioner, overgangsforløb mellem niveauer samt struktureret refleksion før, under og efter forløbet om betydningen for uddannelse og fremtidigt arbejde. Målet er at hjælpe elever med at træffe meningsfulde valg i en kompleks uddannelseskæde.",
-        },
+  CareerLearning: {
+    title: "Karrierelæring",
+    body: "Bruger undervisningsforløb til at støtte elever i at udforske uddannelses- og karriereveje. Omfatter aktiviteter med virksomheder eller institutioner, overgangsforløb mellem niveauer samt struktureret refleksion før, under og efter forløbet om betydningen for uddannelse og fremtidigt arbejde. Målet er at hjælpe elever med at træffe meningsfulde valg i en kompleks uddannelseskæde."
+  },
 
-        InternationalAspects: {
-          title: "Internationale aspekter",
-          body: "Fremhæver at undervisning med digital produktion kan krydse landegrænser og forbinde elever på tværs af lande. I DigiDidaktik eksemplificeret ved dansk-tysk samarbejde, men rækker bredere: internationalt samarbejde, flersproget kommunikation og globale perspektiver på teknologi, bæredygtighed og digitalisering.",
-        },
+  InternationalAspects: {
+    title: "Internationale aspekter",
+    body: "Fremhæver at undervisning med digital produktion kan krydse landegrænser og forbinde elever på tværs af lande. I DigiDidaktik eksemplificeret ved dansk-tysk samarbejde, men rækker bredere: internationalt samarbejde, flersproget kommunikation og globale perspektiver på teknologi, bæredygtighed og digitalisering."
+  },
 
-        "Cross-diciplinaryCollaboration": {
-          title: "Tværfagligt samarbejde",
-          body: "Designer forløb, hvor flere fag, professioner eller institutioner arbejder sammen om fælles digitale produktioner eller cases. Elever møder forskellige perspektiver og arbejdsformer, ofte forankret i virkelige problemer eller eksterne interessenter. Understøtter autentisk problemløsning og bygger bro i uddannelseskæden.",
-        },
+  "Cross-diciplinaryCollaboration": {
+    title: "Tværfagligt samarbejde",
+    body: "Designer forløb, hvor flere fag, professioner eller institutioner arbejder sammen om fælles digitale produktioner eller cases. Elever møder forskellige perspektiver og arbejdsformer, ofte forankret i virkelige problemer eller eksterne interessenter. Understøtter autentisk problemløsning og bygger bro i uddannelseskæden."
+  },
 
-        BusinessAndAddedValue: {
-          title: "Erhvervsliv og værdiskabelse",
-          body: "Omhandler samarbejde med virksomheder og organisationer samt værdiskabelse i og omkring undervisningsforløbet. Kan omfatte brugerundersøgelser, markedsblik på elevernes produkter, rollemodeller fra branchen eller refleksioner over, hvordan digitale løsninger skaber økonomisk og social værdi for interessenter. Omfatter også institutionel værdi som genbrug af forløb og øget synlighed.",
-        },
+  BusinessAndAddedValue: {
+    title: "Erhvervsliv og værdiskabelse",
+    body: "Omhandler samarbejde med virksomheder og organisationer samt værdiskabelse i og omkring undervisningsforløbet. Kan omfatte brugerundersøgelser, markedsblik på elevernes produkter, rollemodeller fra branchen eller refleksioner over, hvordan digitale løsninger skaber økonomisk og social værdi for interessenter. Omfatter også institutionel værdi som genbrug af forløb og øget synlighed."
+  },
 
-        IterativeDesign: {
-          title: "Iterativt design",
-          body: "En struktureret tilgang, hvor digitale produkter og undervisningsdesign udvikles i gentagne cycles. Hver iteration indebærer planlægning, design, test, evaluering og justering. Længere forløb kan organiseres i flere iterationer for gradvist at forbedre både teknisk kvalitet og sammenhæng med læringsmål og brugerbehov.",
-        },
+  IterativeDesign: {
+    title: "Iterativt design",
+    body: "En struktureret tilgang, hvor digitale produkter og undervisningsdesign udvikles i gentagne cykler. Hver iteration indebærer planlægning, design, test, evaluering og justering. Længere forløb kan organiseres i flere iterationer for gradvist at forbedre både teknisk kvalitet og sammenhæng med læringsmål og brugerbehov."
+  },
 
-        ExperimentsPlayground: {
-          title: "Eksperimenter / legeplads",
-          body: "Trygge rum og faser i forløbet, hvor elever kan lege med teknologier, teste idéer og udforske funktioner med minimal forudgående instruktion. Fokus er på eksperimentering, nysgerrighed og innovation frem for færdige produkter. Reducerer frygt for fejl og kan generere idéer, som senere forfines gennem mere struktureret arbejde.",
-        },
+  ExperimentsPlayground: {
+    title: "Eksperimenter / legeplads",
+    body: "Trygge rum og faser i forløbet, hvor elever kan lege med teknologier, teste idéer og udforske funktioner med minimal forudgående instruktion. Fokus er på eksperimentering, nysgerrighed og innovation frem for færdige produkter. Reducerer frygt for fejl og kan generere idéer, som senere forfines gennem mere struktureret arbejde."
+  },
 
-        KnowledgeTerms: {
-          title: "Viden / begreber",
-          body: "Centrale teoretiske og didaktiske begreber, der understøtter brugen af modellen, fx digital dannelse, computational thinking, empowerment, uddannelseskæden, bæredygtighed og iterativt design. At gøre disse begreber eksplicitte styrker fælles sprog, understøtter refleksion og styrker forståelsen af undervisning med digital produktion på meta-niveau.",
-        },
+  KnowledgeTerms: {
+    title: "Viden / begreber",
+    body: "Elevernes målrettede brug af faglige viden og begreber. Fokus er på, at elever kan anvende centrale begreber som digital dannelse, computational thinking, empowerment, bæredygtighed, uddannelseskæde og iterativt design korrekt, når de forklarer eller begrunder deres arbejde."
+  },
 
-        ProductDevelopment: {
-          title: "Produktudvikling",
-          body: "Den konkrete arbejdsproces fra tidlig idé til færdigt digitalt produkt. Omfatter idéudvikling, konceptdesign, storyboard eller manuskript, prototyper, tests med brugere eller peers samt færdiggørelse og dokumentation. Opfordrer elever til at betragte deres digitale arbejde som noget der kan forbedres, genbruges og deles ud over det enkelte forløb.",
-        },
+  ProductDevelopment: {
+    title: "Produktudvikling",
+    body: "Den konkrete arbejdsproces fra tidlig idé til færdigt digitalt produkt. Omfatter idéudvikling, konceptdesign, storyboard eller manuskript, prototyper, tests med brugere eller peers samt færdiggørelse og dokumentation. Opfordrer elever til at betragte deres digitale arbejde som noget, der kan forbedres, genbruges og deles ud over det enkelte forløb."
+  },
 
-        LearningObjectives: {
-          title: "Læringsmål",
-          body: "Forventede kompetencer i form af viden, færdigheder og holdninger, som elever skal udvikle i forløbet. Kan være tekniske, faglige, sociale eller personlige. Målene skal hænge sammen med lokale læseplaner og hjælpe med at definere relevant indhold, aktiviteter og digitale produkter for målgruppen.",
-        },
+  LearningObjectives: {
+    title: "Læringsmål",
+    body: "Forventede kompetencer i form af viden, færdigheder og holdninger, som elever skal udvikle i forløbet. Kan være tekniske, faglige, sociale eller personlige. Målene skal hænge sammen med lokale læseplaner og hjælpe med at definere relevant indhold, aktiviteter og digitale produkter for målgruppen."
+  },
 
-        "StudentsCo-influence": {
-          title: "Elevernes medindflydelse",
-          body: "Elever inddrages aktivt i at planlægge og forme forløbet. De kan være med til at vælge temaer, cases, målgrupper, lokationer eller teknologier og foreslå problemstillinger, de vil undersøge. Medindflydelse kan også handle om strukturering af undervisningen. Understøtter motivation, ejerskab og relevans i forhold til elevernes liv.",
-        },
+  "StudentsCo-influence": {
+    title: "Elevernes medindflydelse",
+    body: "Elever inddrages aktivt i at planlægge og forme forløbet. De kan være med til at vælge temaer, cases, målgrupper, lokationer eller teknologier og foreslå problemstillinger, de vil undersøge. Medindflydelse kan også handle om strukturering af undervisningen. Understøtter motivation, ejerskab og relevans i forhold til elevernes liv."
+  },
 
-        ContentActivitiesFrameworks: {
-          title: "Indhold, aktiviteter, rammer",
-          body: "Fag, emner og konkrete læringsaktiviteter der udgør forløbet, fx undersøgelser, eksperimenter, projektarbejde, præsentationer eller konkurrencer. Omfatter også de fysiske og virtuelle rammer såsom lokaler, udstyr og digitale platforme. Valgene skal understøtte læringsmålene og passe til målgruppen.",
-        },
+  ContentActivitiesFrameworks: {
+    title: "Indhold, aktiviteter, rammer",
+    body: "Fag, emner og konkrete læringsaktiviteter der udgør forløbet, for eksempel undersøgelser, eksperimenter, projektarbejde, præsentationer eller konkurrencer. Omfatter også de fysiske og virtuelle rammer såsom lokaler, udstyr og digitale platforme. Valgene skal understøtte læringsmålene og passe til målgruppen."
+  },
 
-        StudentsLearningProducts: {
-          title: "Læringsprodukter",
-          body: "De outputs der dokumenterer elevernes læring og udgør kernen i digital produktion, fx programmer, spil, AR- eller VR-scener, prototyper, digitale fortællinger, plakater eller flowcharts. Produkterne vil ofte have tekniske eller kvalitative kriterier og kan designes, så de kan deles, genbruges eller videreudvikles.",
-        },
+  StudentsLearningProducts: {
+    title: "Læringsprodukter",
+    body: "De outputs der dokumenterer elevernes læring og udgør kernen i digital produktion, for eksempel programmer, spil, AR- eller VR-scener, prototyper, digitale fortællinger, plakater eller flowcharts. Produkterne vil ofte have tekniske eller kvalitative kriterier og kan designes, så de kan deles, genbruges eller videreudvikles."
+  },
 
-        "PedagogicalMethodsSocialWell-being": {
-          title: "Pædagogiske metoder / social trivsel",
-          body: "Dækker de didaktiske metoder, der understøtter motivation, kreativitet, samarbejde og inklusion. Eksempler omfatter struktureret gruppearbejde, differentieret undervisning, peer learning, legepladsmetoder og spilbaserede elementer. Særligt fokus på social interaktion, konstruktiv feedback og tilgængelighed, så alle elever kan deltage meningsfuldt.",
-        },
+  "PedagogicalMethodsSocialWell-being": {
+    title: "Pædagogiske metoder / social trivsel",
+    body: "Dækker de didaktiske metoder, der understøtter motivation, kreativitet, samarbejde og inklusion. Eksempler omfatter struktureret gruppearbejde, differentieret undervisning, peer learning, legepladsmetoder og spilbaserede elementer. Særligt fokus på social interaktion, konstruktiv feedback og tilgængelighed, så alle elever kan deltage meningsfuldt."
+  },
 
-        Evaluations: {
-          title: "Evalueringer",
-          body: "Definerer hvem der evaluerer hvad og hvordan. Omfatter vurdering af elevernes læringsproces og produkter samt evaluering af selve forløbet. Metoder kan omfatte karakterer, rubrikker, skriftlig eller mundtlig feedback, selvevaluering og peer-evaluering. Resultater skal indgå i iterativ forbedring af både undervisningsdesign og digitale produkter.",
-        },
+  Evaluations: {
+    title: "Evalueringer",
+    body: "Definerer hvem der evaluerer hvad og hvordan. Omfatter vurdering af elevernes læringsproces og produkter samt evaluering af selve forløbet. Metoder kan omfatte karakterer, rubrikker, skriftlig eller mundtlig feedback, selvevaluering og peer-evaluering. Resultater skal indgå i iterativ forbedring af både undervisningsdesign og digitale produkter."
+  },
 
-        Instructions: {
-          title: "Instruktioner",
-          body: "Dækker den stilladsering og vejledning, der hjælper elever med at navigere i komplekse digitale opgaver. Omfatter klare opgavebeskrivelser, succeskriterier, eksempler, skabeloner og trinvis introduktion til værktøjer. Gode instruktioner er særligt vigtige ved nye teknologier, så elever har et udgangspunkt, men stadig plads til udforskning.",
-        },
+  Instructions: {
+    title: "Instruktioner",
+    body: "Dækker den stilladsering og vejledning, der hjælper elever med at navigere i komplekse digitale opgaver. Omfatter klare opgavebeskrivelser, succeskriterier, eksempler, skabeloner og trinvis introduktion til værktøjer. Gode instruktioner er særligt vigtige ved nye teknologier, så elever har et udgangspunkt, men stadig plads til udforskning."
+  },
 
-        Center: {
-          title: "Center",
-          body: "Eleven og læringsprocessen i centrum af modellen. Alle dimensioner og elementer i DigiDidaktik understøtter meningsfuld, motiverende og bæredygtig læring for konkrete målgrupper på tværs af uddannelseskæden. Modellen bygger på pick-and-play, hvor få udvalgte elementer kombineres efter elevernes behov og kontekst.",
-        },
-      };
+  Center: {
+    title: "Center",
+    body: "Eleven og læringsprocessen i centrum af modellen. Alle dimensioner og elementer i DigiDidaktik understøtter meningsfuld, motiverende og bæredygtig læring for konkrete målgrupper på tværs af uddannelseskæden. Modellen bygger på pick-and-play, hvor få udvalgte elementer kombineres efter elevernes behov og kontekst."
+  }
+};
+
 
       (function () {
         function init() {

@@ -3,6 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <title>DigiDidactic Model Interactive</title>
+        <div id="lang-switch">
+  <a href="https://rasmusploug.com/moocs/digididactics/modelEN.html" class="lang-link lang-en" aria-label="English">
+    <!-- EN FLAG SVG -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#071b65"></rect><path d="M5.101,4h-.101c-1.981,0-3.615,1.444-3.933,3.334L26.899,28h.101c1.981,0,3.615-1.444,3.933-3.334L5.101,4Z" fill="#fff"></path><path d="M22.25,19h-2.5l9.934,7.947c.387-.353,.704-.777,.929-1.257l-8.363-6.691Z" fill="#b92932"></path><path d="M1.387,6.309l8.363,6.691h2.5L2.316,5.053c-.387,.353-.704,.777-.929,1.257Z" fill="#b92932"></path><path d="M5,28h.101L30.933,7.334c-.318-1.891-1.952-3.334-3.933-3.334h-.101L1.067,24.666c.318,1.891,1.952,3.334,3.933,3.334Z" fill="#fff"></path><rect x="13" y="4" width="6" height="24" fill="#fff"></rect><rect x="1" y="13" width="30" height="6" fill="#fff"></rect><rect x="14" y="4" width="4" height="24" fill="#b92932"></rect><rect x="14" y="1" width="4" height="30" transform="translate(32) rotate(90)" fill="#b92932"></rect><path d="M28.222,4.21l-9.222,7.376v1.414h.75l9.943-7.94c-.419-.384-.918-.671-1.471-.85Z" fill="#b92932"></path><path d="M2.328,26.957c.414,.374,.904,.656,1.447,.832l9.225-7.38v-1.408h-.75L2.328,26.957Z" fill="#b92932"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path></svg>
+  </a>
+
+  <a href="https://rasmusploug.com/moocs/digididactics/modelDA.html" class="lang-link lang-da" aria-label="Danish">
+    <!-- DA FLAG SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#b92932"></rect><path fill="#fff" d="M31 14L15 14 15 4 11 4 11 14 1 14 1 18 11 18 11 28 15 28 15 18 31 18 31 14z"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path></svg>
+  </a>
+
+  <a href="https://rasmusploug.com/moocs/digididactics/modelDE.html" class="lang-link lang-de active" aria-label="German">
+    <!-- DE FLAG SVG -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="#cc2b1d" d="M1 11H31V21H1z"></path><path d="M5,4H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z"></path><path d="M5,20H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z" transform="rotate(180 16 24)" fill="#f8d147"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path></svg>
+
+  </a>
+</div>
+<style>
+  #lang-switch {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  background: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: flex;
+  gap: 6px;
+}
+
+.lang-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.lang-link svg {
+  width: 24px;
+  height: 18px;
+  border-radius: 3px;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.lang-link:hover svg {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.lang-link.active svg {
+  opacity: 1;
+  transform: scale(1.12);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+}
+
+</style>
     <style>
       body {
         font-family: system-ui, sans-serif;
@@ -3853,146 +3911,147 @@
 
     <script>
       const segmentInfo = {
-        DigitalLiteracy: {
-          title: "Digitale Bildung",
-          body: "Umfasst den kritischen, reflektierten und konstruktiven Umgang der Lernenden mit digitaler Technologie. Beinhaltet digitale Selbstbefähigung, ethisches Bewusstsein, kritisches Denken, Computational Thinking, IT-Sicherheit und die Fähigkeit, an digitalen Praxisgemeinschaften teilzunehmen. Digitale Bildung betrifft nicht nur technische Fähigkeiten, sondern auch das Verständnis dafür, wie Technologien Wissen, Gesellschaft und das Leben der Lernenden beeinflussen.",
-        },
+  DigitalLiteracy: {
+    title: "Digitale Bildung",
+    body: "Eine der vier Kerndimensionen, eng verbunden mit digitaler Produktion, Unterrichtsgestaltung und Umfeld. Umfasst den kritischen, reflektierten und konstruktiven Umgang der Lernenden mit digitaler Technologie. Beinhaltet digitale Selbstbefähigung, ethisches Bewusstsein, kritisches Denken, Computational Thinking, IT-Sicherheit und die Fähigkeit, an digitalen Praxisgemeinschaften teilzunehmen. Digitale Bildung betrifft nicht nur technische Fähigkeiten, sondern auch das Verständnis dafür, wie Technologien Wissen, Gesellschaft und das Leben der Lernenden beeinflussen."
+  },
 
-        Sustainability: {
-          title: "Nachhaltigkeit",
-          body: "Ein bereichsübergreifender Fokus, der in allen Dimensionen des Modells berücksichtigt werden sollte. Umfasst das Gleichgewicht zwischen ökologischer, ökonomischer und sozialer Nachhaltigkeit. Beinhaltet die Arbeit mit Nachhaltigkeitsthemen im Unterricht, das Nachdenken über ökologische Auswirkungen und Technologiemüll (Digitainability), das Wiederverwenden von Designs, Materialien und Infrastrukturen sowie die Unterstützung des psychosozialen Wohlbefindens und der Inklusion der Lernenden, oft in Verbindung mit den UN-Nachhaltigkeitszielen.",
-        },
+  Sustainability: {
+    title: "Nachhaltigkeit",
+    body: "Ein bereichsübergreifender Fokus, der in allen Dimensionen des Modells berücksichtigt werden sollte. Umfasst das Gleichgewicht zwischen ökologischer, ökonomischer und sozialer Nachhaltigkeit. Beinhaltet die Arbeit mit Nachhaltigkeitsthemen im Unterricht, das Nachdenken über ökologische Auswirkungen und Technologiemüll (Digitainability), das Wiederverwenden von Designs, Materialien und Infrastrukturen sowie die Unterstützung des psychosozialen Wohlbefindens und der Inklusion der Lernenden, oft in Verbindung mit den UN-Nachhaltigkeitszielen."
+  },
 
-        EthicsAndSociety: {
-          title: "Ethik und Gesellschaft",
-          body: "Behandelt, wie digitale Technologien Klima, Sicherheit, Wirtschaft, Demokratie und den Alltag beeinflussen. Fokussiert ethische Dilemmata, Machtverhältnisse und die Frage, wer von technologischen Lösungen profitiert. Regt Lernende dazu an, über gesellschaftliche Folgen von Automatisierung, KI, Datennutzung und digitalen Plattformen nachzudenken und eine verantwortungsvolle Haltung gegenüber eigenen digitalen Produktionen zu entwickeln.",
-        },
+  EthicsAndSociety: {
+    title: "Ethik und Gesellschaft",
+    body: "Behandelt, wie digitale Technologien Klima, Sicherheit, Wirtschaft, Demokratie und den Alltag beeinflussen. Fokussiert ethische Dilemmata, Machtverhältnisse und die Frage, wer von technologischen Lösungen profitiert. Regt Lernende dazu an, über gesellschaftliche Folgen von Automatisierung, KI, Datennutzung und digitalen Plattformen nachzudenken und eine verantwortungsvolle Haltung gegenüber eigenen digitalen Produktionen zu entwickeln."
+  },
 
-        ITsecurity: {
-          title: "IT-Sicherheit",
-          body: "Bezieht sich auf Cybersicherheit und Schutz personenbezogener Daten als Bestandteil digitaler Bildung. Umfasst den sicheren Umgang mit Passwörtern, digitalen Identitäten und Plattformen, Bewusstsein für Datenspuren und Tracking sowie grundlegende Sicherheitsrisiken. Unterstützt Lernende dabei, digitale Lernumgebungen sicher zu nutzen und digitale Produkte zu gestalten, die Datenschutz und Sicherheitsregeln respektieren.",
-        },
+  ITsecurity: {
+    title: "IT-Sicherheit",
+    body: "Bezieht sich auf Cybersicherheit und Schutz personenbezogener Daten als Bestandteil digitaler Bildung. Umfasst den sicheren Umgang mit Passwörtern, digitalen Identitäten und Plattformen, Bewusstsein für Datenspuren und Tracking sowie grundlegende Sicherheitsrisiken. Unterstützt Lernende dabei, digitale Lernumgebungen sicher zu nutzen und digitale Produkte zu gestalten, die Datenschutz und Sicherheitsregeln respektieren."
+  },
 
-        CriticalThinking: {
-          title: "Kritisches Denken",
-          body: "Unterstützt Lernende darin, Vorteile, Nachteile und Konsequenzen des Einsatzes bestimmter Technologien abzuwägen. Beinhaltet Quellenkritik, das Hinterfragen von Daten und KI-Ausgaben, Reflexion über Bias und Automatisierung sowie die Bewertung digitaler Lösungen aus verschiedenen – auch ethischen und gesellschaftlichen – Perspektiven. Bildet einen zentralen Bestandteil digitaler Selbstbefähigung.",
-        },
+  CriticalThinking: {
+    title: "Kritisches Denken",
+    body: "Unterstützt Lernende darin, Vorteile, Nachteile und Konsequenzen des Einsatzes bestimmter Technologien abzuwägen. Beinhaltet Quellenkritik, das Hinterfragen von Daten und KI-Ausgaben, Reflexion über Bias und Automatisierung sowie die Bewertung digitaler Lösungen aus verschiedenen Perspektiven, einschließlich ethischer und gesellschaftlicher. Bildet einen zentralen Bestandteil digitaler Selbstbefähigung."
+  },
 
-        IndividualRelevance: {
-          title: "Individuelle Relevanz",
-          body: "Verknüpft Technologien und Unterrichtsmodule mit dem Leben der Lernenden, ihren Interessen, Freizeitaktivitäten, Bildungsentscheidungen und Zukunftsplänen. Themen, Beispiele und Aufgaben werden so gewählt, dass sie für die jeweilige Zielgruppe bedeutsam und motivierend sind. Dies stärkt Engagement und individuelle Lernwege.",
-        },
+  IndividualRelevance: {
+    title: "Individuelle Relevanz",
+    body: "Verknüpft Technologien und Unterrichtsmodule mit dem Leben der Lernenden, ihren Interessen, Freizeitaktivitäten, Bildungsentscheidungen und Zukunftsplänen. Themen, Beispiele und Aufgaben werden so gewählt, dass sie für die jeweilige Zielgruppe bedeutsam und motivierend sind. Dies stärkt Engagement und individuelle Lernwege."
+  },
 
-        Methods: {
-          title: "Methoden",
-          body: "Die grundlegenden Strategien für digitale Produktion und Unterricht, ausgewählt nach Zeitrahmen, Bildungsniveau, Zielgruppe und Lernzielen. Umfasst unter anderem problembasiertes Lernen, Projektarbeit, iterative Designprozesse, Pair Programming, Worked Examples und andere praxisorientierte Ansätze. Methoden können innerhalb eines Moduls kombiniert werden.",
-        },
+  Methods: {
+    title: "Methoden",
+    body: "Die grundlegenden Strategien für digitale Produktion und Unterricht, ausgewählt nach Zeitrahmen, Bildungsniveau, Zielgruppe und Lernzielen. Umfasst unter anderem problembasiertes Lernen, Projektarbeit, iterative Designprozesse, Pair Programming, Worked Examples und andere praxisorientierte Ansätze. Methoden können innerhalb eines Moduls kombiniert werden."
+  },
 
-        Reflections: {
-          title: "Reflexionen",
-          body: "Geplante Aktivitäten, bei denen Lernende und Lehrende vom Tun zurücktreten, um Prozess und Produkt zu reflektieren. Umfasst fortlaufende Reflexionen während der Arbeit sowie rückblickende Reflexionen danach, in denen Lernende technische Lösungen beschreiben und begründen, relevante Fachbegriffe nutzen und Erfahrungen mit zugrunde liegenden Theorien und didaktischen Entscheidungen verknüpfen.",
-        },
+  Reflections: {
+    title: "Reflexionen",
+    body: "Geplante Aktivitäten, bei denen Lernende und Lehrende vom Tun zurücktreten, um Prozess und Produkt zu reflektieren. Umfasst fortlaufende Reflexionen während der Arbeit sowie rückblickende Reflexionen danach, in denen Lernende technische Lösungen beschreiben und begründen, relevante Fachbegriffe nutzen und Erfahrungen mit zugrunde liegenden Theorien und technologischen Entscheidungen verknüpfen."
+  },
 
-        DigitalProduction: {
-          title: "Digitale Produktion",
-          body: "Eine der drei Kerndimensionen. Fokussiert den technologischen Teil des Lernprozesses, in dem Lernende digitale Artefakte erstellen, z. B. Programme, Spiele, Simulationen, AR- oder VR-Erlebnisse, digitale Geschichten oder interaktive Prototypen. Betont praktisches Arbeiten mit Technologien und die Entwicklung konkreter digitaler Produkte, die geteilt und wiederverwendet werden können.",
-        },
+  DigitalProduction: {
+    title: "Digitale Produktion",
+    body: "Eine der vier Kerndimensionen. Fokussiert den technologischen Teil des Lernprozesses, in dem Lernende digitale Artefakte erstellen, zum Beispiel Programme, Spiele, Simulationen, AR- oder VR-Erlebnisse, digitale Geschichten oder interaktive Prototypen. Betont praktisches Arbeiten mit Technologien und die Entwicklung konkreter digitaler Produkte, die geteilt und wiederverwendet werden können."
+  },
 
-        TeachingDesign: {
-          title: "Unterrichtsgestaltung",
-          body: "Eine der drei Kerndimensionen. Beinhaltet die klassischen didaktischen Planungselemente: Formulierung von Kompetenzzielen, Mitbestimmung der Lernenden, Auswahl von Inhalten und Aktivitäten, Definition von Lernprodukten, Auswahl pädagogischer Methoden und Planung von Evaluationen. Sicherstellt, dass das Modul für Fach, Niveau und Zielgruppe sinnvoll aufgebaut ist.",
-        },
+  TeachingDesign: {
+    title: "Unterrichtsgestaltung",
+    body: "Eine der vier Kerndimensionen. Beinhaltet die klassischen didaktischen Planungselemente: Formulierung von Kompetenzzielen, Mitbestimmung der Lernenden, Auswahl von Inhalten und Aktivitäten, Definition von Lernprodukten, Auswahl pädagogischer Methoden und Planung von Evaluationen. Sicherstellt, dass das Modul für Fach, Niveau und Zielgruppe sinnvoll aufgebaut ist."
+  },
 
-        Environment: {
-          title: "Umfeld",
-          body: "Eine der drei Kerndimensionen, die das Ökosystem rund um die Bildungseinrichtung in den Fokus stellt. Beinhaltet Zusammenarbeit mit externen Partnern, Berufsorientierung, Anbindungen innerhalb der Bildungskette und Verbindungen zur Digitalisierung der Gesellschaft. Unterstützt Kohärenz zwischen Bildungsstufen und hilft Lernenden zu verstehen, wie digitale Technologien außerhalb der Schule wirken.",
-        },
+  Environment: {
+    title: "Umfeld",
+    body: "Eine der vier Kerndimensionen, die das Ökosystem rund um die Bildungseinrichtung in den Fokus stellt. Beinhaltet Zusammenarbeit mit externen Partnern, Berufsorientierung, Anbindungen innerhalb der Bildungskette und Verbindungen zur Digitalisierung der Gesellschaft. Unterstützt Kohärenz zwischen Bildungsstufen und hilft Lernenden zu verstehen, wie digitale Technologien außerhalb der Schule wirken."
+  },
 
-        ChoiceOfTechnology: {
-          title: "Technologiewahl",
-          body: "Betrifft die bewusste Auswahl von Geräten, Software und Plattformen für die digitale Produktion und unterstützende Mediendienstleistungen. Umfasst Überlegungen zu Verfügbarkeit, Barrierefreiheit, Kosten sowie zur Passung zwischen Technologien, Lernzielen und Zielgruppen. Reicht von Programmiersprachen und Robotern bis zu AR-/VR-Plattformen, KI-Werkzeugen und kollaborativen Online-Umgebungen.",
-        },
+  ChoiceOfTechnology: {
+    title: "Technologiewahl",
+    body: "Betrifft die bewusste Auswahl von Geräten, Software und Plattformen für die digitale Produktion und unterstützende Mediendienstleistungen. Umfasst Überlegungen zu Verfügbarkeit, Barrierefreiheit, Kosten sowie zur Passung zwischen Technologien, Lernzielen und Zielgruppen. Reicht von Programmiersprachen und Robotern bis zu AR- und VR-Plattformen, KI-Werkzeugen und kollaborativen Online-Umgebungen."
+  },
 
-        CareerLearning: {
-          title: "Werdegang und Berufslernen",
-          body: "Nutzt Unterrichtsmodule zur Unterstützung der Lernenden bei der Erkundung von Bildungs- und Berufswegen. Umfasst Kooperationen mit Unternehmen oder Institutionen, Übergangsangebote zwischen Bildungsstufen sowie strukturierte Reflexionen vor, während und nach Modulen über deren Bedeutung für Ausbildung und Beruf. Ziel ist es, Lernenden zu helfen, informierte und persönlich sinnvolle Entscheidungen zu treffen.",
-        },
+  CareerLearning: {
+    title: "Werdegang und Berufslernen",
+    body: "Nutzt Unterrichtsmodule zur Unterstützung der Lernenden bei der Erkundung von Bildungs- und Berufswegen. Umfasst Kooperationen mit Unternehmen oder Institutionen, Übergangsangebote zwischen Bildungsstufen sowie strukturierte Reflexionen vor, während und nach Modulen über deren Bedeutung für Ausbildung und Beruf. Ziel ist es, Lernenden zu helfen, informierte und persönlich sinnvolle Entscheidungen zu treffen."
+  },
 
-        InternationalAspects: {
-          title: "Internationale Aspekte",
-          body: "Betont, dass Unterricht mit digitaler Produktion Ländergrenzen überschreiten und Lernende international verbinden kann. Im Modell wird dies u. a. durch deutsch-dänische Zusammenarbeit dargestellt, steht jedoch für breitere Ansätze wie internationale Partnerschaften, mehrsprachige Kommunikation und globale Perspektiven zu Technologie, Nachhaltigkeit und Digitalisierung.",
-        },
+  InternationalAspects: {
+    title: "Internationale Aspekte",
+    body: "Betont, dass Unterricht mit digitaler Produktion Ländergrenzen überschreiten und Lernende international verbinden kann. Im Modell wird dies unter anderem durch deutsch-dänische Zusammenarbeit dargestellt, steht jedoch für breitere Ansätze wie internationale Partnerschaften, mehrsprachige Kommunikation und globale Perspektiven zu Technologie, Nachhaltigkeit und Digitalisierung."
+  },
 
-        "Cross-diciplinaryCollaboration": {
-          title: "Fächerübergreifende Zusammenarbeit",
-          body: "Gestaltet Module, in denen mehrere Fächer, Professionen oder Institutionen gemeinsam an digitalen Produktionen oder Fallstudien arbeiten. Lernende begegnen verschiedenen Arbeitsweisen und Perspektiven, oft eingebettet in reale Problemstellungen oder externe Stakeholder. Unterstützt authentisches Problemlösen und stärkt Verbindungen innerhalb der Bildungskette.",
-        },
+  "Cross-diciplinaryCollaboration": {
+    title: "Fächerübergreifende Zusammenarbeit",
+    body: "Gestaltet Module, in denen mehrere Fächer, Professionen oder Institutionen gemeinsam an digitalen Produktionen oder Fallstudien arbeiten. Lernende begegnen verschiedenen Arbeitsweisen und Perspektiven, oft eingebettet in reale Problemstellungen oder Bedürfnisse externer Stakeholder. Unterstützt authentisches Problemlösen und stärkt Verbindungen innerhalb der Bildungskette."
+  },
 
-        BusinessAndAddedValue: {
-          title: "Wirtschaft und Wertschöpfung",
-          body: "Bezieht sich auf Kooperationen mit Unternehmen und Organisationen und auf die Wertschöpfung im und um das Modul herum. Umfasst Nutzerstudien, Marktanalysen zu Lernendenprodukten, Branchenvorbilder oder Reflexionen darüber, wie digitale Lösungen ökonomischen oder gesellschaftlichen Mehrwert schaffen. Enthält auch institutionellen Mehrwert wie Wiederverwendbarkeit und Sichtbarkeit.",
-        },
+  BusinessAndAddedValue: {
+    title: "Wirtschaft und Wertschöpfung",
+    body: "Bezieht sich auf Kooperationen mit Unternehmen und Organisationen und auf die Wertschöpfung im und um das Modul herum. Umfasst Nutzerstudien, Marktanalysen zu Lernendenprodukten, Branchenvorbilder oder Reflexionen darüber, wie digitale Lösungen ökonomischen oder gesellschaftlichen Mehrwert schaffen. Enthält auch institutionellen Mehrwert wie Wiederverwendbarkeit und Sichtbarkeit."
+  },
 
-        IterativeDesign: {
-          title: "Iteratives Design",
-          body: "Eine strukturierte Vorgehensweise, bei der digitale Produkte und Unterrichtsdesigns in wiederholten Zyklen entwickelt werden. Jede Iteration umfasst Planung, Gestaltung, Test, Evaluation und Anpassung. Längere Module können in mehrere Iterationen unterteilt werden, um sowohl technische Qualität als auch Passung zu Lernzielen und Nutzerbedürfnissen zu verbessern.",
-        },
+  IterativeDesign: {
+    title: "Iteratives Design",
+    body: "Eine strukturierte Vorgehensweise, bei der digitale Produkte und Unterrichtsdesigns in wiederholten Zyklen entwickelt werden. Jede Iteration umfasst Planung, Gestaltung, Test, Evaluation und Anpassung. Längere Modules können in mehrere Iterationen unterteilt werden, um sowohl technische Qualität als auch Passung zu Lernzielen und Nutzerbedürfnissen zu verbessern."
+  },
 
-        ExperimentsPlayground: {
-          title: "Experimente / Spielraum",
-          body: "Geschützte Räume und offene Phasen im Modul, in denen Lernende mit Technologien experimentieren, Ideen ausprobieren und Funktionen erkunden können, ohne umfangreiche Vorab-Anleitung. Fokus auf Neugier, Experimentieren und Innovation statt auf fertigen Produkten. Reduziert Fehlerängste und erzeugt Ideen, die später weiterentwickelt werden können.",
-        },
+  ExperimentsPlayground: {
+    title: "Experimente / Spielraum",
+    body: "Geschützte Räume und offene Phasen im Modul, in denen Lernende mit Technologien experimentieren, Ideen ausprobieren und Funktionen erkunden können, ohne umfangreiche Vorab-Anleitung. Der Fokus liegt auf Neugier, Experimentieren und Innovation statt auf fertigen Produkten. Dies reduziert Fehlerängste und erzeugt Ideen, die später weiterentwickelt werden können."
+  },
 
-        KnowledgeTerms: {
-          title: "Wissen / Begriffe",
-          body: "Zentrale theoretische und didaktische Konzepte, die das Modell unterstützen, z. B. digitale Bildung, Computational Thinking, Empowerment, Bildungskette, Nachhaltigkeit und iteratives Design. Das explizite Benennen solcher Begriffe stärkt gemeinsame Verständigung, fördert Reflexion und vertieft das meta-kognitive Verständnis von Unterricht mit digitaler Produktion.",
-        },
+  KnowledgeTerms: {
+    title: "Wissen / Begriffe",
+    body: "Die gezielte Nutzung des fachlichen Wissens der Lernenden und der passenden Fachbegriffe. Im Mittelpunkt steht, dass Lernende Konzepte wie digitale Bildung, Computational Thinking, Empowerment, Nachhaltigkeit oder iteratives Design korrekt verwenden, wenn sie ihre Arbeit erklären oder begründen."
+  },
 
-        ProductDevelopment: {
-          title: "Produktentwicklung",
-          body: "Der konkrete Arbeitsprozess von der frühen Idee bis zum fertigen digitalen Produkt. Umfasst Ideenfindung, Konzeptentwicklung, Storyboards oder Skripte, Prototyping, Nutzer- oder Peer-Testing sowie Feinschliff und Dokumentation. Fördert eine Haltung, digitale Arbeiten als verbesserbar, wiederverwendbar und teilbar zu betrachten.",
-        },
+  ProductDevelopment: {
+    title: "Produktentwicklung",
+    body: "Der konkrete Arbeitsprozess von der frühen Idee bis zum fertigen digitalen Produkt. Umfasst Ideenfindung, Konzeptentwicklung, Storyboards oder Skripte, Prototyping, Nutzer- oder Peer-Testing sowie Feinschliff und Dokumentation. Fördert eine Haltung, digitale Arbeiten als verbesserbar, wiederverwendbar und teilbar zu betrachten."
+  },
 
-        LearningObjectives: {
-          title: "Kompetenzziele",
-          body: "Die erwarteten Kompetenzen in Form von Wissen, Fähigkeiten und Haltungen, die Lernende im Modul entwickeln sollen. Können technisch, fachlich, sozial oder persönlich sein. Ziele sollten an lokale Lehrpläne anschließen und relevante Inhalte, Aktivitäten und digitale Produkte für die Zielgruppe definieren.",
-        },
+  LearningObjectives: {
+    title: "Kompetenzziele",
+    body: "Die erwarteten Kompetenzen in Form von Wissen, Fähigkeiten und Haltungen, die Lernende im Modul entwickeln sollen. Können technisch, fachlich, sozial oder persönlich sein. Ziele sollten an lokale Lehrpläne anschließen und relevante Inhalte, Aktivitäten und digitale Produkte für die Zielgruppe definieren."
+  },
 
-        "StudentsCo-influence": {
-          title: "Mitbestimmung der Lernenden",
-          body: "Lernende werden aktiv in die Planung und Gestaltung des Moduls einbezogen. Sie können Themen, Fälle, Zielgruppen, Orte oder Technologien auswählen und Fragestellungen einbringen, die sie untersuchen möchten. Mitbestimmung kann sich auch auf die Strukturierung der Unterrichtsstunden beziehen. Sie stärkt Motivation, Eigenverantwortung und Relevanz.",
-        },
+  "StudentsCo-influence": {
+    title: "Mitbestimmung der Lernenden",
+    body: "Lernende werden aktiv in die Planung und Gestaltung des Moduls einbezogen. Sie können Themen, Fälle, Zielgruppen, Orte oder Technologien auswählen und Fragestellungen einbringen, die sie untersuchen möchten. Mitbestimmung kann sich auch auf die Strukturierung der Unterrichtsstunden beziehen. Sie stärkt Motivation, Eigenverantwortung und Relevanz."
+  },
 
-        ContentActivitiesFrameworks: {
-          title: "Inhalte, Aktivitäten, Rahmen",
-          body: "Die Themen, Inhalte und konkreten Lernaktivitäten eines Moduls, z. B. Untersuchungen, Experimente, Projektarbeit, Präsentationen oder Wettbewerbe. Beinhaltet auch physische und digitale Rahmenbedingungen wie Räume, Ausstattung und digitale Plattformen. Diese Entscheidungen sollten zu den Lernzielen passen und die Zielgruppe unterstützen.",
-        },
+  ContentActivitiesFrameworks: {
+    title: "Inhalte, Aktivitäten, Rahmen",
+    body: "Die Themen, Inhalte und konkreten Lernaktivitäten eines Moduls, zum Beispiel Untersuchungen, Experimente, Projektarbeit, Präsentationen oder Wettbewerbe. Beinhaltet auch physische und digitale Rahmenbedingungen wie Räume, Ausstattung und digitale Plattformen. Diese Entscheidungen sollten zu den Lernzielen passen und die Zielgruppe unterstützen."
+  },
 
-        StudentsLearningProducts: {
-          title: "Lernprodukte",
-          body: "Die erforderlichen Ergebnisse, die das Lernen der Lernenden dokumentieren und den Kern der digitalen Produktion bilden, z. B. Programme, Spiele, AR-/VR-Szenen, Prototypen, digitale Geschichten, Poster oder Flussdiagramme. Lernprodukte können technische oder qualitative Kriterien erfüllen und so gestaltet sein, dass sie geteilt und weiterentwickelt werden können.",
-        },
+  StudentsLearningProducts: {
+    title: "Lernprodukte",
+    body: "Die erforderlichen Ergebnisse, die das Lernen der Lernenden dokumentieren und den Kern der digitalen Produktion bilden, zum Beispiel Programme, Spiele, AR- oder VR-Szenen, Prototypen, digitale Geschichten, Poster oder Flussdiagramme. Lernprodukte können technische oder qualitative Kriterien erfüllen und so gestaltet sein, dass sie geteilt und weiterentwickelt werden können."
+  },
 
-        "PedagogicalMethodsSocialWell-being": {
-          title: "Pädagogische Methoden / Soziales Wohlbefinden",
-          body: "Bezieht sich auf die didaktischen Methoden zur Unterstützung von Motivation, Kreativität, Zusammenarbeit und Inklusion. Beispiele sind strukturiertes Gruppenlernen, differenzierter Unterricht, Peer Learning, spielerische Methoden und Game-Based Learning. Besonderer Fokus liegt auf sozialer Interaktion, konstruktivem Feedback und Zugänglichkeit.",
-        },
+  "PedagogicalMethodsSocialWell-being": {
+    title: "Pädagogische Methoden / Soziales Wohlbefinden",
+    body: "Bezieht sich auf die didaktischen Methoden zur Unterstützung von Motivation, Kreativität, Zusammenarbeit und Inklusion. Beispiele sind strukturiertes Gruppenlernen, differenzierter Unterricht, Peer Learning, spielerische Methoden und Game-Based Learning. Besonderer Fokus liegt auf sozialer Interaktion, konstruktivem Feedback und Zugänglichkeit, damit alle Lernenden sinnvoll teilnehmen können."
+  },
 
-        Evaluations: {
-          title: "Evaluationen",
-          body: "Definiert, wer was und wie bewertet. Beinhaltet die Bewertung der Lernprozesse und -produkte der Lernenden sowie die Evaluation des Moduls selbst. Methoden können Noten, Bewertungsrasters, schriftliches oder mündliches Feedback, Selbstreflexion und Peer-Evaluation umfassen. Ergebnisse fließen in die iterative Weiterentwicklung von Unterrichtsgestaltung und digitalen Produkten ein.",
-        },
+  Evaluations: {
+    title: "Evaluationen",
+    body: "Definiert, wer was und wie bewertet. Beinhaltet die Bewertung der Lernprozesse und Lernprodukte der Lernenden sowie die Evaluation des Moduls selbst. Methoden können Noten, Bewertungsraster, schriftliches oder mündliches Feedback, Selbstreflexion und Peer-Evaluation umfassen. Ergebnisse fließen in die Weiterentwicklung von Unterrichtsgestaltung und Lernprodukten ein."
+  },
 
-        Instructions: {
-          title: "Anleitungen",
-          body: "Umfasst die Anleitung und das Scaffolding, die Lernenden helfen, komplexe digitale Aufgaben zu bewältigen. Dazu gehören klare Aufgabenbeschreibungen, Erfolgskriterien, Beispiele, Vorlagen und schrittweise Einführung in Werkzeuge. Gute Anleitungen sind besonders wichtig bei neuen Technologien, damit Lernende ein Startgerüst haben und dennoch Raum zur Erkundung bleibt.",
-        },
+  Instructions: {
+    title: "Anleitungen",
+    body: "Umfasst die Anleitung und das Scaffolding, die Lernenden helfen, komplexe digitale Aufgaben zu bewältigen. Dazu gehören klare Aufgabenbeschreibungen, Erfolgskriterien, Beispiele, Vorlagen und schrittweise Einführung in Werkzeuge. Gute Anleitungen sind besonders wichtig bei neuen Technologien, damit Lernende ein Startgerüst haben und dennoch Raum zur Erkundung bleibt."
+  },
 
-        Center: {
-          title: "Zentrum",
-          body: "Der Lernende und der Lernprozess im Mittelpunkt des Modells. Alle Dimensionen und Elemente der DigiDidaktik sollen sinnvolles, motivierendes und nachhaltiges Lernen für konkrete Zielgruppen entlang der Bildungskette ermöglichen. Das Modell folgt dem Pick-and-Play-Prinzip, bei dem wenige ausgewählte Elemente passend zu Bedürfnissen und Kontext der Lernenden kombiniert werden.",
-        },
-      };
+  Center: {
+    title: "Zentrum",
+    body: "Der Lernende und der Lernprozess im Mittelpunkt des Modells. Alle Dimensionen und Elemente der DigiDidaktik sollen sinnvolles, motivierendes und nachhaltiges Lernen für konkrete Zielgruppen entlang der Bildungskette ermöglichen. Das Modell folgt dem Pick-and-Play-Prinzip, bei dem wenige ausgewählte Elemente passend zu Bedürfnissen und Kontext der Lernenden kombiniert werden."
+  }
+};
+
 
       (function () {
         function init() {

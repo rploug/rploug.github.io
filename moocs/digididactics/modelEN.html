@@ -3,9 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <title>DigiDidactic Model Interactive</title>
+
+    <div id="lang-switch">
+  <a href="https://rasmusploug.com/moocs/digididactics/modelEN.html" class="lang-link lang-en active" aria-label="English">
+    <!-- EN FLAG SVG -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#071b65"></rect><path d="M5.101,4h-.101c-1.981,0-3.615,1.444-3.933,3.334L26.899,28h.101c1.981,0,3.615-1.444,3.933-3.334L5.101,4Z" fill="#fff"></path><path d="M22.25,19h-2.5l9.934,7.947c.387-.353,.704-.777,.929-1.257l-8.363-6.691Z" fill="#b92932"></path><path d="M1.387,6.309l8.363,6.691h2.5L2.316,5.053c-.387,.353-.704,.777-.929,1.257Z" fill="#b92932"></path><path d="M5,28h.101L30.933,7.334c-.318-1.891-1.952-3.334-3.933-3.334h-.101L1.067,24.666c.318,1.891,1.952,3.334,3.933,3.334Z" fill="#fff"></path><rect x="13" y="4" width="6" height="24" fill="#fff"></rect><rect x="1" y="13" width="30" height="6" fill="#fff"></rect><rect x="14" y="4" width="4" height="24" fill="#b92932"></rect><rect x="14" y="1" width="4" height="30" transform="translate(32) rotate(90)" fill="#b92932"></rect><path d="M28.222,4.21l-9.222,7.376v1.414h.75l9.943-7.94c-.419-.384-.918-.671-1.471-.85Z" fill="#b92932"></path><path d="M2.328,26.957c.414,.374,.904,.656,1.447,.832l9.225-7.38v-1.408h-.75L2.328,26.957Z" fill="#b92932"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path></svg>
+  </a>
+
+  <a href="https://rasmusploug.com/moocs/digididactics/modelDA.html" class="lang-link lang-da" aria-label="Danish">
+    <!-- DA FLAG SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect x="1" y="4" width="30" height="24" rx="4" ry="4" fill="#b92932"></rect><path fill="#fff" d="M31 14L15 14 15 4 11 4 11 14 1 14 1 18 11 18 11 28 15 28 15 18 31 18 31 14z"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path></svg>
+  </a>
+
+  <a href="https://rasmusploug.com/moocs/digididactics/modelDE.html" class="lang-link lang-de" aria-label="German">
+    <!-- DE FLAG SVG -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="#cc2b1d" d="M1 11H31V21H1z"></path><path d="M5,4H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z"></path><path d="M5,20H27c2.208,0,4,1.792,4,4v4H1v-4c0-2.208,1.792-4,4-4Z" transform="rotate(180 16 24)" fill="#f8d147"></path><path d="M27,4H5c-2.209,0-4,1.791-4,4V24c0,2.209,1.791,4,4,4H27c2.209,0,4-1.791,4-4V8c0-2.209-1.791-4-4-4Zm3,20c0,1.654-1.346,3-3,3H5c-1.654,0-3-1.346-3-3V8c0-1.654,1.346-3,3-3H27c1.654,0,3,1.346,3,3V24Z" opacity=".15"></path><path d="M27,5H5c-1.657,0-3,1.343-3,3v1c0-1.657,1.343-3,3-3H27c1.657,0,3,1.343,3,3v-1c0-1.657-1.343-3-3-3Z" fill="#fff" opacity=".2"></path></svg>
+
+  </a>
+</div>
+
     <style>
       body {
-        font-family: system-ui, sans-serif;
+        font-family: "Segoe UI Emoji", "Twemoji", "Noto Color Emoji", system-ui, sans-serif;
         margin: 0;
         padding: 2rem;
         background: #ffffff;
@@ -80,8 +99,51 @@
         line-height: 1;
       }
     </style>
-  </head>
-  <body>
+<style>
+  #lang-switch {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  background: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: flex;
+  gap: 6px;
+}
+
+.lang-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.lang-link svg {
+  width: 24px;
+  height: 18px;
+  border-radius: 3px;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.lang-link:hover svg {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.lang-link.active svg {
+  opacity: 1;
+  transform: scale(1.12);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+}
+
+</style>
+
+
+
+
     <div id="model-wrapper">
       <svg
         version="1.1"
@@ -3825,119 +3887,147 @@
 
     <script>
       const segmentInfo = {
-        DigitalLiteracy: {
-          title: "Digital Literacy",
-          body: "Covers students’ critical, reflective, and constructive use of digital technology. Includes digital empowerment, ethical awareness, critical thinking, computational thinking, IT security, and the ability to participate in communities of practice. Digital literacy is not only about skills, but about understanding how technologies shape knowledge, society, and students’ own lives.",
-        },
-        Sustainability: {
-          title: "Sustainability",
-          body: "A cross cutting focus that should be considered in all dimensions of the model. Draws on the balance between environmental, economic, and social well being. Includes working with sustainability themes in teaching, considering environmental effects and technology waste (digitainability), reusing designs, materials, and infrastructures, and supporting students’ psycho social well being and inclusion, often linked to the UN Sustainable Development Goals.",
-        },
-        EthicsAndSociety: {
-          title: "Ethics and Society",
-          body: "Addresses how digital technologies affect climate, security, the economy, democracy, and everyday life. Focuses on ethical dilemmas, power relations, and who benefits from technological solutions. Encourages students to reflect on the societal consequences of automation, AI, data use, and digital platforms, and to develop a responsible stance toward their own digital productions.",
-        },
-        ITsecurity: {
-          title: "IT Security",
-          body: "Relates to cybersecurity and personal data protection as part of digital literacy. Includes safe handling of passwords, identities, and platforms, awareness of data traces and tracking, and understanding basic security risks. Supports students in navigating digital learning environments safely and in designing digital products that respect privacy and data protection rules.",
-        },
-        CriticalThinking: {
-          title: "Critical Thinking",
-          body: "Supports students in weighing advantages, disadvantages, and consequences of using specific technologies. Includes source criticism, questioning data and AI outputs, reflecting on bias and automation, and evaluating digital solutions from multiple perspectives, including ethical and societal ones. Forms a core part of digital empowerment.",
-        },
-        IndividualRelevance: {
-          title: "Individual Relevance",
-          body: "Connects technologies and teaching modules to students’ own lives, leisure activities, interests, educational choices, and future plans. Design cases, themes, and examples are chosen so that they feel meaningful and motivating for the specific target group and level. This strengthens engagement and supports personal learning pathways.",
-        },
-        Methods: {
-          title: "Methods",
-          body: "The overall strategies used for digital production and teaching, chosen based on time frame, educational level, target group, and learning objectives. Can include problem based learning, project work, iterative design processes, pair programming, worked examples, or other practice based approaches. Different methods can be combined across a module.",
-        },
-        Reflections: {
-          title: "Reflections",
-          body: "Planned activities where students and teachers step back from action to reflect on process and product. Includes ongoing reflection during work and retrospective reflections afterwards, where students describe and justify their technical solutions, use relevant concepts, and connect their experiences to underlying theories and didactic choices.",
-        },
-        DigitalProduction: {
-          title: "Digital Production",
-          body: "One of the three core dimensions. Focuses on the technological part of the learning process where students create digital artifacts, for example programs, games, simulations, AR or VR experiences, digital stories, or interactive prototypes. Emphasizes that students work hands on with emerging technologies and make concrete digital products that can be shared and reused.",
-        },
-        TeachingDesign: {
-          title: "Teaching Design",
-          body: "One of the three core dimensions. Covers the classic didactic planning elements: defining learning objectives, involving students’ co influence, choosing content and activities, specifying students’ learning products, selecting pedagogical methods, and planning evaluations. Teaching design ensures the module is meaningful for the specific subject, level, and target group.",
-        },
-        Environment: {
-          title: "Environment",
-          body: "One of the three core dimensions, focusing on the ecosystem around the educational institution. Includes collaboration with external partners, career learning, cross institutional links in the education chain, and connections to broader digitalization in society. Supports coherence across levels and sectors, and helps students see how digital technologies matter in the world outside school.",
-        },
-        ChoiceOfTechnology: {
-          title: "Choice of Technology",
-          body: "Concerns the deliberate selection of equipment, software, and platforms for the main digital production and any supporting media tools. Includes considering availability, accessibility, cost, and the fit between technologies, learning objectives, and target group. Can range from programming languages and robots to AR or VR platforms, AI tools, and collaborative online environments.",
-        },
-        CareerLearning: {
-          title: "Career Learning",
-          body: "Uses teaching modules to support students in exploring study and career paths. Includes activities with companies or other institutions, transition courses between levels, and structured reflection before, during, and after modules on what the experience means for future education and work. The goal is to help students make personally meaningful choices in a complex education chain.",
-        },
-        InternationalAspects: {
-          title: "International Aspects",
-          body: "Highlights that teaching with digital production can cross national borders and connect students across countries. In DigiDidactics this is exemplified by Danish German collaboration, but the idea is broader: to work with international partners, multilingual communication, and global perspectives on technology, sustainability, and digitalization.",
-        },
-        "Cross-diciplinaryCollaboration": {
-          title: "Cross-disciplinary Collaboration",
-          body: "Designs modules where multiple subjects, professions, or institutions work together around shared digital productions or cases. Students meet different perspectives and ways of working, often anchored in real life problems or external stakeholders. This supports authentic problem solving and helps bridge gaps in the education chain.",
-        },
-        BusinessAndAddedValue: {
-          title: "Business and Added Value",
-          body: "Relates to collaboration with companies and other organizations and to value creation in and around the teaching module. Can include user studies, market perspectives on students’ products, role models from industry, or reflection on how digital solutions create economic or social value for stakeholders. Also covers institutional value such as reusability of modules and visibility.",
-        },
-        IterativeDesign: {
-          title: "Iterative Design",
-          body: "A structured approach where digital products and teaching designs are developed in repeated cycles. Each iteration includes planning, design, testing, evaluation, and adjustment. Longer modules can be organized into several iterations to gradually improve both the technical quality and the alignment with learning objectives and user needs.",
-        },
-        ExperimentsPlayground: {
-          title: "Experiments / Playground",
-          body: "Safe spaces and phases in the module where students can play with technologies, test ideas, and explore functions with minimal upfront instruction. The focus is on experimentation, curiosity, and innovation rather than polished products. This reduces fear of failure and can generate concepts that are later refined through more structured work.",
-        },
-        KnowledgeTerms: {
-          title: "Knowledge / Terms",
-          body: "Central theoretical and didactic concepts that support the use of the model, for example digital literacy, computational thinking, empowerment, education chain, sustainability, and iterative design. Making such terms explicit helps align teachers’ communication, supports shared reflection, and strengthens the meta level understanding of teaching with digital production.",
-        },
-        ProductDevelopment: {
-          title: "Product Development",
-          body: "The concrete workflow from early idea to finished digital product. Includes idea generation, concept development, storyboarding or scripting, prototyping, testing with users or peers, and final polishing and documentation. Encourages students to treat their digital work as something that can be improved, reused, and shared beyond the single module.",
-        },
-        LearningObjectives: {
-          title: "Learning Objectives",
-          body: "Expected competencies in terms of knowledge, skills, and attitudes that students should develop during the module. Can be technical, subject specific, social, or personal. Objectives should align with local curricula and regulations and help define relevant content, activities, and digital products for the given target group.",
-        },
-        "StudentsCo-influence": {
-          title: "Students’ Co-influence",
-          body: "Students are actively involved in planning and shaping the module. They can help choose themes, cases, target groups, locations, or technologies, and suggest issues they want to investigate. Co influence can also concern how lessons are structured. This supports motivation, ownership, and alignment with students’ lives and interests.",
-        },
-        ContentActivitiesFrameworks: {
-          title: "Content/Activities/Frameworks",
-          body: "The subjects, topics, and concrete learning activities that make up the module, for example investigations, experiments, project work, presentations, or competitions. Also includes the physical and virtual framework, such as locations, equipment, and digital platforms. These choices should support the learning objectives and fit the target group.",
-        },
-        StudentsLearningProducts: {
-          title: "Students’ Learning Products",
-          body: "The required outputs that document students’ learning and form the core of digital production, for example programs, games, AR or VR scenes, prototypes, digital stories, posters, or flowcharts. Products will often have technical or qualitative criteria and can be designed to be shared, reused, or further developed by others.",
-        },
-        "PedagogicalMethodsSocialWell-being": {
-          title: "Pedagogical Methods / Social Well-being",
-          body: "Covers the didactic methods used to support motivation, creativity, collaboration, and inclusion. Examples include structured group work, differentiated teaching, peer learning, playground methods, and game based elements. Particular focus is placed on social interaction, constructive feedback, and accessibility so that all students can participate meaningfully.",
-        },
-        Evaluations: {
-          title: "Evaluations",
-          body: "Defines who evaluates what and how. Includes assessment of students’ learning processes and products, but also evaluation of the module itself. Methods can range from grades and rubrics to oral or written feedback, self evaluation, and peer evaluation. Results should feed back into iterative improvement of both teaching design and digital products.",
-        },
-        Instructions: {
-          title: "Instructions",
-          body: "Covers the scaffolding and guidance that help students navigate complex digital tasks. Includes clear task descriptions, criteria for success, examples, templates, and stepwise introductions to tools. Good instructions are especially important when working with emerging technologies so that students have a starting point while still having room for exploration.",
-        },
-        Center: {
-          title: "Center",
-          body: "The student and the learning process at the heart of the model. All dimensions and elements of DigiDidactics are intended to support meaningful, motivating, and sustainable learning for concrete target groups across the education chain. The model follows a pick and play principle, where a small selection of elements is combined around students’ needs and context.",
-        },
-      };
+  DigitalLiteracy: {
+    title: "Digital Literacy",
+    body: "One of the four core dimensions, closely connected to Digital Production, Teaching Design, and the Environment. Covers students’ critical, reflective, and constructive use of digital technology. Includes digital empowerment, ethical awareness, critical thinking, computational thinking, IT security, and participation in communities of practice. Digital literacy is not only about skills, but about understanding how technologies shape knowledge, society, and students’ own lives."
+  },
+
+  Sustainability: {
+    title: "Sustainability",
+    body: "A cross cutting focus that should be considered in all dimensions of the model. Draws on the balance between environmental, economic, and social well being. Includes working with sustainability themes in teaching, considering environmental effects and technology waste (digitainability), reusing designs, materials, and infrastructures, and supporting students’ psycho social well being and inclusion, often linked to the UN Sustainable Development Goals."
+  },
+
+  EthicsAndSociety: {
+    title: "Ethics and Society",
+    body: "Addresses how digital technologies affect climate, security, the economy, democracy, and everyday life. Focuses on ethical dilemmas, power relations, and who benefits from technological solutions. Encourages students to reflect on the societal consequences of automation, AI, data use, and digital platforms, and to develop a responsible stance toward their own digital productions."
+  },
+
+  ITsecurity: {
+    title: "IT Security",
+    body: "Relates to cybersecurity and personal data protection as part of digital literacy. Includes safe handling of passwords, identities, and platforms, awareness of data traces and tracking, and understanding basic security risks. Supports students in navigating digital learning environments safely and in designing digital products that respect privacy and data protection rules."
+  },
+
+  CriticalThinking: {
+    title: "Critical Thinking",
+    body: "Supports students in weighing advantages, disadvantages, and consequences of using specific technologies. Includes source criticism, questioning data and AI outputs, reflecting on bias and automation, and evaluating digital solutions from multiple perspectives, including ethical and societal ones. Forms a core part of digital empowerment."
+  },
+
+  IndividualRelevance: {
+    title: "Individual Relevance",
+    body: "Connects technologies and teaching modules to students’ own lives, leisure activities, interests, educational choices, and future plans. Design cases, themes, and examples are chosen so that they feel meaningful and motivating for the specific target group and level. This strengthens engagement and supports personal learning pathways."
+  },
+
+  Methods: {
+    title: "Methods",
+    body: "The overall strategies used for digital production and teaching, chosen based on time frame, educational level, target group, and learning objectives. Can include problem based learning, project work, iterative design processes, pair programming, worked examples, or other practice based approaches. Different methods can be combined across a module."
+  },
+
+  Reflections: {
+    title: "Reflections",
+    body: "Planned activities where students and teachers step back from action to reflect on process and product. Includes ongoing reflection during work and retrospective reflections afterwards, where students describe and justify their technical solutions, use relevant concepts, and connect their experiences to underlying theories and technological choices."
+  },
+
+  DigitalProduction: {
+    title: "Digital Production",
+    body: "One of the four core dimensions. Focuses on the technological part of the learning process where students create digital artifacts, for example programs, games, simulations, AR or VR experiences, digital stories, or interactive prototypes. Emphasizes that students work hands on with emerging technologies and make concrete digital products that can be shared and reused."
+  },
+
+  TeachingDesign: {
+    title: "Teaching Design",
+    body: "One of the four core dimensions. Covers the classic didactic planning elements: defining learning objectives, involving students’ co influence, choosing content and activities, specifying students’ learning products, selecting pedagogical methods, and planning evaluations. Teaching design ensures the module is meaningful for the specific subject, level, and target group."
+  },
+
+  Environment: {
+    title: "Environment",
+    body: "One of the four core dimensions, focusing on the ecosystem around the educational institution. Includes collaboration with external partners, career learning, cross institutional links in the education chain, and connections to broader digitalization in society. Supports coherence across levels and sectors, and helps students see how digital technologies matter in the world outside school."
+  },
+
+  ChoiceOfTechnology: {
+    title: "Choice of Technology",
+    body: "Concerns the deliberate selection of equipment, software, and platforms for the main digital production and any supporting media tools. Includes considering availability, accessibility, cost, and the fit between technologies, learning objectives, and target group. Can range from programming languages and robots to AR or VR platforms, AI tools, and collaborative online environments."
+  },
+
+  CareerLearning: {
+    title: "Career Learning",
+    body: "Uses teaching modules to support students in exploring study and career paths. Includes activities with companies or other institutions, transition courses between levels, and structured reflection before, during, and after modules on what the experience means for future education and work. The goal is to help students make personally meaningful choices in a complex education chain."
+  },
+
+  InternationalAspects: {
+    title: "International Aspects",
+    body: "Highlights that teaching with digital production can cross national borders and connect students across countries. The idea is to explore interaction with international partners, multilingual communication, and global perspectives on technology, sustainability, and digitalization."
+  },
+
+  "Cross-diciplinaryCollaboration": {
+    title: "Cross-disciplinary Collaboration",
+    body: "Teaching modules where multiple subjects, professions, or institutions work together around shared digital productions or cases. Students meet different perspectives and ways of working, often anchored in real life problems or needs from external stakeholders. This supports authentic problem solving and helps bridge gaps in the education chain."
+  },
+
+  BusinessAndAddedValue: {
+    title: "Business and Added Value",
+    body: "Relates to collaboration with companies and other organizations and to value creation in and around the teaching module. Can include user studies, market perspectives on students’ products, role models from industry, or reflection on how digital solutions create economic or social value for stakeholders. Also covers institutional value such as reusability of modules and visibility."
+  },
+
+  IterativeDesign: {
+    title: "Iterative Design",
+    body: "A structured approach where digital products and teaching designs are developed in repeated cycles. Each iteration includes planning, design, testing, evaluation, and adjustment. Longer modules can be organized into several iterations to gradually improve both the technical quality and the alignment with learning objectives and user needs."
+  },
+
+  ExperimentsPlayground: {
+    title: "Experiments / Playground",
+    body: "Safe spaces and phases in the module where students can play with technologies, test ideas, and explore functions with minimal upfront instruction. The focus is on experimentation, curiosity, and innovation rather than polished products. This reduces fear of failure and can generate concepts that are later refined through more structured work."
+  },
+
+  KnowledgeTerms: {
+    title: "Knowledge / Terms",
+    body: "The targeted use of students’ subject specific knowledge and appropriate terminology. This concerns students’ ability to correctly apply concepts such as digital literacy, computational thinking, empowerment, sustainability, and iterative design when explaining or justifying their work."
+  },
+
+  ProductDevelopment: {
+    title: "Product Development",
+    body: "The concrete workflow from early idea to finished digital product. Can include idea generation, concept development, storyboarding or scripting, prototyping, testing with users or peers, and final polishing and documentation. Encourages students to treat their digital work as something that can be improved, reused, and possibly shared."
+  },
+
+  LearningObjectives: {
+    title: "Learning Objectives",
+    body: "Expected competencies in terms of knowledge, skills, and attitudes that students should develop during the module. Can be technical, subject specific, social, or personal. Objectives should align with local curricula and regulations and help define relevant content, activities, and digital products for the given target group."
+  },
+
+  "StudentsCo-influence": {
+    title: "Students’ Co-influence",
+    body: "Students are actively involved in planning and shaping the module. They can help choose themes, cases, target groups, locations, or technologies, and suggest issues they want to investigate. Co influence can also concern how lessons are structured. This supports motivation, ownership, and alignment with students’ lives and interests."
+  },
+
+  ContentActivitiesFrameworks: {
+    title: "Content / Activities / Frameworks",
+    body: "The subjects, topics, and concrete learning activities that make up the module, for example investigations, experiments, project work, presentations, or competitions. Also includes the physical and virtual framework, such as locations, equipment, and digital platforms. These choices should support the learning objectives and fit the target group."
+  },
+
+  StudentsLearningProducts: {
+    title: "Students’ Learning Products",
+    body: "The required outputs that document students’ learning. These products may form the core of digital production, for example programs, games, AR or VR scenes, prototypes, digital stories, posters, or flowcharts. Products often have technical or qualitative criteria and can be shared, reused, or extended by others. Learning products can also include reports, oral presentations, posters, or related outputs."
+  },
+
+  "PedagogicalMethodsSocialWell-being": {
+    title: "Pedagogical Methods / Social Well-being",
+    body: "Covers the methods used to support motivation, creativity, collaboration, and inclusion. Examples include structured group work, differentiated teaching, peer learning, playground methods, and game based elements. Particular focus is placed on social interaction, constructive feedback, and accessibility so that all students can participate meaningfully."
+  },
+
+  Evaluations: {
+    title: "Evaluations",
+    body: "Defines who evaluates what and how. Includes assessment of students’ learning processes and products, as well as evaluation of the module itself. Methods can range from grades and rubrics to oral or written feedback, self evaluation, and peer evaluation. Results should feed back into improvement of both teaching design and learning products."
+  },
+
+  Instructions: {
+    title: "Instructions",
+    body: "Covers the scaffolding and guidance that help students navigate complex digital tasks. Includes clear task descriptions, criteria for success, examples, templates, and stepwise introductions to tools. Good instructions are especially important when working with emerging technologies so students have a starting point while still having room for exploration."
+  },
+
+  Center: {
+    title: "Center",
+    body: "The students and their learning processes at the heart of the model. All dimensions and elements of DigiDidactics support meaningful, motivating, and sustainable learning for concrete target groups across the education chain. The model follows a pick and play principle, where a small selection of elements is combined around students’ needs and context."
+  }
+};
+
 
       (function () {
         function init() {
