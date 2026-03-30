@@ -1,0 +1,66 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: dino-card-maker/package-lock.json
+
+      - name: Install dependencies
+        working-directory: dino-card-maker
+        run: npm ci
+
+      - name: Build card maker
+        working-directory: dino-card-maker
+        run: npm run build
+
+      - name: Assemble deployment folder
+        run: |
+          mkdir -p _deploy/dino-card-maker
+          # Copy main site (everything except the card maker source and build artifacts)
+          rsync -a \
+            --exclude='dino-card-maker' \
+            --exclude='_deploy' \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            ./ _deploy/
+          # Place the built card maker at /dino-card-maker/ so the base path matches
+          cp -r dino-card-maker/dist/. _deploy/dino-card-maker/
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "_deploy"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
