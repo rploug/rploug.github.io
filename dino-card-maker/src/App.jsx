@@ -1,9 +1,12 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, lazy, Suspense } from "react";
 import domtoimage from "dom-to-image-more";
 import CardPreview from "./components/CardPreview";
 import CardForm from "./components/CardForm";
 
+const BulkPage = lazy(() => import("./pages/BulkPage"));
+
 function App() {
+  const [page, setPage] = useState("single");
   const [theme, setTheme] = useState("light");
   const [name, setName] = useState("");
   const [power, setPower] = useState(0);
@@ -44,9 +47,25 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div className={`app${page === "bulk" ? " app--bulk" : ""}`}>
       <header className="app-header">
         <h1>Dino Card Creator</h1>
+
+        <nav className="app-nav">
+          <button
+            className={`nav-btn${page === "single" ? " active" : ""}`}
+            onClick={() => setPage("single")}
+          >
+            Single Card
+          </button>
+          <button
+            className={`nav-btn${page === "bulk" ? " active" : ""}`}
+            onClick={() => setPage("bulk")}
+          >
+            Bulk Create
+          </button>
+        </nav>
+
         <button
           className="theme-toggle"
           onClick={() => setTheme((t) => (t === "light" ? "dark" : "light"))}
@@ -56,40 +75,48 @@ function App() {
         </button>
       </header>
 
-      <div className="app-body">
-        <CardForm
-          name={name} setName={setName}
-          power={power} setPower={setPower}
-          battleBonus={battleBonus} setBattleBonus={setBattleBonus}
-          size={size} setSize={setSize}
-          type={type} setType={setType}
-          cost={cost} setCost={setCost}
-          effects={effects} setEffects={setEffects}
-          image={image} setImage={setImage}
-          imageTransform={imageTransform} setImageTransform={setImageTransform}
-          onDownload={handleDownload}
-        />
+      {page === "single" ? (
+        <div className="app-body">
+          <CardForm
+            name={name} setName={setName}
+            power={power} setPower={setPower}
+            battleBonus={battleBonus} setBattleBonus={setBattleBonus}
+            size={size} setSize={setSize}
+            type={type} setType={setType}
+            cost={cost} setCost={setCost}
+            effects={effects} setEffects={setEffects}
+            image={image} setImage={setImage}
+            imageTransform={imageTransform} setImageTransform={setImageTransform}
+            onDownload={handleDownload}
+          />
 
-        <main className="app-main">
-          <div className="card-stage">
-            <span className="card-stage-label">Preview</span>
-            <div className="card-shadow">
-              <CardPreview
-                ref={cardRef}
-                name={name}
-                power={power}
-                battleBonus={battleBonus}
-                size={size}
-                type={type}
-                cost={cost}
-                effects={effects}
-                image={image}
-                imageTransform={imageTransform}
-              />
+          <main className="app-main">
+            <div className="card-stage">
+              <span className="card-stage-label">Preview</span>
+              <div className="card-shadow">
+                <CardPreview
+                  ref={cardRef}
+                  name={name}
+                  power={power}
+                  battleBonus={battleBonus}
+                  size={size}
+                  type={type}
+                  cost={cost}
+                  effects={effects}
+                  image={image}
+                  imageTransform={imageTransform}
+                />
+              </div>
             </div>
-          </div>
-        </main>
-      </div>
+          </main>
+        </div>
+      ) : (
+        <div className="app-body app-body--bulk">
+          <Suspense fallback={<div style={{ padding: 32, color: "var(--muted)" }}>Loading…</div>}>
+            <BulkPage />
+          </Suspense>
+        </div>
+      )}
     </div>
   );
 }

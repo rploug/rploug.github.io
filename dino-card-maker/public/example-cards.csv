@@ -1,0 +1,4 @@
+name,power,type,size,cost,battleBonus,effects
+T-Rex,8,Predator,Giant,2,Predator|Egg,Before Battle: Gain 2 power|Ongoing: Cannot be blocked by Small or Tiny dinosaurs
+Stegosaurus,4,Defense,Large,1,,Ongoing: Reduce all incoming damage by 1|Reaction: When attacked draw a card
+Pterodactyl,6,Flying,Medium,2,Draw|Claim,Special: May attack any dinosaur regardless of position|After Battle: Return to your hand if this dinosaur survives

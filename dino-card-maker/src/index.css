@@ -516,3 +516,298 @@ input[type="range"] {
   border-color: var(--accent);
   color: var(--text);
 }
+
+/* ─── Nav ────────────────────────────────────────────── */
+
+.app-nav {
+  display: flex;
+  gap: 4px;
+  margin-left: 16px;
+}
+
+.nav-btn {
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  font-family: inherit;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.nav-btn:hover {
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.nav-btn.active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ─── Bulk page shell ────────────────────────────────── */
+
+.app--bulk {
+  height: auto;
+  min-height: 100dvh;
+  overflow: auto;
+}
+
+.app-body--bulk {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.bulk-page {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 28px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ─── Docs section ───────────────────────────────────── */
+
+.bulk-docs {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bulk-docs-intro {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.bulk-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.bulk-schema-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.bulk-schema-table th,
+.bulk-schema-table td {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.bulk-schema-table tr:last-child td {
+  border-bottom: none;
+}
+
+.bulk-schema-table th {
+  background: var(--elevated);
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.bulk-schema-table td:first-child {
+  white-space: nowrap;
+}
+
+.bulk-schema-table code {
+  background: var(--elevated);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 11px;
+  font-family: monospace;
+}
+
+.bulk-docs-example-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.bulk-docs-example-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.bulk-example-download {
+  font-size: 12px;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+
+.bulk-example-download:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.bulk-csv-example {
+  background: var(--elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-size: 12px;
+  font-family: monospace;
+  overflow-x: auto;
+  color: var(--text);
+  line-height: 1.7;
+  white-space: pre;
+}
+
+/* ─── Upload ─────────────────────────────────────────── */
+
+.bulk-upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bulk-error {
+  color: var(--danger);
+  font-size: 12px;
+}
+
+/* ─── Results ────────────────────────────────────────── */
+
+.bulk-results {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bulk-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.bulk-download-btn {
+  width: auto;
+  padding: 10px 20px;
+}
+
+/* Full-size cards used only for dom-to-image capture — visually hidden */
+.bulk-capture-layer {
+  position: fixed;
+  top: 0;
+  left: -9999px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.bulk-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.bulk-card-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Scale 300×417 card down to 150×208 for the grid preview */
+.bulk-card-scaled {
+  width: 150px;
+  height: 208px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.bulk-card-scaled > div {
+  transform: scale(0.5);
+  transform-origin: top left;
+}
+
+.bulk-card-label {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─── Mobile ─────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .app {
+    height: auto;
+    min-height: 100dvh;
+    overflow: auto;
+  }
+
+  .app-body {
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    overflow-y: visible;
+  }
+
+  .app-main {
+    overflow: visible;
+    padding: 24px 16px;
+  }
+
+  /* Prevent iOS zoom on input focus */
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  /* Larger touch targets */
+  .bonus-btn {
+    padding: 8px 2px;
+    font-size: 9px;
+  }
+
+  .bonus-btn img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .type-btn {
+    padding: 10px 2px;
+    font-size: 10px;
+  }
+
+  .download-btn {
+    padding: 14px;
+  }
+}
