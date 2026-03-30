@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 294 157">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#061200"/>
+      <stop offset="100%" stop-color="#162800"/>
+    </linearGradient>
+  </defs>
+  <rect width="294" height="157" fill="url(#bg)"/>
+
+  <!-- Ground -->
+  <ellipse cx="150" cy="152" rx="125" ry="10" fill="#040A00" opacity="0.7"/>
+
+  <!-- Tail (right, curving slightly up) -->
+  <path d="M224,102 C248,96 268,86 280,74" stroke="#4E7A30" stroke-width="18" stroke-linecap="round" fill="none"/>
+  <path d="M262,83 C272,77 280,72 284,66" stroke="#3A5E22" stroke-width="10" stroke-linecap="round" fill="none"/>
+
+  <!-- Tail spikes -->
+  <path d="M264,78 L270,62 L273,79" fill="#6A4820" opacity="0.9"/>
+  <path d="M276,70 L284,56 L285,71" fill="#6A4820" opacity="0.9"/>
+
+  <!-- Body -->
+  <ellipse cx="152" cy="106" rx="86" ry="34" fill="#4E7A30"/>
+  <ellipse cx="152" cy="118" rx="76" ry="17" fill="#3A5E22" opacity="0.5"/>
+
+  <!-- Neck (forward and down-left) -->
+  <path d="M75,97 C60,93 46,92 36,98" stroke="#4E7A30" stroke-width="22" stroke-linecap="round" fill="none"/>
+
+  <!-- Head -->
+  <ellipse cx="26" cy="103" rx="18" ry="12" fill="#4E7A30"/>
+  <!-- Snout -->
+  <ellipse cx="10" cy="107" rx="10" ry="7" fill="#467228"/>
+  <!-- Eye -->
+  <circle cx="28" cy="98" r="4.5" fill="#060D00"/>
+  <circle cx="28" cy="98" r="2" fill="#88CC20" opacity="0.8"/>
+  <circle cx="27" cy="97" r="0.8" fill="rgba(200,255,100,0.5)"/>
+  <!-- Nostril -->
+  <circle cx="8" cy="107" r="1.5" fill="#2A4A10" opacity="0.8"/>
+  <!-- Mouth line -->
+  <path d="M10,110 C18,112 26,111 32,108" stroke="#2A4A10" stroke-width="1.5" fill="none" opacity="0.6"/>
+
+  <!-- Back plates (largest in middle, smaller at ends) -->
+  <path d="M86,72  L97,40  L108,72Z"  fill="#3A5E22"/>
+  <path d="M106,66 L119,26 L132,66Z" fill="#3A5E22"/>
+  <path d="M128,62 L143,18 L158,62Z" fill="#3A5E22"/>
+  <path d="M154,62 L167,22 L180,62Z" fill="#3A5E22"/>
+  <path d="M176,66 L187,38 L198,66Z" fill="#3A5E22"/>
+  <path d="M196,72 L204,50 L212,72Z" fill="#3A5E22" opacity="0.85"/>
+
+  <!-- Plate highlights -->
+  <path d="M97,42 L102,54"  stroke="#6A9848" stroke-width="1.5" opacity="0.55" fill="none"/>
+  <path d="M119,28 L125,42" stroke="#6A9848" stroke-width="1.5" opacity="0.55" fill="none"/>
+  <path d="M143,20 L149,36" stroke="#6A9848" stroke-width="1.5" opacity="0.55" fill="none"/>
+  <path d="M167,24 L173,40" stroke="#6A9848" stroke-width="1.5" opacity="0.55" fill="none"/>
+  <path d="M187,40 L191,52" stroke="#6A9848" stroke-width="1.5" opacity="0.55" fill="none"/>
+
+  <!-- Legs — front pair -->
+  <path d="M88,132  C86,140 84,145 84,150"  stroke="#3A5E22" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <path d="M108,134 C107,142 106,147 106,150" stroke="#4E7A30" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <!-- Legs — back pair -->
+  <path d="M178,132 C178,140 177,145 177,150" stroke="#3A5E22" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <path d="M200,130 C201,139 202,145 202,150" stroke="#4E7A30" stroke-width="12" stroke-linecap="round" fill="none"/>
+
+  <!-- Feet -->
+  <path d="M76,150 L84,150 L92,150"   stroke="#2E4E1A" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <path d="M98,150 L106,150 L114,150" stroke="#4E7A30" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <path d="M169,150 L177,150 L185,150" stroke="#2E4E1A" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <path d="M194,150 L202,150 L210,150" stroke="#4E7A30" stroke-width="5" stroke-linecap="round" fill="none"/>
+</svg>

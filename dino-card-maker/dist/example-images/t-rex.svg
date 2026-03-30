@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 294 157">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A0600"/>
+      <stop offset="100%" stop-color="#4A1800"/>
+    </linearGradient>
+  </defs>
+  <rect width="294" height="157" fill="url(#bg)"/>
+
+  <!-- Ground -->
+  <ellipse cx="160" cy="152" rx="115" ry="10" fill="#100400" opacity="0.7"/>
+
+  <!-- Tail -->
+  <path d="M212,90 C238,84 260,73 274,56" stroke="#C05215" stroke-width="17" stroke-linecap="round" fill="none"/>
+
+  <!-- Body -->
+  <ellipse cx="160" cy="90" rx="54" ry="31" fill="#D05A18"/>
+  <ellipse cx="158" cy="100" rx="48" ry="18" fill="#B04810" opacity="0.45"/>
+
+  <!-- Neck -->
+  <path d="M116,74 C102,60 88,50 78,43" stroke="#D05A18" stroke-width="26" stroke-linecap="round" fill="none"/>
+
+  <!-- Skull (upper) -->
+  <path d="M40,22 C62,16 88,28 92,45 C92,54 82,58 60,58 C38,58 26,50 26,39 C26,28 34,24 40,22Z" fill="#D05A18"/>
+
+  <!-- Jaw (lower) -->
+  <path d="M30,52 C52,50 80,50 90,45 C88,62 78,72 58,72 C40,72 30,63 30,52Z" fill="#B04810"/>
+
+  <!-- Nostril -->
+  <ellipse cx="33" cy="42" rx="3" ry="2" fill="#7A2C08"/>
+
+  <!-- Brow ridge -->
+  <path d="M50,29 C58,26 68,27 70,32" stroke="#7A2C08" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+  <!-- Eye -->
+  <circle cx="60" cy="38" r="8" fill="#7A2C08"/>
+  <circle cx="60" cy="38" r="5.5" fill="#060100"/>
+  <circle cx="60" cy="38" r="2.5" fill="#FF7700"/>
+  <circle cx="59" cy="37" r="1" fill="rgba(255,240,200,0.6)"/>
+
+  <!-- Upper teeth -->
+  <path d="M48,56 L46,65 M58,56 L57,65 M68,55 L68,64 M77,53 L78,61" stroke="#EEE8C8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <!-- Lower teeth -->
+  <path d="M42,55 L41,63 M52,56 L52,64 M62,55 L63,63 M71,54 L73,61" stroke="#DDD8C0" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.65"/>
+
+  <!-- Tiny arm -->
+  <path d="M110,83 L95,93 L90,88" stroke="#B04810" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M90,88 L85,94 M90,88 L86,87" stroke="#B04810" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Back leg (further) -->
+  <path d="M173,116 C169,129 166,139 165,148" stroke="#B04810" stroke-width="13" stroke-linecap="round" fill="none"/>
+  <path d="M156,148 L165,148 L175,148" stroke="#B04810" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+  <!-- Front leg (closer) -->
+  <path d="M147,119 C142,132 138,141 137,149" stroke="#D05A18" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <path d="M126,149 L137,149 L149,149" stroke="#D05A18" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <path d="M126,149 L121,143 M149,149 L153,143" stroke="#D05A18" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+</svg>

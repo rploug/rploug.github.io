@@ -650,17 +650,53 @@ input[type="range"] {
 }
 
 .bulk-example-download {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
   font-size: 12px;
   color: var(--accent);
-  text-decoration: none;
   font-weight: 500;
   white-space: nowrap;
   transition: color 0.15s;
 }
 
-.bulk-example-download:hover {
+.bulk-example-download:hover:not(:disabled) {
   color: var(--accent-hover);
   text-decoration: underline;
+}
+
+.bulk-example-download:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ─── Two-option upload grid ─────────────────────────── */
+
+.bulk-upload-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.bulk-upload-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 12px;
+}
+
+.bulk-upload-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.bulk-upload-hint {
+  font-size: 11px;
+  color: var(--muted);
 }
 
 .bulk-csv-example {
@@ -809,5 +845,9 @@ input[type="range"] {
 
   .download-btn {
     padding: 14px;
+  }
+
+  .bulk-upload-grid {
+    grid-template-columns: 1fr;
   }
 }

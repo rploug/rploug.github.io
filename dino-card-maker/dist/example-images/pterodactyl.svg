@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 294 157">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#04081A"/>
+      <stop offset="100%" stop-color="#0C1A3C"/>
+    </linearGradient>
+    <linearGradient id="wl" x1="0" y1="0" x2="1" y2="0.5">
+      <stop offset="0%" stop-color="#344E82"/>
+      <stop offset="100%" stop-color="#5268A0"/>
+    </linearGradient>
+    <linearGradient id="wr" x1="0" y1="0" x2="1" y2="0.5">
+      <stop offset="0%" stop-color="#5268A0"/>
+      <stop offset="100%" stop-color="#344E82"/>
+    </linearGradient>
+  </defs>
+  <rect width="294" height="157" fill="url(#bg)"/>
+
+  <!-- Stars -->
+  <circle cx="18"  cy="14" r="1"   fill="white" opacity="0.35"/>
+  <circle cx="52"  cy="7"  r="1.2" fill="white" opacity="0.3"/>
+  <circle cx="88"  cy="18" r="0.8" fill="white" opacity="0.25"/>
+  <circle cx="170" cy="9"  r="1"   fill="white" opacity="0.3"/>
+  <circle cx="235" cy="12" r="1.2" fill="white" opacity="0.35"/>
+  <circle cx="272" cy="22" r="0.8" fill="white" opacity="0.25"/>
+  <circle cx="120" cy="5"  r="0.7" fill="white" opacity="0.2"/>
+
+  <!-- Moon -->
+  <circle cx="258" cy="18" r="10" fill="#C8D8F0" opacity="0.18"/>
+
+  <!-- Left wing -->
+  <path d="M143,78 C118,67 72,50 22,38 C17,36 14,39 18,43 C44,56 98,71 132,83Z" fill="url(#wl)"/>
+  <!-- Left wing vein lines -->
+  <path d="M143,78 C118,70 78,56 32,46" stroke="#243860" stroke-width="1" opacity="0.4" fill="none"/>
+  <path d="M138,81 C116,75 84,64 46,55" stroke="#243860" stroke-width="0.8" opacity="0.25" fill="none"/>
+
+  <!-- Right wing -->
+  <path d="M151,78 C176,67 222,50 272,38 C277,36 280,39 276,43 C250,56 196,71 162,83Z" fill="url(#wr)"/>
+  <!-- Right wing vein lines -->
+  <path d="M151,78 C176,70 216,56 262,46" stroke="#243860" stroke-width="1" opacity="0.4" fill="none"/>
+  <path d="M156,81 C178,75 210,64 248,55" stroke="#243860" stroke-width="0.8" opacity="0.25" fill="none"/>
+
+  <!-- Wing thumb claws -->
+  <path d="M22,40 L14,33 M18,43 L10,38" stroke="#344E82" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M272,40 L280,33 M276,43 L284,38" stroke="#344E82" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Body -->
+  <ellipse cx="147" cy="84" rx="20" ry="14" fill="#4A5E8C"/>
+  <ellipse cx="147" cy="90" rx="16" ry="9" fill="#34487A" opacity="0.5"/>
+
+  <!-- Neck -->
+  <path d="M133,76 C126,68 120,60 117,53" stroke="#4A5E8C" stroke-width="12" stroke-linecap="round" fill="none"/>
+
+  <!-- Crest (swept back from skull top) -->
+  <path d="M115,50 C122,35 136,26 140,28 C137,38 128,46 118,52Z" fill="#34487A"/>
+  <path d="M118,50 C124,38 133,31 138,30" stroke="#5A6EA0" stroke-width="1.5" opacity="0.5" fill="none"/>
+
+  <!-- Skull -->
+  <ellipse cx="116" cy="55" rx="14" ry="10" fill="#4A5E8C"/>
+
+  <!-- Beak (long, pointing left) -->
+  <path d="M104,57 C86,56 64,55 48,56 C52,50 70,48 90,50 C100,51 106,54 104,57Z" fill="#34487A"/>
+  <path d="M104,57 C86,58 64,57 48,56" stroke="#243860" stroke-width="1" fill="none" opacity="0.5"/>
+  <!-- Beak tip -->
+  <path d="M48,56 L42,54 L48,57" fill="#243860"/>
+
+  <!-- Eye -->
+  <circle cx="110" cy="52" r="5"   fill="#080C1C"/>
+  <circle cx="110" cy="52" r="2.8" fill="#3A88CC"/>
+  <circle cx="109" cy="51" r="1.1" fill="rgba(180,220,255,0.6)"/>
+
+  <!-- Legs hanging down -->
+  <path d="M140,96 C138,106 136,113 134,119" stroke="#34487A" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <path d="M154,96 C156,106 158,113 160,119" stroke="#34487A" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <!-- Feet / talons -->
+  <path d="M126,119 L134,119 L142,119" stroke="#34487A" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M126,119 L122,115"          stroke="#34487A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M152,119 L160,119 L168,119" stroke="#34487A" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M168,119 L172,115"          stroke="#34487A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+</svg>
