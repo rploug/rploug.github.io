@@ -14,6 +14,19 @@
 }
 
 :root {
+  --bg:           #f6f8fa;
+  --panel:        #ffffff;
+  --elevated:     #f0f2f5;
+  --border:       #d0d7de;
+  --text:         #1f2328;
+  --muted:        #656d76;
+  --accent:       #c49010;
+  --accent-hover: #a37a0a;
+  --danger:       #cf222e;
+  --radius:       6px;
+}
+
+:root[data-theme="dark"] {
   --bg:           #0e1117;
   --panel:        #161b22;
   --elevated:     #1c2130;
@@ -23,7 +36,6 @@
   --accent:       #d4a017;
   --accent-hover: #e8b84b;
   --danger:       #f85149;
-  --radius:       6px;
 }
 
 body {
@@ -203,10 +215,14 @@ textarea {
 select {
   appearance: none;
   cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%238b949e' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23656d76' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 10px center;
   padding-right: 28px;
+}
+
+:root[data-theme="dark"] select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%238b949e' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
 }
 
 /* ─── Battle Bonuses ─────────────────────────────────── */
@@ -478,4 +494,25 @@ input[type="range"] {
 
 .download-btn:hover {
   background: var(--accent-hover);
+}
+
+/* ─── Theme Toggle ───────────────────────────────────── */
+
+.theme-toggle {
+  margin-left: auto;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 10px;
+  font-family: inherit;
+  line-height: 1;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--text);
 }

@@ -1,9 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import domtoimage from "dom-to-image-more";
 import CardPreview from "./components/CardPreview";
 import CardForm from "./components/CardForm";
 
 function App() {
+  const [theme, setTheme] = useState("light");
   const [name, setName] = useState("");
   const [power, setPower] = useState(0);
   const [battleBonus, setBattleBonus] = useState([]);
@@ -15,6 +16,10 @@ function App() {
   const [imageTransform, setImageTransform] = useState({ x: 0, y: 0, scale: 1 });
 
   const cardRef = useRef();
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   const handleDownload = () => {
     if (!cardRef.current) return;
@@ -42,6 +47,13 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>Dino Card Creator</h1>
+        <button
+          className="theme-toggle"
+          onClick={() => setTheme((t) => (t === "light" ? "dark" : "light"))}
+          title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+        >
+          {theme === "light" ? "☾" : "☀"}
+        </button>
       </header>
 
       <div className="app-body">
