@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaTeX Character Counter</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Sora:wght@300;400;600;700&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #141720;
+    --border: #1e2333;
+    --accent: #5b8dee;
+    --accent2: #3ecf8e;
+    --accent3: #f59e0b;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --danger: #ef4444;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Sora', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 24px;
+  }
+
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(91,141,238,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(91,141,238,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 780px;
+    position: relative;
+    z-index: 1;
+  }
+
+  header {
+    margin-bottom: 40px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(91,141,238,0.1);
+    border: 1px solid rgba(91,141,238,0.2);
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--text);
+  }
+
+  h1 span {
+    color: var(--accent);
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 8px;
+    font-weight: 300;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  /* Drop zone */
+  .dropzone {
+    border: 2px dashed var(--border);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .dropzone:hover, .dropzone.drag-over {
+    border-color: var(--accent);
+    background: rgba(91,141,238,0.05);
+  }
+
+  .dropzone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+
+  .drop-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .drop-label {
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .drop-hint {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  .file-selected {
+    background: rgba(62,207,142,0.08);
+    border-color: var(--accent2);
+    padding: 16px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .file-selected span {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent2);
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .remove-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: color 0.15s;
+  }
+  .remove-btn:hover { color: var(--danger); }
+
+  /* Options grid */
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .toggle-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .toggle-row:hover {
+    border-color: rgba(91,141,238,0.3);
+    background: rgba(91,141,238,0.04);
+  }
+
+  .toggle-row input[type="checkbox"] { display: none; }
+
+  .toggle-box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--muted);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: all 0.15s;
+    font-size: 11px;
+  }
+
+  .toggle-row.checked .toggle-box {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .toggle-text {
+    flex: 1;
+  }
+
+  .toggle-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .toggle-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* Number input */
+  .number-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .number-row .toggle-text { flex: 1; }
+
+  .number-input {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--accent3);
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 10px;
+    width: 80px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .number-input:focus {
+    border-color: var(--accent3);
+  }
+
+  /* Count button */
+  .count-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--accent);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 4px;
+  }
+
+  .count-btn:hover {
+    background: #4a7de0;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(91,141,238,0.3);
+  }
+
+  .count-btn:active { transform: translateY(0); }
+
+  .count-btn:disabled {
+    background: var(--border);
+    color: var(--muted);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Results */
+  .results-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 20px;
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .results-header {
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .results-header h2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: var(--mono);
+  }
+
+  .main-count {
+    padding: 32px 28px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .count-number {
+    font-family: var(--mono);
+    font-size: 72px;
+    font-weight: 700;
+    color: var(--accent2);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    display: block;
+  }
+
+  .count-label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 8px;
+    font-family: var(--mono);
+  }
+
+  .breakdown {
+    padding: 20px 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .breakdown-item .b-label {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .breakdown-item .b-value {
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .removed-block {
+    margin: 0 28px 20px;
+    padding: 12px 16px;
+    background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.2);
+    border-radius: 8px;
+  }
+
+  .removed-block p {
+    font-size: 12px;
+    font-family: var(--mono);
+    color: var(--accent3);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  .removed-block ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .removed-block ul li {
+    font-size: 11px;
+    color: var(--muted);
+    background: rgba(245,158,11,0.08);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: var(--mono);
+  }
+
+  .error-msg {
+    padding: 16px 20px;
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    border-radius: 8px;
+    color: var(--danger);
+    font-size: 13px;
+    font-family: var(--mono);
+    margin-top: 16px;
+  }
+
+  .full-span { grid-column: 1 / -1; }
+
+  /* Section breakdown */
+  .section-breakdown {
+    padding: 0 28px 24px;
+  }
+
+  .breakdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(91,141,238,0.06);
+    border: 1px solid rgba(91,141,238,0.15);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: var(--mono);
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    user-select: none;
+    transition: all 0.15s;
+    margin-bottom: 12px;
+  }
+
+  .breakdown-toggle:hover {
+    background: rgba(91,141,238,0.1);
+  }
+
+  .breakdown-toggle .arrow {
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+
+  .breakdown-toggle.open .arrow { transform: rotate(90deg); }
+
+  .section-tree {
+    display: none;
+  }
+
+  .section-tree.visible { display: block; }
+
+  .sec-node {
+    margin-bottom: 6px;
+  }
+
+  .sec-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 12px;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.015);
+    cursor: pointer;
+    transition: all 0.12s;
+    position: relative;
+  }
+
+  .sec-row:hover { border-color: rgba(91,141,238,0.25); background: rgba(91,141,238,0.03); }
+
+  .sec-indent-0 { margin-left: 0; }
+  .sec-indent-1 { margin-left: 20px; }
+  .sec-indent-2 { margin-left: 40px; }
+  .sec-indent-3 { margin-left: 60px; }
+
+  .sec-type-badge {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 2px 6px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    text-transform: uppercase;
+  }
+
+  .badge-chapter   { background: rgba(239,68,68,0.12);  color: #ef4444; }
+  .badge-section   { background: rgba(91,141,238,0.12); color: var(--accent); }
+  .badge-subsection{ background: rgba(62,207,142,0.12); color: var(--accent2); }
+  .badge-subsubsection { background: rgba(245,158,11,0.12); color: var(--accent3); }
+  .badge-paragraph { background: rgba(168,85,247,0.12); color: #a855f7; }
+
+  .sec-title {
+    flex: 1;
+    font-size: 13px;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sec-bar-wrap {
+    width: 80px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .sec-bar {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .sec-own {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent3);
+    margin-left: 4px;
+    white-space: nowrap;
+  }
+
+  .sec-count {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    min-width: 52px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .sec-pct {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    min-width: 36px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .sec-children {
+    margin-top: 6px;
+    display: none;
+  }
+
+  .sec-children.open { display: block; }
+
+  .expand-arrow {
+    font-size: 10px;
+    color: var(--muted);
+    transition: transform 0.15s;
+    flex-shrink: 0;
+    width: 12px;
+  }
+
+  .expand-arrow.open { transform: rotate(90deg); }
+
+  @media (max-width: 600px) {
+    .options-grid { grid-template-columns: 1fr; }
+    .breakdown { grid-template-columns: 1fr; }
+    .count-number { font-size: 52px; }
+    .sec-bar-wrap { display: none; }
+    .sec-indent-1 { margin-left: 12px; }
+    .sec-indent-2 { margin-left: 24px; }
+    .sec-indent-3 { margin-left: 36px; }
+  }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="container">
+  <header>
+    <div class="tag">LaTeX Tool</div>
+    <h1>Character<span>Counter</span></h1>
+    <p class="subtitle">Upload a .tex file and configure what should be included in the count</p>
+  </header>
+
+  <!-- Upload -->
+  <div class="card">
+    <div class="section-label">01 — File</div>
+    <div class="dropzone" id="dropzone">
+      <input type="file" id="fileInput" accept=".tex">
+      <span class="drop-icon">📄</span>
+      <div class="drop-label">Drag and drop your .tex file here</div>
+      <div class="drop-hint">or click to browse</div>
+    </div>
+    <div class="file-selected" id="fileInfo" style="display:none;">
+      <span id="fileName"></span>
+      <button class="remove-btn" id="removeFile">✕</button>
+    </div>
+  </div>
+
+  <!-- Options -->
+  <div class="card">
+    <div class="section-label">02 — Options</div>
+    <div class="options-grid">
+
+      <label class="toggle-row checked" id="lbl-captions">
+        <input type="checkbox" id="opt-captions" checked>
+        <div class="toggle-box">✓</div>
+        <div class="toggle-text">
+          <div class="toggle-title">Captions</div>
+          <div class="toggle-desc">Include text inside \caption{}</div>
+        </div>
+      </label>
+
+      <label class="toggle-row checked" id="lbl-footnotes">
+        <input type="checkbox" id="opt-footnotes" checked>
+        <div class="toggle-box">✓</div>
+        <div class="toggle-text">
+          <div class="toggle-title">Footnotes</div>
+          <div class="toggle-desc">Include text inside \footnote{}</div>
+        </div>
+      </label>
+
+      <label class="toggle-row" id="lbl-bibliography">
+        <input type="checkbox" id="opt-bibliography">
+        <div class="toggle-box"></div>
+        <div class="toggle-text">
+          <div class="toggle-title">Bibliography</div>
+          <div class="toggle-desc">Include \bibliography and thebibliography</div>
+        </div>
+      </label>
+
+      <label class="toggle-row" id="lbl-abstract">
+        <input type="checkbox" id="opt-abstract">
+        <div class="toggle-box"></div>
+        <div class="toggle-text">
+          <div class="toggle-title">Abstract</div>
+          <div class="toggle-desc">Include the abstract environment</div>
+        </div>
+      </label>
+
+      <label class="toggle-row checked" id="lbl-headings">
+        <input type="checkbox" id="opt-headings" checked>
+        <div class="toggle-box">✓</div>
+        <div class="toggle-text">
+          <div class="toggle-title">Headings</div>
+          <div class="toggle-desc">\section, \subsection, \chapter etc.</div>
+        </div>
+      </label>
+
+      <label class="toggle-row" id="lbl-comments">
+        <input type="checkbox" id="opt-comments">
+        <div class="toggle-box"></div>
+        <div class="toggle-text">
+          <div class="toggle-title">Comments</div>
+          <div class="toggle-desc">Include LaTeX comments (% ...)</div>
+        </div>
+      </label>
+
+      <label class="toggle-row" id="lbl-math">
+        <input type="checkbox" id="opt-math">
+        <div class="toggle-box"></div>
+        <div class="toggle-text">
+          <div class="toggle-title">Math blocks</div>
+          <div class="toggle-desc">Include $...$ and \begin{equation}</div>
+        </div>
+      </label>
+
+      <label class="toggle-row" id="lbl-tables">
+        <input type="checkbox" id="opt-tables">
+        <div class="toggle-box"></div>
+        <div class="toggle-text">
+          <div class="toggle-title">Tables</div>
+          <div class="toggle-desc">Include content in tabular/table</div>
+        </div>
+      </label>
+
+      <div class="number-row full-span">
+        <div class="toggle-text">
+          <div class="toggle-title">Images count as</div>
+          <div class="toggle-desc">Characters each \includegraphics adds (0 = ignored)</div>
+        </div>
+        <input type="number" class="number-input" id="opt-image-chars" value="0" min="0" max="9999">
+      </div>
+
+    </div>
+  </div>
+
+  <button class="count-btn" id="countBtn" disabled>Count characters</button>
+
+  <div id="errorMsg" class="error-msg" style="display:none;"></div>
+  <div id="results" style="display:none;"></div>
+</div>
+
+<script>
+const fileInput = document.getElementById('fileInput');
+const dropzone = document.getElementById('dropzone');
+const fileInfo = document.getElementById('fileInfo');
+const fileName = document.getElementById('fileName');
+const removeFile = document.getElementById('removeFile');
+const countBtn = document.getElementById('countBtn');
+const errorMsg = document.getElementById('errorMsg');
+const resultsDiv = document.getElementById('results');
+
+let texContent = null;
+
+// Toggle checkboxes
+document.querySelectorAll('.toggle-row').forEach(row => {
+  row.addEventListener('click', (e) => {
+    if (e.target.closest('.number-input')) return;
+    const cb = row.querySelector('input[type="checkbox"]');
+    if (!cb) return;
+    cb.checked = !cb.checked;
+    const box = row.querySelector('.toggle-box');
+    if (cb.checked) {
+      row.classList.add('checked');
+      box.textContent = '✓';
+    } else {
+      row.classList.remove('checked');
+      box.textContent = '';
+    }
+  });
+});
+
+// Drag & drop
+dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('drag-over'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag-over'));
+dropzone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropzone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) loadFile(file);
+});
+
+fileInput.addEventListener('change', () => {
+  if (fileInput.files[0]) loadFile(fileInput.files[0]);
+});
+
+removeFile.addEventListener('click', () => {
+  texContent = null;
+  fileInput.value = '';
+  fileInfo.style.display = 'none';
+  dropzone.style.display = 'block';
+  countBtn.disabled = true;
+  resultsDiv.style.display = 'none';
+  errorMsg.style.display = 'none';
+});
+
+function loadFile(file) {
+  if (!file.name.endsWith('.tex')) {
+    showError('File must be a .tex file.');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = e => {
+    texContent = e.target.result;
+    fileName.textContent = file.name;
+    fileInfo.style.display = 'flex';
+    dropzone.style.display = 'none';
+    countBtn.disabled = false;
+    errorMsg.style.display = 'none';
+    resultsDiv.style.display = 'none';
+  };
+  reader.readAsText(file);
+}
+
+function showError(msg) {
+  errorMsg.textContent = msg;
+  errorMsg.style.display = 'block';
+}
+
+countBtn.addEventListener('click', () => {
+  if (!texContent) return;
+  errorMsg.style.display = 'none';
+
+  const opts = {
+    captions: document.getElementById('opt-captions').checked,
+    footnotes: document.getElementById('opt-footnotes').checked,
+    bibliography: document.getElementById('opt-bibliography').checked,
+    abstract: document.getElementById('opt-abstract').checked,
+    headings: document.getElementById('opt-headings').checked,
+    comments: document.getElementById('opt-comments').checked,
+    math: document.getElementById('opt-math').checked,
+    tables: document.getElementById('opt-tables').checked,
+    imageChars: parseInt(document.getElementById('opt-image-chars').value) || 0,
+  };
+
+  try {
+    const result = countChars(texContent, opts);
+    renderResults(result, opts);
+  } catch(e) {
+    showError('Parse error: ' + e.message);
+  }
+});
+
+// ---- Core counting logic ----
+
+// Heading level priority (lower = higher in hierarchy)
+const HEADING_LEVELS = {
+  chapter: 0,
+  section: 1,
+  subsection: 2,
+  subsubsection: 3,
+  paragraph: 4,
+  subparagraph: 5,
+};
+
+function extractText(tex) {
+  let t = tex;
+  t = t.replace(/\\(?:textbf|textit|emph|text|textrm|texttt|textsc|underline|mbox|hbox)\{((?:[^{}]|\{[^{}]*\})*)\}/g, '$1');
+  t = t.replace(/\\[a-zA-Z]+\*?(?:\[[^\]]*\])*\{(?:[^{}]|\{[^{}]*\})*\}/g, '');
+  t = t.replace(/\\[a-zA-Z]+\*?/g, '');
+  t = t.replace(/[\\{}$&_^~]/g, '');
+  t = t.replace(/\s+/g, ' ').trim();
+  return t;
+}
+
+function stripForCount(tex, opts) {
+  let text = tex;
+
+  // Comments
+  text = text.replace(/(?<!\\)%.*$/gm, opts.comments ? '$&' : '');
+
+  // Bibliography
+  if (!opts.bibliography) {
+    text = text.replace(/\\begin\{thebibliography\}[\s\S]*?\\end\{thebibliography\}/g, '');
+    text = text.replace(/\\bibliography\{[^}]*\}/g, '');
+  }
+
+  // Abstract
+  if (!opts.abstract) {
+    text = text.replace(/\\begin\{abstract\}[\s\S]*?\\end\{abstract\}/g, '');
+  }
+
+  // Tables
+  if (!opts.tables) {
+    text = text.replace(/\\begin\{(?:tabular|table)\*?\}[\s\S]*?\\end\{(?:tabular|table)\*?\}/g, '');
+  }
+
+  // Math
+  if (!opts.math) {
+    text = text.replace(/\\begin\{(?:equation|align|gather|multline|eqnarray)\*?\}[\s\S]*?\\end\{(?:equation|align|gather|multline|eqnarray)\*?\}/g, '');
+    text = text.replace(/\\\[[\s\S]*?\\\]/g, '');
+  }
+
+  // Images
+  let imageCount = 0;
+  text = text.replace(/\\includegraphics(?:\[[^\]]*\])?\{[^}]*\}/g, () => { imageCount++; return ''; });
+
+  // Captions
+  text = text.replace(/\\caption\{((?:[^{}]|\{[^{}]*\})*)\}/g, (m, inner) => opts.captions ? inner : '');
+
+  // Footnotes
+  text = text.replace(/\\footnote\{((?:[^{}]|\{[^{}]*\})*)\}/g, (m, inner) => opts.footnotes ? inner : '');
+
+  // Headings — strip the command, keep title text if opt enabled
+  const headingCmds = Object.keys(HEADING_LEVELS);
+  headingCmds.forEach(cmd => {
+    text = text.replace(new RegExp(`\\\\${cmd}\\*?\\{((?:[^{}]|\\{[^{}]*\\})*)\\}`, 'g'), (m, inner) => {
+      return opts.headings ? inner : '';
+    });
+  });
+
+  return { text, imageCount };
+}
+
+// Parse document into a flat list of sections with their raw text chunks
+function parseSections(raw) {
+  // Tokenize: find all heading commands with their positions
+  const headingRe = /\\(chapter|section|subsection|subsubsection|paragraph|subparagraph)\*?\{((?:[^{}]|\{[^{}]*\})*)\}/g;
+  const tokens = [];
+  let m;
+  while ((m = headingRe.exec(raw)) !== null) {
+    tokens.push({
+      type: m[1],
+      level: HEADING_LEVELS[m[1]],
+      title: extractText(m[2]),
+      start: m.index,
+      end: m.index + m[0].length,
+    });
+  }
+
+  if (tokens.length === 0) return null; // No headings found
+
+  // Build sections: each section spans from its heading end to the next heading at same or higher level
+  const sections = [];
+  for (let i = 0; i < tokens.length; i++) {
+    const tok = tokens[i];
+    // Content ends at the next sibling or parent heading
+    let contentEnd = raw.length;
+    for (let j = i + 1; j < tokens.length; j++) {
+      if (tokens[j].level <= tok.level) {
+        contentEnd = tokens[j].start;
+        break;
+      }
+    }
+    sections.push({
+      type: tok.type,
+      level: tok.level,
+      title: tok.title,
+      rawContent: raw.slice(tok.end, contentEnd),
+      children: [],
+    });
+  }
+
+  // Build tree
+  const root = { title: 'Document', level: -1, children: [], rawContent: '' };
+  const stack = [root];
+
+  for (const sec of sections) {
+    while (stack.length > 1 && stack[stack.length - 1].level >= sec.level) {
+      stack.pop();
+    }
+    stack[stack.length - 1].children.push(sec);
+    stack.push(sec);
+  }
+
+  return root.children;
+}
+
+function countChars(raw, opts) {
+  const removed = [];
+  let text = raw;
+
+  // Strip preamble
+  const docBegin = text.indexOf('\\begin{document}');
+  if (docBegin !== -1) text = text.slice(docBegin + '\\begin{document}'.length);
+  const docEnd = text.indexOf('\\end{document}');
+  if (docEnd !== -1) text = text.slice(0, docEnd);
+
+  const bodyText = text; // Save for section parsing
+
+  // Parse section tree from body (before stripping)
+  const sectionTree = parseSections(bodyText);
+
+  // Count removed summaries
+  let commentChars = 0;
+  text.replace(/(?<!\\)%.*$/gm, m => { commentChars += m.length; return ''; });
+  if (!opts.comments) removed.push(`Comments (~${commentChars} chars removed)`);
+
+  let bibChars = 0;
+  text.replace(/\\begin\{thebibliography\}[\s\S]*?\\end\{thebibliography\}/g, m => { bibChars += extractText(m).length; return ''; });
+  if (!opts.bibliography && bibChars > 0) removed.push(`Bibliography (~${bibChars} chars removed)`);
+
+  let abstractChars = 0;
+  text.replace(/\\begin\{abstract\}([\s\S]*?)\\end\{abstract\}/g, (m, inner) => { abstractChars += inner.trim().length; return ''; });
+  if (!opts.abstract && abstractChars > 0) removed.push(`Abstract (~${abstractChars} chars removed)`);
+
+  let tableChars = 0;
+  text.replace(/\\begin\{(?:tabular|table)\*?\}[\s\S]*?\\end\{(?:tabular|table)\*?\}/g, m => { tableChars += extractText(m).length; return ''; });
+  if (!opts.tables && tableChars > 0) removed.push(`Tables (~${tableChars} chars removed)`);
+
+  let mathChars = 0;
+  text.replace(/\\begin\{(?:equation|align|gather|multline|eqnarray)\*?\}[\s\S]*?\\end\{(?:equation|align|gather|multline|eqnarray)\*?\}/g, m => { mathChars += m.length; return ''; });
+  if (!opts.math && mathChars > 0) removed.push(`Math blocks (~${mathChars} chars removed)`);
+
+  let headingChars = 0;
+  Object.keys(HEADING_LEVELS).forEach(cmd => {
+    text.replace(new RegExp(`\\\\${cmd}\\*?\\{((?:[^{}]|\\{[^{}]*\\})*)\\}`, 'g'), (m, inner) => { headingChars += extractText(inner).length; return ''; });
+  });
+  if (!opts.headings && headingChars > 0) removed.push(`Headings (~${headingChars} chars removed)`);
+
+  // Final clean count
+  const { text: stripped, imageCount } = stripForCount(bodyText, opts);
+  const clean = extractText(stripped);
+  const imageContribution = imageCount * opts.imageChars;
+  const totalChars = clean.length + imageContribution;
+
+  // Count chars per section node recursively.
+  // ownChars = only text directly in this node, before the first child heading.
+  function countNode(node) {
+    let ownRaw = node.rawContent;
+    if (node.children.length > 0) {
+      const childHeadingRe = /\\(?:chapter|section|subsection|subsubsection|paragraph|subparagraph)\*?\{/;
+      const m = childHeadingRe.exec(ownRaw);
+      if (m) ownRaw = ownRaw.slice(0, m.index);
+    }
+    const { text: ns, imageCount: ic } = stripForCount(ownRaw, opts);
+    const cleaned = extractText(ns);
+    node.ownChars = cleaned.length + ic * opts.imageChars;
+    node.children.forEach(child => countNode(child));
+    node.totalChars = node.ownChars + node.children.reduce((s, c) => s + c.totalChars, 0);
+  }
+
+  if (sectionTree) sectionTree.forEach(countNode);
+
+  return {
+    total: totalChars,
+    textOnly: clean.length,
+    imageCount,
+    imageContribution,
+    words: clean.trim().split(/\s+/).filter(w => w.length > 0).length,
+    removed,
+    sectionTree,
+  };
+}
+
+// ---- Render ----
+
+function renderResults(r, opts) {
+  const imageNote = r.imageCount > 0
+    ? `<div class="breakdown-item"><span class="b-label">Images (${r.imageCount} × ${document.getElementById('opt-image-chars').value} chars)</span><span class="b-value">+${r.imageContribution.toLocaleString('en')}</span></div>`
+    : '';
+
+  const removedHtml = r.removed.length > 0 ? `
+    <div class="removed-block">
+      <p>Excluded from count:</p>
+      <ul>${r.removed.map(s => `<li>${s}</li>`).join('')}</ul>
+    </div>` : '';
+
+  const sectionHtml = r.sectionTree && r.sectionTree.length > 0
+    ? `<div class="section-breakdown">
+        <div class="breakdown-toggle" id="secToggle">
+          <span class="arrow">▶</span>
+          SECTION BREAKDOWN
+        </div>
+        <div class="section-tree" id="secTree">
+          ${r.sectionTree.map(n => renderNode(n, r.total, 0)).join('')}
+        </div>
+      </div>`
+    : '';
+
+  resultsDiv.innerHTML = `
+    <div class="results-card">
+      <div class="results-header">
+        <h2>Result</h2>
+      </div>
+      <div class="main-count">
+        <span class="count-number">${r.total.toLocaleString('en')}</span>
+        <div class="count-label">characters with spaces</div>
+      </div>
+      <div class="breakdown">
+        <div class="breakdown-item">
+          <span class="b-label">Text only</span>
+          <span class="b-value">${r.textOnly.toLocaleString('en')}</span>
+        </div>
+        <div class="breakdown-item">
+          <span class="b-label">Word count (approx.)</span>
+          <span class="b-value">${r.words.toLocaleString('en')}</span>
+        </div>
+        ${imageNote}
+      </div>
+      ${removedHtml}
+      ${sectionHtml}
+    </div>`;
+
+  resultsDiv.style.display = 'block';
+
+  // Wire up main toggle
+  const tog = document.getElementById('secToggle');
+  const tree = document.getElementById('secTree');
+  if (tog && tree) {
+    tog.addEventListener('click', () => {
+      tog.classList.toggle('open');
+      tree.classList.toggle('visible');
+    });
+  }
+
+  // Wire up child toggles
+  document.querySelectorAll('.sec-row[data-id]').forEach(row => {
+    row.addEventListener('click', () => {
+      const id = row.dataset.id;
+      const children = document.getElementById('children-' + id);
+      const arrow = row.querySelector('.expand-arrow');
+      if (children) {
+        children.classList.toggle('open');
+        if (arrow) arrow.classList.toggle('open');
+      }
+    });
+  });
+}
+
+let nodeIdCounter = 0;
+
+function renderNode(node, totalDoc, depth) {
+  const id = ++nodeIdCounter;
+  const pct = totalDoc > 0 ? Math.round((node.totalChars / totalDoc) * 100) : 0;
+  const barPct = Math.min(100, pct);
+  const hasChildren = node.children && node.children.length > 0;
+  const indentClass = `sec-indent-${Math.min(depth, 3)}`;
+  const badgeClass = `badge-${node.type}`;
+  const typeLabel = node.type === 'subsubsection' ? 'subsubsec' : node.type;
+
+  const ownNote = (hasChildren && node.ownChars > 0)
+    ? `<span class="sec-own" title="Text directly in this section (excluding subsections)">(+${node.ownChars.toLocaleString('en')} own)</span>`
+    : '';
+
+  const barColor = ['#5b8dee','#3ecf8e','#f59e0b','#ef4444','#a855f7'][node.level % 5];
+
+  const childrenHtml = hasChildren
+    ? `<div class="sec-children" id="children-${id}">
+        ${node.children.map(c => renderNode(c, totalDoc, depth + 1)).join('')}
+      </div>`
+    : '';
+
+  return `
+    <div class="sec-node ${indentClass}">
+      <div class="sec-row" data-id="${id}">
+        <span class="expand-arrow">${hasChildren ? '▶' : ' '}</span>
+        <span class="sec-type-badge ${badgeClass}">${typeLabel}</span>
+        <span class="sec-title" title="${node.title}">${node.title}</span>
+        <div class="sec-bar-wrap">
+          <div class="sec-bar" style="width:${barPct}%;background:${barColor}"></div>
+        </div>
+        <span class="sec-count">${node.totalChars.toLocaleString('en')}${ownNote}</span>
+        <span class="sec-pct">${pct}%</span>
+      </div>
+      ${childrenHtml}
+    </div>`;
+}
+</script>
+</body>
+</html>
