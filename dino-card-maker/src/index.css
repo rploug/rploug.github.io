@@ -984,6 +984,31 @@ input[type="range"] {
     overflow: auto;
   }
 
+  .app-header {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 16px;
+  }
+
+  .app-header h1 {
+    flex: 1;
+  }
+
+  .app-nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .nav-btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  .theme-toggle {
+    order: 2;
+  }
+
   .app-body {
     flex-direction: column;
     overflow: visible;
@@ -1029,8 +1054,32 @@ input[type="range"] {
     padding: 14px;
   }
 
+  /* Bulk page */
+  .bulk-page {
+    padding: 20px 16px 48px;
+  }
+
   .bulk-upload-grid {
     grid-template-columns: 1fr;
+  }
+
+  .bulk-docs-example-header {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .bulk-results-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bulk-results-header > div {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .bulk-download-btn {
+    width: 100% !important;
   }
 
   .bulk-review-body {
@@ -1040,5 +1089,14 @@ input[type="range"] {
 
   .bulk-review-controls {
     width: 100%;
+  }
+
+  .bulk-review-nav {
+    flex-wrap: wrap;
+  }
+
+  .bulk-review-nav-btn {
+    flex: 1;
+    text-align: center;
   }
 }
