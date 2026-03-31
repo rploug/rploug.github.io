@@ -43,6 +43,12 @@ function parseRow(row) {
   const typeRaw = String(row.type || "").trim();
   const sizeRaw = String(row.size || "").trim();
   const costRaw = row.cost !== undefined && row.cost !== null ? String(row.cost).trim() : "";
+
+  // Optional per-row image positioning overrides
+  const csvX     = row.x     !== undefined && row.x     !== "" ? Number(row.x)     : null;
+  const csvY     = row.y     !== undefined && row.y     !== "" ? Number(row.y)     : null;
+  const csvScale = row.scale !== undefined && row.scale !== "" ? Number(row.scale) : null;
+
   return {
     name:         String(row.name || ""),
     power:        Number(row.power) || 0,
@@ -55,6 +61,7 @@ function parseRow(row) {
     imageTransform: { x: 0, y: 0, scale: 1 },
     naturalW:     ART_W,
     naturalH:     ART_H,
+    _csvTransform: { x: csvX, y: csvY, scale: csvScale },
   };
 }
 
@@ -203,11 +210,16 @@ export default function BulkPage() {
         const src         = (explicitKey && imageMap[explicitKey]) || imageMap[nameKey] || null;
 
         if (src) {
-          const { scale, naturalW, naturalH } = await getImageMeta(src);
+          const { scale: autoScale, naturalW, naturalH } = await getImageMeta(src);
+          const { x: csvX, y: csvY, scale: csvScale } = card._csvTransform;
           card.image          = src;
-          card.imageTransform = { x: 0, y: 0, scale };
-          card.naturalW       = naturalW;
-          card.naturalH       = naturalH;
+          card.imageTransform = {
+            x:     csvX     ?? 0,
+            y:     csvY     ?? 0,
+            scale: csvScale ?? autoScale,
+          };
+          card.naturalW = naturalW;
+          card.naturalH = naturalH;
         }
         return card;
       })
@@ -270,6 +282,33 @@ export default function BulkPage() {
       setError("Failed to build example ZIP: " + err.message);
     }
     setExampleLoading(false);
+  };
+
+  const handleDownloadCSV = () => {
+    const header = ["name", "power", "type", "size", "cost", "battleBonus", "effects", "image", "x", "y", "scale"];
+    const rows = cards.map((card) => {
+      const effects = card.effects
+        .map((e) => (e.prefix ? `${e.prefix} ${e.text}` : e.text))
+        .join("|");
+      return [
+        card.name,
+        card.power,
+        card.type,
+        card.size,
+        card.cost,
+        card.battleBonus.join("|"),
+        effects,
+        "",  // image filename unknown (was a data-URL)
+        card.image ? card.imageTransform.x     : "",
+        card.image ? card.imageTransform.y     : "",
+        card.image ? card.imageTransform.scale : "",
+      ].map((v) => (String(v).includes(",") ? `"${v}"` : v));
+    });
+    const csv = [header, ...rows].map((r) => r.join(",")).join("\n");
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url  = URL.createObjectURL(blob);
+    Object.assign(document.createElement("a"), { href: url, download: "cards-updated.csv" }).click();
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -532,6 +571,15 @@ export default function BulkPage() {
                 <span className="bulk-card-label">{card.name || `Card ${i + 1}`}</span>
               </div>
             ))}
+          </div>
+
+          <div className="bulk-export-csv">
+            <p className="bulk-docs-intro" style={{ marginTop: 0 }}>
+              Done reviewing? Download an updated CSV with the final <code>x</code>, <code>y</code>, and <code>scale</code> values baked in — re-upload it next time to skip the review step.
+            </p>
+            <button className="add-btn" onClick={handleDownloadCSV}>
+              ↓ Download updated CSV
+            </button>
           </div>
         </section>
       )}

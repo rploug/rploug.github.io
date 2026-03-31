@@ -869,6 +869,16 @@ input[type="range"] {
   white-space: nowrap;
 }
 
+/* ─── Bulk CSV export ────────────────────────────────── */
+
+.bulk-export-csv {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
 /* ─── Print modal ────────────────────────────────────── */
 
 .modal-backdrop {
