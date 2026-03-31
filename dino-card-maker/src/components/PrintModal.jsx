@@ -26,13 +26,9 @@ export default function PrintModal({ cards, onClose }) {
   const cardHeightMm = +(cardWidthMm * CARD_RATIO).toFixed(2);
   const gap = noGap ? 0 : GAP;
 
-  // Auto-pick the orientation that fits the most cards per page
-  const portrait  = calcGrid(A4_SHORT, A4_LONG,  cardWidthMm, cardHeightMm, gap);
-  const landscape = calcGrid(A4_LONG,  A4_SHORT, cardWidthMm, cardHeightMm, gap);
-  const useLandscape = landscape.count > portrait.count;
-  const { perRow: cardsPerRow, perCol: cardsPerCol } = useLandscape ? landscape : portrait;
-  const pageW        = useLandscape ? A4_LONG  : A4_SHORT;
-  const pageH        = useLandscape ? A4_SHORT : A4_LONG;
+  // Cards are rotated 90° on a portrait A4 page — use the flipped card dimensions for layout
+  const { perRow: cardsPerRow, perCol: cardsPerCol } =
+    calcGrid(A4_SHORT, A4_LONG, cardHeightMm, cardWidthMm, gap);
 
   const cardsPerPage = cardsPerRow * cardsPerCol;
   const totalCards   = cards.length * copiesPerCard;
@@ -89,12 +85,12 @@ export default function PrintModal({ cards, onClose }) {
 <meta charset="utf-8">
 <title>Dino Cards — Print</title>
 <style>
-  @page { size: A4 ${useLandscape ? "landscape" : "portrait"}; margin: ${PAGE_MARGIN}mm; }
+  @page { size: A4 portrait; margin: ${PAGE_MARGIN}mm; }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: white; }
   .page {
-    width: ${pageW}mm;
-    height: ${pageH}mm;
+    width: ${A4_SHORT}mm;
+    height: ${A4_LONG}mm;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -104,12 +100,18 @@ export default function PrintModal({ cards, onClose }) {
   .page:last-child { page-break-after: auto; }
   .grid {
     display: grid;
-    grid-template-columns: repeat(${cardsPerRow}, ${w}mm);
-    grid-template-rows: repeat(${cardsPerCol}, ${h}mm);
+    grid-template-columns: repeat(${cardsPerRow}, ${h}mm);
+    grid-template-rows: repeat(${cardsPerCol}, ${w}mm);
     gap: ${gap}mm;
   }
-  .card { width: ${w}mm; height: ${h}mm; overflow: hidden; }
-  .card img { width: 100%; height: 100%; display: block; }
+  /* Cell is landscape (h×w); image is portrait (w×h) rotated 90° to fill it */
+  .card { width: ${h}mm; height: ${w}mm; overflow: hidden; position: relative; }
+  .card img {
+    width: ${w}mm; height: ${h}mm;
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    display: block;
+  }
   @media screen { body { padding: 10mm; background: #eee; } .page { background: white; margin: 0 auto 10mm; } }
 </style>
 </head>
@@ -192,7 +194,7 @@ ${pagesHtml}
           {/* Layout info */}
           <div className="print-info">
             <span>{cardsPerRow} × {cardsPerCol} per page</span>
-            <span className="count-badge">{useLandscape ? "Landscape" : "Portrait"}</span>
+            <span className="count-badge">Portrait A4</span>
             <span className="count-badge">{totalCards} card{totalCards !== 1 ? "s" : ""}</span>
             <span className="count-badge">{totalPages} page{totalPages !== 1 ? "s" : ""}</span>
           </div>
