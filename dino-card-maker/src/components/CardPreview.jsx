@@ -19,6 +19,7 @@ function CardPreview(
         height: "417px",
         fontFamily: "'Leander', sans-serif",
         overflow: "hidden",
+        borderRadius: "17px",
         flexShrink: 0,
         isolation: "isolate",
       }}
@@ -253,10 +254,10 @@ function CardPreview(
             alt=""
             style={{
               position: "absolute",
-              bottom: "14.75px",
-              right: "12px",
+              bottom: "14.5px",
+              right: "11px",
               transform: "translateX(-50%)",
-              width: "14px",
+              width: "16px",
               pointerEvents: "none",
             }}
           />
