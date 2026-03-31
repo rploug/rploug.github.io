@@ -553,24 +553,34 @@ export default function BulkPage() {
 
           {/* Visible scaled grid */}
           <div className="bulk-cards-grid">
-            {cards.map((card, i) => (
-              <div key={i} className="bulk-card-item">
-                <div className="bulk-card-scaled">
-                  <CardPreview
-                    name={card.name}
-                    power={card.power}
-                    battleBonus={card.battleBonus}
-                    size={card.size}
-                    type={card.type}
-                    cost={card.cost}
-                    effects={card.effects}
-                    image={card.image}
-                    imageTransform={card.imageTransform}
-                  />
+            {cards.map((card, i) => {
+              const reviewIdx = imageCardIndices.indexOf(i);
+              const isReviewable = reviewIdx !== -1;
+              return (
+                <div
+                  key={i}
+                  className={`bulk-card-item${isReviewable ? " bulk-card-item--reviewable" : ""}`}
+                  onClick={isReviewable ? () => { setReviewStep(reviewIdx); setReviewMode(true); } : undefined}
+                  title={isReviewable ? "Click to adjust artwork" : undefined}
+                >
+                  <div className="bulk-card-scaled">
+                    <CardPreview
+                      name={card.name}
+                      power={card.power}
+                      battleBonus={card.battleBonus}
+                      size={card.size}
+                      type={card.type}
+                      cost={card.cost}
+                      effects={card.effects}
+                      image={card.image}
+                      imageTransform={card.imageTransform}
+                    />
+                    {isReviewable && <div className="bulk-card-edit-overlay">✎</div>}
+                  </div>
+                  <span className="bulk-card-label">{card.name || `Card ${i + 1}`}</span>
                 </div>
-                <span className="bulk-card-label">{card.name || `Card ${i + 1}`}</span>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="bulk-export-csv">

@@ -869,6 +869,32 @@ input[type="range"] {
   white-space: nowrap;
 }
 
+.bulk-card-item--reviewable {
+  cursor: pointer;
+}
+
+.bulk-card-item--reviewable .bulk-card-scaled {
+  position: relative;
+}
+
+.bulk-card-edit-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: white;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.15s;
+  border-radius: 4px;
+}
+
+.bulk-card-item--reviewable:hover .bulk-card-edit-overlay {
+  opacity: 1;
+}
+
 /* ─── Bulk CSV export ────────────────────────────────── */
 
 .bulk-export-csv {
