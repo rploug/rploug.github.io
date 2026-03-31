@@ -4,14 +4,9 @@ import JSZip from "jszip";
 import domtoimage from "dom-to-image-more";
 import CardPreview from "../components/CardPreview";
 import PrintModal from "../components/PrintModal";
+import { ART_W, ART_H, TYPES, SIZES, COSTS, BONUS_OPTIONS, PREFIXES, coverScale, maxOffsets } from "../utils/cardUtils";
 
 const BASE = import.meta.env.BASE_URL;
-
-const VALID_TYPES   = ["Predator", "Mother", "Defense", "Flying", "Water"];
-const VALID_SIZES   = ["Tiny", "Small", "Medium", "Large", "Giant"];
-const VALID_COSTS   = ["0", "1", "2", "Basic", "Habitat"];
-const VALID_BONUSES = ["Nest", "Egg", "Predator", "Move", "Draw", "Claim", "Copy"];
-const PREFIXES      = ["Before Battle:", "After Battle:", "Special:", "Reaction:", "Ongoing:"];
 
 const EXAMPLE_FILES = [
   "example-images/example-cards.csv",
@@ -19,27 +14,6 @@ const EXAMPLE_FILES = [
   "example-images/stegosaurus.svg",
   "example-images/pterodactyl.svg",
 ];
-
-// Art pane dimensions — must match CardPreview clip container
-const ART_W = 294;
-const ART_H = 157;
-
-function coverScale(w, h) {
-  const r = w / h;
-  const R = ART_W / ART_H;
-  return r >= R ? (ART_H * r) / ART_W : ART_W / (ART_H * r);
-}
-
-function maxOffsets(naturalW, naturalH, scale) {
-  const r = naturalW / naturalH;
-  const R = ART_W / ART_H;
-  const contentW = r >= R ? ART_W : ART_H * r;
-  const contentH = r >= R ? ART_W / r : ART_H;
-  return {
-    maxX: Math.max(0, Math.floor((contentW * scale - ART_W) / 2)),
-    maxY: Math.max(0, Math.floor((contentH * scale - ART_H) / 2)),
-  };
-}
 
 function parseEffects(raw) {
   if (!raw && raw !== 0) return [];
@@ -59,7 +33,7 @@ function parseBattleBonus(raw) {
     .split("|")
     .map((s) => {
       const t = s.trim();
-      return VALID_BONUSES.find((b) => b.toLowerCase() === t.toLowerCase()) || t;
+      return BONUS_OPTIONS.find((b) => b.toLowerCase() === t.toLowerCase()) || t;
     })
     .filter(Boolean)
     .slice(0, 3);
@@ -72,9 +46,9 @@ function parseRow(row) {
   return {
     name:         String(row.name || ""),
     power:        Number(row.power) || 0,
-    type:         VALID_TYPES.find((t) => t.toLowerCase() === typeRaw.toLowerCase()) || "",
-    size:         VALID_SIZES.find((s) => s.toLowerCase() === sizeRaw.toLowerCase()) || "",
-    cost:         VALID_COSTS.find((c) => c.toLowerCase() === costRaw.toLowerCase()) || "",
+    type:         TYPES.find((t) => t.toLowerCase() === typeRaw.toLowerCase()) || "",
+    size:         SIZES.find((s) => s.toLowerCase() === sizeRaw.toLowerCase()) || "",
+    cost:         COSTS.find((c) => c.toLowerCase() === costRaw.toLowerCase()) || "",
     battleBonus:  parseBattleBonus(row.battleBonus || row.battle_bonus || ""),
     effects:      parseEffects(row.effects || ""),
     image:        null,

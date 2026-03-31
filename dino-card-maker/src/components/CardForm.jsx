@@ -1,37 +1,7 @@
 import { useState } from "react";
+import { ART_W, ART_H, TYPES, SIZES, COSTS, BONUS_OPTIONS, PREFIXES, coverScale, maxOffsets } from "../utils/cardUtils";
 
 const BASE = import.meta.env.BASE_URL;
-
-const BONUS_OPTIONS = ["Nest", "Egg", "Predator", "Move", "Draw", "Claim", "Copy"];
-const TYPES        = ["Predator", "Mother", "Defense", "Flying", "Water"];
-const SIZES        = ["Tiny", "Small", "Medium", "Large", "Giant"];
-const COSTS        = [0, 1, 2, "Basic", "Habitat"];
-const PREFIXES     = ["Before Battle:", "After Battle:", "Special:", "Reaction:", "Ongoing:"];
-
-// Art pane dimensions (must match CardPreview clip container)
-const ART_W = 294;
-const ART_H = 157;
-
-// Compute the scale needed so a contained image covers the art pane.
-function coverScale(naturalW, naturalH) {
-  const r = naturalW / naturalH;
-  const R = ART_W / ART_H;
-  return r >= R
-    ? (ART_H * r) / ART_W   // wider than pane: contained fits to width, scale up to fill height
-    : ART_W / (ART_H * r);  // taller than pane: contained fits to height, scale up to fill width
-}
-
-// Max safe pan offsets so the image content never leaves the art pane.
-function maxOffsets(naturalW, naturalH, scale) {
-  const r = naturalW / naturalH;
-  const R = ART_W / ART_H;
-  const contentW = r >= R ? ART_W : ART_H * r;
-  const contentH = r >= R ? ART_W / r : ART_H;
-  return {
-    maxX: Math.max(0, Math.floor((contentW * scale - ART_W) / 2)),
-    maxY: Math.max(0, Math.floor((contentH * scale - ART_H) / 2)),
-  };
-}
 
 export default function CardForm({
   name, setName,
