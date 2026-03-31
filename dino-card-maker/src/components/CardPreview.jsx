@@ -19,7 +19,6 @@ function CardPreview(
         height: "417px",
         fontFamily: "'Leander', sans-serif",
         overflow: "hidden",
-        borderRadius: "17px",
         flexShrink: 0,
         isolation: "isolate",
       }}
