@@ -254,9 +254,9 @@ function CardPreview(
             style={{
               position: "absolute",
               bottom: "14.75px",
-              right: "14px",
+              right: "12px",
               transform: "translateX(-50%)",
-              width: "12px",
+              width: "14px",
               pointerEvents: "none",
             }}
           />

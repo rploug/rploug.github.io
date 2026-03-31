@@ -114,7 +114,8 @@ function parseWorkbook(buffer) {
 const CSV_EXAMPLE = `name,power,type,size,cost,battleBonus,effects
 T-Rex,8,Predator,Giant,2,Predator|Egg,Before Battle: Gain 2 power|Ongoing: Cannot be blocked by Small or Tiny dinosaurs
 Stegosaurus,4,Defense,Large,1,,Ongoing: Reduce all incoming damage by 1|Reaction: When attacked draw a card
-Pterodactyl,6,Flying,Medium,2,Draw|Claim,Special: May attack any dinosaur regardless of position|After Battle: Return to hand if this dinosaur survives`;
+Pterodactyl,6,Flying,Medium,Habitat,Draw|Claim,Special: May attack any dinosaur regardless of position|After Battle: Return to hand if this dinosaur survives
+Ankylosaurus,5,Defense,Large,Basic,,Ongoing: Immune to Predator battle bonuses`;
 
 export default function BulkPage() {
   const [cards, setCards]             = useState([]);
@@ -329,7 +330,7 @@ export default function BulkPage() {
                 <td><code>Tiny</code> · <code>Small</code> · <code>Medium</code> · <code>Large</code> · <code>Giant</code></td>
                 <td>Leave blank to omit</td>
               </tr>
-              <tr><td><code>cost</code></td><td><code>0</code> · <code>1</code> · <code>2</code> · <code>Simple</code></td><td>Leave blank to omit</td></tr>
+              <tr><td><code>cost</code></td><td><code>0</code> · <code>1</code> · <code>2</code> — eggs · <code>Basic</code> · <code>Habitat</code> — 1 habitat</td><td>Leave blank to omit</td></tr>
               <tr>
                 <td><code>battleBonus</code></td>
                 <td>Pipe-separated — e.g. <code>Move|Draw</code></td>
