@@ -27,15 +27,15 @@
 }
 
 :root[data-theme="dark"] {
-  --bg:           #0e1117;
-  --panel:        #161b22;
-  --elevated:     #1c2130;
-  --border:       #30363d;
-  --text:         #e6edf3;
-  --muted:        #8b949e;
-  --accent:       #d4a017;
-  --accent-hover: #e8b84b;
-  --danger:       #f85149;
+  --bg:           #191c22;
+  --panel:        #23272f;
+  --elevated:     #2d3140;
+  --border:       #424858;
+  --text:         #d4dae8;
+  --muted:        #8e97aa;
+  --accent:       #e0aa20;
+  --accent-hover: #f0c040;
+  --danger:       #f06560;
 }
 
 body {
