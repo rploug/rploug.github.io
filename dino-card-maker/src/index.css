@@ -725,6 +725,82 @@ input[type="range"] {
   font-size: 12px;
 }
 
+/* ─── Artwork review ─────────────────────────────────── */
+
+.bulk-review {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bulk-review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.bulk-review-body {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.bulk-review-card {
+  flex-shrink: 0;
+}
+
+.bulk-review-controls {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 4px;
+}
+
+.bulk-review-card-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.bulk-review-nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.bulk-review-nav-btn {
+  padding: 9px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--elevated);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.bulk-review-nav-btn:hover:not(:disabled) {
+  background: var(--border);
+}
+
+.bulk-review-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.bulk-review-nav-btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.bulk-review-nav-btn--primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
 /* ─── Results ────────────────────────────────────────── */
 
 .bulk-results {
@@ -849,5 +925,14 @@ input[type="range"] {
 
   .bulk-upload-grid {
     grid-template-columns: 1fr;
+  }
+
+  .bulk-review-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bulk-review-controls {
+    width: 100%;
   }
 }

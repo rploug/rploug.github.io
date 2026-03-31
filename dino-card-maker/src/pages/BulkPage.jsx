@@ -29,6 +29,17 @@ function coverScale(w, h) {
   return r >= R ? (ART_H * r) / ART_W : ART_W / (ART_H * r);
 }
 
+function maxOffsets(naturalW, naturalH, scale) {
+  const r = naturalW / naturalH;
+  const R = ART_W / ART_H;
+  const contentW = r >= R ? ART_W : ART_H * r;
+  const contentH = r >= R ? ART_W / r : ART_H;
+  return {
+    maxX: Math.max(0, Math.floor((contentW * scale - ART_W) / 2)),
+    maxY: Math.max(0, Math.floor((contentH * scale - ART_H) / 2)),
+  };
+}
+
 function parseEffects(raw) {
   if (!raw && raw !== 0) return [];
   return String(raw)
@@ -67,15 +78,20 @@ function parseRow(row) {
     effects:      parseEffects(row.effects || ""),
     image:        null,
     imageTransform: { x: 0, y: 0, scale: 1 },
+    naturalW:     ART_W,
+    naturalH:     ART_H,
   };
 }
 
-/** Load a data-URL image and return the best-fit initial scale for the art pane. */
-function getInitialScale(src) {
+/** Load a data-URL image and return initial scale + natural dimensions for the art pane. */
+function getImageMeta(src) {
   return new Promise((resolve) => {
     const img = new window.Image();
-    img.onload  = () => resolve(Math.round(coverScale(img.naturalWidth, img.naturalHeight) * 100) / 100);
-    img.onerror = () => resolve(1);
+    img.onload  = () => {
+      const { naturalWidth: w, naturalHeight: h } = img;
+      resolve({ scale: Math.round(coverScale(w, h) * 100) / 100, naturalW: w, naturalH: h });
+    };
+    img.onerror = () => resolve({ scale: 1, naturalW: ART_W, naturalH: ART_H });
     img.src = src;
   });
 }
@@ -105,13 +121,48 @@ export default function BulkPage() {
   const [downloading, setDownloading] = useState(false);
   const [progress, setProgress]       = useState(0);
   const [exampleLoading, setExampleLoading] = useState(false);
+  const [reviewMode, setReviewMode]   = useState(false);
+  const [reviewStep, setReviewStep]   = useState(0);
   const cardRefs = useRef([]);
+
+  // Indices into `cards` that have an image
+  const imageCardIndices = cards.map((c, i) => (c.image ? i : -1)).filter((i) => i >= 0);
+  const reviewCardIndex  = imageCardIndices[reviewStep];
+  const reviewCard       = reviewCardIndex !== undefined ? cards[reviewCardIndex] : null;
+  const reviewOffsets    = reviewCard
+    ? maxOffsets(reviewCard.naturalW, reviewCard.naturalH, reviewCard.imageTransform.scale)
+    : { maxX: 0, maxY: 0 };
+
+  const handleReviewTransform = useCallback((key) => (e) => {
+    const val = Number(e.target.value);
+    setCards((prev) => prev.map((c, i) => {
+      if (i !== reviewCardIndex) return c;
+      const t    = c.imageTransform;
+      const next = { ...t, [key]: val };
+      if (key === "scale") {
+        const { maxX: mX, maxY: mY } = maxOffsets(c.naturalW, c.naturalH, val);
+        next.x = Math.max(-mX, Math.min(mX, t.x));
+        next.y = Math.max(-mY, Math.min(mY, t.y));
+      }
+      return { ...c, imageTransform: next };
+    }));
+  }, [reviewCardIndex]);
+
+  const handleReviewReset = useCallback(() => {
+    setCards((prev) => prev.map((c, i) => {
+      if (i !== reviewCardIndex) return c;
+      const scale = Math.round(coverScale(c.naturalW, c.naturalH) * 100) / 100;
+      return { ...c, imageTransform: { x: 0, y: 0, scale } };
+    }));
+  }, [reviewCardIndex]);
 
   // ── Single CSV/Excel file upload (no images) ─────────────────────────────
   const handleFile = useCallback((e) => {
     const file = e.target.files[0];
     if (!file) return;
     setError("");
+    setReviewMode(false);
+    setReviewStep(0);
     const reader = new FileReader();
     reader.onload = (ev) => {
       try {
@@ -129,6 +180,8 @@ export default function BulkPage() {
     const files = Array.from(e.target.files);
     if (!files.length) return;
     setError("");
+    setReviewMode(false);
+    setReviewStep(0);
 
     // 1. Find the data file
     const dataFile = files.find((f) => /\.(csv|xlsx|xls)$/i.test(f.name));
@@ -167,21 +220,27 @@ export default function BulkPage() {
     // 4. Match images to cards by name (and optional explicit `image` column)
     const parsed = await Promise.all(
       rows.map(async (row) => {
-        const card       = parseRow(row);
-        const nameKey    = toKey(card.name);
+        const card        = parseRow(row);
+        const nameKey     = toKey(card.name);
         const explicitKey = row.image ? toKey(String(row.image).replace(/\.[^.]+$/, "")) : null;
-        const src        = (explicitKey && imageMap[explicitKey]) || imageMap[nameKey] || null;
+        const src         = (explicitKey && imageMap[explicitKey]) || imageMap[nameKey] || null;
 
         if (src) {
-          const scale          = await getInitialScale(src);
-          card.image           = src;
-          card.imageTransform  = { x: 0, y: 0, scale };
+          const { scale, naturalW, naturalH } = await getImageMeta(src);
+          card.image          = src;
+          card.imageTransform = { x: 0, y: 0, scale };
+          card.naturalW       = naturalW;
+          card.naturalH       = naturalH;
         }
         return card;
       })
     );
 
     setCards(parsed);
+    if (parsed.some((c) => c.image)) {
+      setReviewMode(true);
+      setReviewStep(0);
+    }
   }, []);
 
   // ── Download all cards as a ZIP ───────────────────────────────────────────
@@ -325,25 +384,129 @@ export default function BulkPage() {
         {error && <p className="bulk-error">{error}</p>}
       </section>
 
+      {/* ── Image review (one card at a time) ── */}
+      {reviewMode && reviewCard && (
+        <section className="bulk-review">
+          <div className="bulk-review-header">
+            <span className="section-label">
+              Review Artwork
+              <span className="count-badge" style={{ marginLeft: 8 }}>
+                {reviewStep + 1} / {imageCardIndices.length}
+              </span>
+            </span>
+            <button className="link-btn" onClick={() => setReviewMode(false)}>
+              Skip Review
+            </button>
+          </div>
+
+          <div className="bulk-review-body">
+            <div className="bulk-review-card">
+              <CardPreview
+                name={reviewCard.name}
+                power={reviewCard.power}
+                battleBonus={reviewCard.battleBonus}
+                size={reviewCard.size}
+                type={reviewCard.type}
+                cost={reviewCard.cost}
+                effects={reviewCard.effects}
+                image={reviewCard.image}
+                imageTransform={reviewCard.imageTransform}
+              />
+            </div>
+
+            <div className="bulk-review-controls">
+              <p className="bulk-review-card-name">{reviewCard.name || `Card ${reviewCardIndex + 1}`}</p>
+              <div className="image-transform">
+                <div className="field">
+                  <label>X <span className="value-badge">{reviewCard.imageTransform.x}px</span></label>
+                  <input
+                    type="range"
+                    min={-reviewOffsets.maxX} max={reviewOffsets.maxX}
+                    value={reviewCard.imageTransform.x}
+                    onChange={handleReviewTransform("x")}
+                    disabled={reviewOffsets.maxX === 0}
+                  />
+                </div>
+                <div className="field">
+                  <label>Y <span className="value-badge">{reviewCard.imageTransform.y}px</span></label>
+                  <input
+                    type="range"
+                    min={-reviewOffsets.maxY} max={reviewOffsets.maxY}
+                    value={reviewCard.imageTransform.y}
+                    onChange={handleReviewTransform("y")}
+                    disabled={reviewOffsets.maxY === 0}
+                  />
+                </div>
+                <div className="field">
+                  <label>Scale <span className="value-badge">{reviewCard.imageTransform.scale.toFixed(2)}×</span></label>
+                  <input
+                    type="range"
+                    min="0.1" max="4" step="0.05"
+                    value={reviewCard.imageTransform.scale}
+                    onChange={handleReviewTransform("scale")}
+                  />
+                </div>
+                <button className="link-btn" onClick={handleReviewReset}>Reset</button>
+              </div>
+            </div>
+          </div>
+
+          <div className="bulk-review-nav">
+            <button
+              className="bulk-review-nav-btn"
+              onClick={() => setReviewStep((s) => Math.max(0, s - 1))}
+              disabled={reviewStep === 0}
+            >
+              ← Previous
+            </button>
+            {reviewStep < imageCardIndices.length - 1 ? (
+              <button
+                className="bulk-review-nav-btn bulk-review-nav-btn--primary"
+                onClick={() => setReviewStep((s) => s + 1)}
+              >
+                Next →
+              </button>
+            ) : (
+              <button
+                className="bulk-review-nav-btn bulk-review-nav-btn--primary"
+                onClick={() => setReviewMode(false)}
+              >
+                Done →
+              </button>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* ── Results ── */}
-      {cards.length > 0 && (
+      {cards.length > 0 && !reviewMode && (
         <section className="bulk-results">
           <div className="bulk-results-header">
             <span className="section-label">
               {cards.length} card{cards.length !== 1 ? "s" : ""}
-              {cards.filter((c) => c.image).length > 0 && (
+              {imageCardIndices.length > 0 && (
                 <span className="count-badge" style={{ marginLeft: 8 }}>
-                  {cards.filter((c) => c.image).length} with artwork
+                  {imageCardIndices.length} with artwork
                 </span>
               )}
             </span>
-            <button
-              className="download-btn bulk-download-btn"
-              onClick={handleDownloadAll}
-              disabled={downloading}
-            >
-              {downloading ? `Rendering… ${progress} / ${cards.length}` : "↓ Download All as ZIP"}
-            </button>
+            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              {imageCardIndices.length > 0 && (
+                <button
+                  className="link-btn"
+                  onClick={() => { setReviewStep(0); setReviewMode(true); }}
+                >
+                  Review images
+                </button>
+              )}
+              <button
+                className="download-btn bulk-download-btn"
+                onClick={handleDownloadAll}
+                disabled={downloading}
+              >
+                {downloading ? `Rendering… ${progress} / ${cards.length}` : "↓ Download All as ZIP"}
+              </button>
+            </div>
           </div>
 
           {/* Full-size cards for dom-to-image capture, off-screen */}
