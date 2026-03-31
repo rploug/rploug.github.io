@@ -4,10 +4,16 @@ import CardPreview from "./CardPreview";
 
 const CARD_RATIO    = 417 / 300;   // height / width of the card
 const PAGE_MARGIN   = 10;          // mm — @page margin
-const PAGE_W        = 210 - 2 * PAGE_MARGIN;  // 190 mm printable
-const PAGE_H        = 297 - 2 * PAGE_MARGIN;  // 277 mm printable
+const A4_SHORT      = 210 - 2 * PAGE_MARGIN;  // 190 mm
+const A4_LONG       = 297 - 2 * PAGE_MARGIN;  // 277 mm
 const GAP           = 3;           // mm gap between cards
 const DEFAULT_WIDTH = 63.5;        // standard poker card width in mm
+
+function calcGrid(pageW, pageH, cardW, cardH) {
+  const perRow = Math.max(1, Math.floor((pageW + GAP) / (cardW + GAP)));
+  const perCol = Math.max(1, Math.floor((pageH + GAP) / (cardH + GAP)));
+  return { perRow, perCol, count: perRow * perCol };
+}
 
 export default function PrintModal({ cards, onClose }) {
   const [cardWidthMm, setCardWidthMm]   = useState(DEFAULT_WIDTH);
@@ -16,12 +22,19 @@ export default function PrintModal({ cards, onClose }) {
   const [renderProgress, setRenderProgress] = useState(0);
   const captureRefs = useRef([]);
 
-  const cardHeightMm  = +(cardWidthMm * CARD_RATIO).toFixed(2);
-  const cardsPerRow   = Math.max(1, Math.floor((PAGE_W + GAP) / (cardWidthMm + GAP)));
-  const cardsPerCol   = Math.max(1, Math.floor((PAGE_H + GAP) / (cardHeightMm + GAP)));
-  const cardsPerPage  = cardsPerRow * cardsPerCol;
-  const totalCards    = cards.length * copiesPerCard;
-  const totalPages    = Math.ceil(totalCards / cardsPerPage);
+  const cardHeightMm = +(cardWidthMm * CARD_RATIO).toFixed(2);
+
+  // Auto-pick the orientation that fits the most cards per page
+  const portrait  = calcGrid(A4_SHORT, A4_LONG,  cardWidthMm, cardHeightMm);
+  const landscape = calcGrid(A4_LONG,  A4_SHORT, cardWidthMm, cardHeightMm);
+  const useLandscape = landscape.count > portrait.count;
+  const { perRow: cardsPerRow, perCol: cardsPerCol } = useLandscape ? landscape : portrait;
+  const pageW        = useLandscape ? A4_LONG  : A4_SHORT;
+  const pageH        = useLandscape ? A4_SHORT : A4_LONG;
+
+  const cardsPerPage = cardsPerRow * cardsPerCol;
+  const totalCards   = cards.length * copiesPerCard;
+  const totalPages   = Math.ceil(totalCards / cardsPerPage);
 
   const handlePrint = async () => {
     setRendering(true);
@@ -74,12 +87,12 @@ export default function PrintModal({ cards, onClose }) {
 <meta charset="utf-8">
 <title>Dino Cards — Print</title>
 <style>
-  @page { size: A4 portrait; margin: ${PAGE_MARGIN}mm; }
+  @page { size: A4 ${useLandscape ? "landscape" : "portrait"}; margin: ${PAGE_MARGIN}mm; }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: white; }
   .page {
-    width: ${PAGE_W}mm;
-    height: ${PAGE_H}mm;
+    width: ${pageW}mm;
+    height: ${pageH}mm;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -170,6 +183,7 @@ ${pagesHtml}
           {/* Layout info */}
           <div className="print-info">
             <span>{cardsPerRow} × {cardsPerCol} per page</span>
+            <span className="count-badge">{useLandscape ? "Landscape" : "Portrait"}</span>
             <span className="count-badge">{totalCards} card{totalCards !== 1 ? "s" : ""}</span>
             <span className="count-badge">{totalPages} page{totalPages !== 1 ? "s" : ""}</span>
           </div>
