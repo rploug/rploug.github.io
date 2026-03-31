@@ -9,7 +9,7 @@ const BASE = import.meta.env.BASE_URL;
 
 const VALID_TYPES   = ["Predator", "Mother", "Defense", "Flying", "Water"];
 const VALID_SIZES   = ["Tiny", "Small", "Medium", "Large", "Giant"];
-const VALID_COSTS   = ["0", "1", "2", "Simple"];
+const VALID_COSTS   = ["0", "1", "2", "Basic", "Habitat"];
 const VALID_BONUSES = ["Nest", "Egg", "Predator", "Move", "Draw", "Claim", "Copy"];
 const PREFIXES      = ["Before Battle:", "After Battle:", "Special:", "Reaction:", "Ongoing:"];
 

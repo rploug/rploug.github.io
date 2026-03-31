@@ -5,7 +5,7 @@ const BASE = import.meta.env.BASE_URL;
 const BONUS_OPTIONS = ["Nest", "Egg", "Predator", "Move", "Draw", "Claim", "Copy"];
 const TYPES        = ["Predator", "Mother", "Defense", "Flying", "Water"];
 const SIZES        = ["Tiny", "Small", "Medium", "Large", "Giant"];
-const COSTS        = [0, 1, 2, "Simple"];
+const COSTS        = [0, 1, 2, "Basic", "Habitat"];
 const PREFIXES     = ["Before Battle:", "After Battle:", "Special:", "Reaction:", "Ongoing:"];
 
 // Art pane dimensions (must match CardPreview clip container)
@@ -156,7 +156,7 @@ export default function CardForm({
             <select value={cost} onChange={(e) => setCost(e.target.value)}>
               <option value="">—</option>
               {COSTS.map((c) => (
-                <option key={c} value={c}>{c}</option>
+                <option key={c} value={c}>{c === "Habitat" ? "1 Habitat" : c}</option>
               ))}
             </select>
           </div>

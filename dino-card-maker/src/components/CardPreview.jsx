@@ -183,37 +183,84 @@ function CardPreview(
         {size} {type}
       </div>
 
-      {/* ── Cost ── */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: cost === "Simple" ? "10px" : "8px",
-          right: cost === "Simple" ? "20px" : "35px",
-          fontSize: cost === "Simple" ? "16px" : "18px",
-          color: "white",
-          textTransform: cost === "Simple" ? "uppercase" : "none",
-          fontFamily:
-            cost === "Simple" ? "'Leander', sans-serif" : "'Roboto', sans-serif",
-          fontWeight: 700,
-        }}
-      >
-        {cost}
-      </div>
-
-      {/* ── Egg cost icon (numeric costs only) ── */}
-      {cost !== "" && cost !== "Simple" && (
-        <img
-          src={`${BASE}egg.svg`}
-          alt=""
+      {/* ── Basic cost: text label ── */}
+      {cost === "Basic" && (
+        <div
           style={{
             position: "absolute",
-            bottom: "14.75px",
-            right: "14px",
-            transform: "translateX(-50%)",
-            width: "12px",
-            pointerEvents: "none",
+            bottom: "10px",
+            right: "20px",
+            fontSize: "16px",
+            color: "white",
+            textTransform: "uppercase",
+            fontFamily: "'Leander', sans-serif",
+            fontWeight: 700,
           }}
-        />
+        >
+          Basic
+        </div>
+      )}
+
+      {/* ── Egg cost: number + egg icon ── */}
+      {(cost === "0" || cost === "1" || cost === "2") && (
+        <>
+          <div
+            style={{
+              position: "absolute",
+              bottom: "8px",
+              right: "35px",
+              fontSize: "18px",
+              color: "white",
+              fontFamily: "'Roboto', sans-serif",
+              fontWeight: 700,
+            }}
+          >
+            {cost}
+          </div>
+          <img
+            src={`${BASE}egg.svg`}
+            alt=""
+            style={{
+              position: "absolute",
+              bottom: "14.75px",
+              right: "14px",
+              transform: "translateX(-50%)",
+              width: "12px",
+              pointerEvents: "none",
+            }}
+          />
+        </>
+      )}
+
+      {/* ── Habitat cost: 1 + claim icon ── */}
+      {cost === "Habitat" && (
+        <>
+          <div
+            style={{
+              position: "absolute",
+              bottom: "8px",
+              right: "35px",
+              fontSize: "18px",
+              color: "white",
+              fontFamily: "'Roboto', sans-serif",
+              fontWeight: 700,
+            }}
+          >
+            1
+          </div>
+          <img
+            src={`${BASE}bonus/claim.svg`}
+            alt=""
+            style={{
+              position: "absolute",
+              bottom: "14.75px",
+              right: "14px",
+              transform: "translateX(-50%)",
+              width: "12px",
+              pointerEvents: "none",
+            }}
+          />
+        </>
       )}
 
       {/* ── Effects text ── */}
