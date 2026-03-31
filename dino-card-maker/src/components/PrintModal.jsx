@@ -9,24 +9,26 @@ const A4_LONG       = 297 - 2 * PAGE_MARGIN;  // 277 mm
 const GAP           = 3;           // mm gap between cards
 const DEFAULT_WIDTH = 63.5;        // standard poker card width in mm
 
-function calcGrid(pageW, pageH, cardW, cardH) {
-  const perRow = Math.max(1, Math.floor((pageW + GAP) / (cardW + GAP)));
-  const perCol = Math.max(1, Math.floor((pageH + GAP) / (cardH + GAP)));
+function calcGrid(pageW, pageH, cardW, cardH, gap) {
+  const perRow = Math.max(1, Math.floor((pageW + gap) / (cardW + gap)));
+  const perCol = Math.max(1, Math.floor((pageH + gap) / (cardH + gap)));
   return { perRow, perCol, count: perRow * perCol };
 }
 
 export default function PrintModal({ cards, onClose }) {
   const [cardWidthMm, setCardWidthMm]   = useState(DEFAULT_WIDTH);
   const [copiesPerCard, setCopiesPerCard] = useState(1);
+  const [noGap, setNoGap]               = useState(false);
   const [rendering, setRendering]       = useState(false);
   const [renderProgress, setRenderProgress] = useState(0);
   const captureRefs = useRef([]);
 
   const cardHeightMm = +(cardWidthMm * CARD_RATIO).toFixed(2);
+  const gap = noGap ? 0 : GAP;
 
   // Auto-pick the orientation that fits the most cards per page
-  const portrait  = calcGrid(A4_SHORT, A4_LONG,  cardWidthMm, cardHeightMm);
-  const landscape = calcGrid(A4_LONG,  A4_SHORT, cardWidthMm, cardHeightMm);
+  const portrait  = calcGrid(A4_SHORT, A4_LONG,  cardWidthMm, cardHeightMm, gap);
+  const landscape = calcGrid(A4_LONG,  A4_SHORT, cardWidthMm, cardHeightMm, gap);
   const useLandscape = landscape.count > portrait.count;
   const { perRow: cardsPerRow, perCol: cardsPerCol } = useLandscape ? landscape : portrait;
   const pageW        = useLandscape ? A4_LONG  : A4_SHORT;
@@ -104,7 +106,7 @@ export default function PrintModal({ cards, onClose }) {
     display: grid;
     grid-template-columns: repeat(${cardsPerRow}, ${w}mm);
     grid-template-rows: repeat(${cardsPerCol}, ${h}mm);
-    gap: ${GAP}mm;
+    gap: ${gap}mm;
   }
   .card { width: ${w}mm; height: ${h}mm; overflow: hidden; }
   .card img { width: 100%; height: 100%; display: block; }
@@ -167,6 +169,13 @@ ${pagesHtml}
               <input type="number" readOnly value={cardHeightMm.toFixed(1)} />
             </div>
           </div>
+
+          {/* Gap toggle */}
+          <label className="print-gap-toggle">
+            <input type="checkbox" checked={noGap} onChange={(e) => setNoGap(e.target.checked)} />
+            No gap between cards
+            <span className="print-gap-hint">easier to cut in one straight line</span>
+          </label>
 
           {/* Copies */}
           <div className="field">
