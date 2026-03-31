@@ -3,6 +3,7 @@ import * as XLSX from "xlsx";
 import JSZip from "jszip";
 import domtoimage from "dom-to-image-more";
 import CardPreview from "../components/CardPreview";
+import PrintModal from "../components/PrintModal";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -123,6 +124,7 @@ export default function BulkPage() {
   const [exampleLoading, setExampleLoading] = useState(false);
   const [reviewMode, setReviewMode]   = useState(false);
   const [reviewStep, setReviewStep]   = useState(0);
+  const [printOpen, setPrintOpen]     = useState(false);
   const cardRefs = useRef([]);
 
   // Indices into `cards` that have an image
@@ -500,6 +502,13 @@ export default function BulkPage() {
                 </button>
               )}
               <button
+                className="bulk-download-btn"
+                style={{ width: "auto", padding: "10px 20px", background: "var(--elevated)", color: "var(--text)", border: "1px solid var(--border)" }}
+                onClick={() => setPrintOpen(true)}
+              >
+                ⎙ Print
+              </button>
+              <button
                 className="download-btn bulk-download-btn"
                 onClick={handleDownloadAll}
                 disabled={downloading}
@@ -550,6 +559,10 @@ export default function BulkPage() {
             ))}
           </div>
         </section>
+      )}
+
+      {printOpen && (
+        <PrintModal cards={cards} onClose={() => setPrintOpen(false)} />
       )}
     </div>
   );

@@ -44,6 +44,7 @@ export default function CardForm({
   image, setImage,
   imageTransform, setImageTransform,
   onDownload,
+  onPrint,
 }) {
   const [effectPrefix, setEffectPrefix] = useState("");
   const [effectText, setEffectText] = useState("");
@@ -296,6 +297,9 @@ export default function CardForm({
       <section className="form-section">
         <button className="download-btn" onClick={onDownload}>
           ↓ Download Card
+        </button>
+        <button className="download-btn" style={{ marginTop: 8, background: "var(--elevated)", color: "var(--text)", border: "1px solid var(--border)" }} onClick={onPrint}>
+          ⎙ Print Card
         </button>
       </section>
 

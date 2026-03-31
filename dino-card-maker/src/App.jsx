@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, lazy, Suspense } from "react";
 import domtoimage from "dom-to-image-more";
 import CardPreview from "./components/CardPreview";
 import CardForm from "./components/CardForm";
+import PrintModal from "./components/PrintModal";
 
 const BulkPage = lazy(() => import("./pages/BulkPage"));
 
@@ -18,6 +19,7 @@ function App() {
   const [image, setImage] = useState(null);
   const [imageTransform, setImageTransform] = useState({ x: 0, y: 0, scale: 1 });
 
+  const [printOpen, setPrintOpen] = useState(false);
   const cardRef = useRef();
 
   useEffect(() => {
@@ -88,6 +90,7 @@ function App() {
             image={image} setImage={setImage}
             imageTransform={imageTransform} setImageTransform={setImageTransform}
             onDownload={handleDownload}
+            onPrint={() => setPrintOpen(true)}
           />
 
           <main className="app-main">
@@ -116,6 +119,13 @@ function App() {
             <BulkPage />
           </Suspense>
         </div>
+      )}
+
+      {printOpen && (
+        <PrintModal
+          cards={[{ name, power, battleBonus, size, type, cost, effects, image, imageTransform }]}
+          onClose={() => setPrintOpen(false)}
+        />
       )}
     </div>
   );
